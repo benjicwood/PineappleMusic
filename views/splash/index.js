@@ -4,19 +4,33 @@ import {
   StyleSheet,
   Text,
   View,
+  Navigator,
   Image,
   TouchableOpacity,
   Button,
   TouchableHighlight
 } from 'react-native';
 
-const background = require("./pineappple.png");
+
+const background = require('./pineappple.png');
 
 
 export default class InitialScreen extends Component {
-  render () {
-  return(
 
+  onBandPress () {
+    this.props.navigator.push({
+      id: 'SignupView'
+    })
+  }
+
+  OnMusicianPress () {
+    this.props.navigator.push({
+      id: 'SignupMusician'
+    })
+  }
+
+  render () {
+    return (
     <View style={styles.container}>
       <Image
         source={background}
@@ -24,10 +38,12 @@ export default class InitialScreen extends Component {
         resizeMode="cover"
         />
       <TouchableOpacity
+        onPress={this.onBandPress.bind(this)}
         style={styles.button}>
         <Text style={styles.buttonText}>BAND</Text>
       </TouchableOpacity>
       <TouchableOpacity
+      onPress={this.OnMusicianPress.bind(this)}
         style={styles.button}>
         <Text style={styles.buttonText}>MUSICIAN</Text>
       </TouchableOpacity>
