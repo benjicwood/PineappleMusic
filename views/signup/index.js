@@ -5,7 +5,8 @@ import {
   View,
   Image,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Navigator
 } from 'react-native'
 
 const background = require('./signup_bg.png')
@@ -16,6 +17,11 @@ const emailIcon = require('./signup_email.png')
 const musicalNoteIcon = require('./signup_musicalnote.png')
 
 export default class SignupView extends Component {
+  onBackPress () {
+    this.props.navigator.push({
+      id: 'InitialScreen'
+    })
+  }
   render () {
     return (
       <View style={styles.container}>
@@ -27,7 +33,9 @@ export default class SignupView extends Component {
           <View style={styles.headerContainer}>
 
             <View style={styles.headerIconView}>
-              <TouchableOpacity style={styles.headerBackButtonView}>
+              <TouchableOpacity
+                onPress={this.onBackPress.bind(this)}
+                style={styles.headerBackButtonView}>
                 <Image
                   source={backIcon}
                   style={styles.backButtonIcon}

@@ -16,6 +16,12 @@ const emailIcon = require('./signup_email.png')
 const musicalNoteIcon = require('./signup_musicalnote.png')
 
 export default class SignupMusician extends Component {
+  onBackPress () {
+    this.props.navigator.push({
+      id: 'InitialScreen'
+    })
+  }
+
   render () {
     return (
       <View style={styles.container}>
@@ -27,7 +33,9 @@ export default class SignupMusician extends Component {
           <View style={styles.headerContainer}>
 
             <View style={styles.headerIconView}>
-              <TouchableOpacity style={styles.headerBackButtonView}>
+              <TouchableOpacity
+                onPress={this.onBackPress.bind(this)}
+                style={styles.headerBackButtonView}>
                 <Image
                   source={backIcon}
                   style={styles.backButtonIcon}

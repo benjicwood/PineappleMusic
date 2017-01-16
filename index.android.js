@@ -9,20 +9,38 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Navigator,
+  TouchableOpacity
 } from 'react-native'
 
 import SignupMusician from './views/signupMusician/index';
-import SignUpView from './views/signup/index';
+import SignupView from './views/signup/index';
 import InitialScreen from './views/splash/index';
 
 export default class PineappleFront extends Component {
   render () {
     return (
-      <View style={styles.container}>
-        <SignUpView />
-      </View>
+      <Navigator
+        initialRoute={{
+          id: 'InitialScreen'
+        }}
+        renderScene={
+  this.navigatorRenderScene
+  }
+  />
     )
+  }
+  navigatorRenderScene (route, navigator) {
+    _navigator = navigator
+    switch (route.id) {
+      case 'InitialScreen':
+        return (<InitialScreen navigator={navigator} title='InitialScreen' />);
+      case 'SignupView':
+        return (<SignupView navigator={navigator} title='SignupView' />);
+      case 'SignupMusician':
+        return (<SignupMusician navigator={navigator} title='SignupMusician' />);
+    }
   }
 }
 
