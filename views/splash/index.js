@@ -19,7 +19,7 @@ export default class InitialScreen extends Component {
 
   onBandPress () {
     this.props.navigator.push({
-      id: 'SignupView'
+      id: 'SignupBand'
     })
   }
 

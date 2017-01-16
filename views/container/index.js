@@ -5,7 +5,7 @@ import {
  } from 'react-native';
 
 import SignupMusician from '../signupMusician/index';
-import SignupView from '../signup/index';
+import SignupBand from '../signupBand/index';
 import InitialScreen from '../splash/index';
 
 export default class PineappleFront extends Component {
@@ -26,8 +26,8 @@ export default class PineappleFront extends Component {
     switch (route.id) {
       case 'InitialScreen':
         return (<InitialScreen navigator={navigator} title='InitialScreen' />);
-      case 'SignupView':
-        return (<SignupView navigator={navigator} title='SignupView' />);
+      case 'SignupBand':
+        return (<SignupBand navigator={navigator} title='SignupBand' />);
       case 'SignupMusician':
         return (<SignupMusician navigator={navigator} title='SignupMusician' />);
     }
