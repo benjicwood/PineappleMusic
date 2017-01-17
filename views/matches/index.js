@@ -3,7 +3,8 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  Text
+  Text,
+  Platform
 } from 'react-native';
 
 import Card from './Card';
@@ -11,37 +12,40 @@ import Card from './Card';
 export default class Matches extends Component {
   render () {
     return (
-      <View style={styles.container1}>
-        <TouchableOpacity style={styles.container2}><Text>Hi</Text></TouchableOpacity>
+      <View style={styles.container}>
+        <View style={styles.banner}>
+          <TouchableOpacity>
+            <Text style={{paddingLeft: 340, fontSize: 18}}>Profile</Text>
+          </TouchableOpacity>
+        </View>
         <Card
           style={{flex: 1}} />
-        <TouchableOpacity style={styles.container2}><Text>Hi</Text></TouchableOpacity>
+        <View style={styles.banner}>
+          <Text style={{paddingLeft: 340, fontSize: 18}}>Likes Me</Text>
+          <Text style={{paddingLeft: 340, fontSize: 18}}>I Like</Text>
+        </View>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  container1: {
+  container: {
     borderRadius: 4,
     borderWidth: 0.5,
+    justifyContent: 'center',
     flex: 1,
     backgroundColor: 'whitesmoke'
   },
-  container2: {
-    borderRadius: 4,
-    borderWidth: 0.5,
-    height: 100,
-    width: 400,
-    backgroundColor: 'black'
-  },
-  buttons: {
-    width: 80,
-    height: 80,
-    borderWidth: 10,
-    borderColor: '#e7e7e7',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 40
+  banner: {
+    flexDirection: 'row',
+    ...Platform.select({
+      ios: { flex: 0.1 },
+      android: { flex: 0.12 }
+    }),
+    borderWidth: 1,
+    height: 50,
+    borderColor: 'green',
+    alignItems: 'center'
   }
 });

@@ -54,7 +54,7 @@ export default class BandCards extends Component {
         <Image source={x.image} resizeMode='contain' style={{width: 350, height: 350}} />
         <View style={{width: 350, height: 70, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
           <View style={{flexDirection: 'row', margin: 15, marginTop: 25}} >
-            <Text style={{fontSize: 20, fontWeight: '300', color: '#444'}}>{x.band_name} </Text>
+            <Text style={{fontSize: 20, fontWeight: '300', color: '#fff'}}>{x.band_name} </Text>
           </View>
           <View style={{flexDirection: 'row'}} />
         </View>
