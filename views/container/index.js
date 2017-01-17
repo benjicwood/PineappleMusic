@@ -9,6 +9,8 @@ import SignupBand from '../signupBand/index';
 import InitialScreen from '../splash/index';
 import Matches from '../matches/index';
 import Profile from '../profile/index';
+import ILike from '../iLike/index';
+import LikesMe from '../likesMe/index';
 
 export default class PineappleFront extends Component {
   render () {
@@ -37,9 +39,9 @@ export default class PineappleFront extends Component {
       case 'Profile':
         return (<Profile navigator={navigator} title='Profile' />);
       case 'ILike':
-        return (<Profile navigator={navigator} title='ILike' />);
+        return (<ILike navigator={navigator} title='ILike' />);
       case 'LikesMe':
-        return (<Profile navigator={navigator} title='LikesMe' />);
+        return (<LikesMe navigator={navigator} title='LikesMe' />);
     }
   }
 }
