@@ -10,21 +10,46 @@ import {
 import Card from './Card';
 
 export default class Matches extends Component {
+
+  onProfilePress () {
+    this.props.navigator.push({
+      id: 'Profile'
+    });
+  }
+
+  onLikesMePress () {
+    this.props.navigator.push({
+      id: 'LikesMe'
+    });
+  }
+
+  onILikePress () {
+    this.props.navigator.push({
+      id: 'ILike'
+    });
+  }
+
   render () {
     return (
       <View style={styles.container}>
         <View style={styles.banner}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.onProfilePress.bind(this)}
+            >
             <Text style={{paddingLeft: 340, fontSize: 18}}>Profile</Text>
           </TouchableOpacity>
         </View>
         <Card
           style={{flex: 1}} />
         <View style={styles.banner}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.onLikesMePress.bind(this)}
+            >
             <Text style={styles.likesMe}>Likes Me </Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.onILikePress.bind(this)}
+            >
             <Text style={styles.iLike}> I Like</Text>
           </TouchableOpacity>
         </View>
