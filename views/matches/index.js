@@ -10,11 +10,20 @@ import {
 import Card from './Card';
 
 export default class Matches extends Component {
+
+  onProfilePress () {
+    this.props.navigator.push({
+      id: 'Profile'
+    });
+  }
+
   render () {
     return (
       <View style={styles.container}>
         <View style={styles.banner}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.onProfilePress.bind(this)}
+            >
             <Text style={{paddingLeft: 340, fontSize: 18}}>Profile</Text>
           </TouchableOpacity>
         </View>
