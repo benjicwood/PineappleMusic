@@ -1,29 +1,32 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   Text,
   View,
   Image,
   TextInput,
-  Navigator,
   TouchableOpacity
-} from 'react-native'
+} from 'react-native';
 
-
-const background = require("./signup_bg.png");
-const backIcon = require("./back.png");
-const bandIcon = require("./signup_band.png");
-const lockIcon = require("./signup_lock.png");
-const emailIcon = require("./signup_email.png");
-const musicalNoteIcon = require("./signup_musicalnote.png");
+const background = require('./signup_bg.png');
+const backIcon = require('./back.png');
+const bandIcon = require('./signup_band.png');
+const lockIcon = require('./signup_lock.png');
+const emailIcon = require('./signup_email.png');
+const musicalNoteIcon = require('./signup_musicalnote.png');
 
 export default class SignupBand extends Component {
 
   onBackPress () {
     this.props.navigator.push({
       id: 'InitialScreen'
-    })
+    });
+  }
+
+  onMatchPress () {
+    this.props.navigator.push({
+      id: 'Matches'
+    });
   }
 
   render () {
@@ -32,18 +35,18 @@ export default class SignupBand extends Component {
         <Image
           source={background}
           style={[styles.container, styles.bg]}
-          resizeMode="cover"
+          resizeMode='cover'
         >
           <View style={styles.headerContainer}>
 
             <View style={styles.headerIconView}>
               <TouchableOpacity
-              onPress={this.onBackPress.bind(this)}
-              style={styles.headerBackButtonView}>
+                onPress={this.onBackPress.bind(this)}
+                style={styles.headerBackButtonView}>
                 <Image
                   source={backIcon}
                   style={styles.backButtonIcon}
-                  resizeMode="contain"
+                  resizeMode='contain'
                 />
               </TouchableOpacity>
             </View>
@@ -61,13 +64,13 @@ export default class SignupBand extends Component {
                 <Image
                   source={bandIcon}
                   style={styles.inputIcon}
-                  resizeMode="contain"
+                  resizeMode='contain'
                 />
               </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
-                placeholder="Band Name"
-                placeholderTextColor="#FFF"
+                placeholder='Band Name'
+                placeholderTextColor='#FFF'
                 underlineColorAndroid='transparent'
               />
             </View>
@@ -77,13 +80,13 @@ export default class SignupBand extends Component {
                 <Image
                   source={emailIcon}
                   style={styles.inputIcon}
-                  resizeMode="contain"
+                  resizeMode='contain'
                 />
               </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
-                placeholder="Email"
-                placeholderTextColor="#FFF"
+                placeholder='Email'
+                placeholderTextColor='#FFF'
               />
             </View>
 
@@ -92,14 +95,14 @@ export default class SignupBand extends Component {
                 <Image
                   source={lockIcon}
                   style={styles.inputIcon}
-                  resizeMode="contain"
+                  resizeMode='contain'
                 />
               </View>
               <TextInput
-                secureTextEntry={true}
+                secureTextEntry
                 style={[styles.input, styles.whiteFont]}
-                placeholder="Password"
-                placeholderTextColor="#FFF"
+                placeholder='Password'
+                placeholderTextColor='#FFF'
               />
             </View>
 
@@ -108,13 +111,13 @@ export default class SignupBand extends Component {
                 <Image
                   source={musicalNoteIcon}
                   style={styles.inputIcon}
-                  resizeMode="contain"
+                  resizeMode='contain'
                 />
               </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
-                placeholder="Genre"
-                placeholderTextColor="#FFF"
+                placeholder='Genre'
+                placeholderTextColor='#FFF'
                 underlineColorAndroid='transparent'
               />
             </View>
@@ -123,7 +126,9 @@ export default class SignupBand extends Component {
 
           <View style={styles.footerContainer}>
 
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={this.onMatchPress.bind(this)}
+              >
               <View style={styles.signup}>
                 <Text style={styles.whiteFont}>Create a Pineapple</Text>
               </View>
@@ -143,7 +148,7 @@ export default class SignupBand extends Component {
 
 let styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flex: 1
   },
   bg: {
     paddingTop: 30,
@@ -151,11 +156,11 @@ let styles = StyleSheet.create({
     height: null
   },
   headerContainer: {
-    flex: 1,
+    flex: 1
   },
   inputsContainer: {
     flex: 3,
-    marginTop: 50,
+    marginTop: 50
   },
   footerContainer: {
     flex: 1
@@ -166,7 +171,7 @@ let styles = StyleSheet.create({
   },
   headerBackButtonView: {
     width: 25,
-    height: 25,
+    height: 25
   },
   backButtonIcon: {
     width: 25,
@@ -175,46 +180,46 @@ let styles = StyleSheet.create({
   headerTitleView: {
     backgroundColor: 'transparent',
     marginTop: 25,
-    marginLeft: 25,
+    marginLeft: 25
   },
   titleViewText: {
     fontSize: 40,
-    color: '#fff',
+    color: '#fff'
   },
   inputs: {
-    paddingVertical: 20,
+    paddingVertical: 20
   },
   inputContainer: {
     borderWidth: 1,
     borderBottomColor: '#CCC',
     borderColor: 'transparent',
     flexDirection: 'row',
-    height: 75,
+    height: 75
   },
   iconContainer: {
     paddingHorizontal: 15,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   inputIcon: {
     width: 30,
-    height: 30,
+    height: 30
   },
   input: {
     flex: 1,
-    fontSize: 20,
+    fontSize: 20
   },
   signup: {
     backgroundColor: '#FF3366',
     paddingVertical: 25,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 15,
+    marginBottom: 15
   },
   signin: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent'
   },
   greyFont: {
     color: '#D8D8D8'
@@ -222,4 +227,4 @@ let styles = StyleSheet.create({
   whiteFont: {
     color: '#FFF'
   }
-})
+});

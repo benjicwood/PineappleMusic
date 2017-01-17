@@ -7,6 +7,7 @@ import {
 import SignupMusician from '../signupMusician/index';
 import SignupBand from '../signupBand/index';
 import InitialScreen from '../splash/index';
+import Matches from '../matches/index';
 
 export default class PineappleFront extends Component {
   render () {
@@ -30,6 +31,8 @@ export default class PineappleFront extends Component {
         return (<SignupBand navigator={navigator} title='SignupBand' />);
       case 'SignupMusician':
         return (<SignupMusician navigator={navigator} title='SignupMusician' />);
+      case 'Matches':
+        return (<Matches navigator={navigator} title='Matches' />);
     }
   }
 }
