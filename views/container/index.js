@@ -36,6 +36,10 @@ export default class PineappleFront extends Component {
         return (<Matches navigator={navigator} title='Matches' />);
       case 'Profile':
         return (<Profile navigator={navigator} title='Profile' />);
+      case 'ILike':
+        return (<Profile navigator={navigator} title='ILike' />);
+      case 'LikesMe':
+        return (<Profile navigator={navigator} title='LikesMe' />);
     }
   }
 }
