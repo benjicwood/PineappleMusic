@@ -21,8 +21,12 @@ export default class Matches extends Component {
         <Card
           style={{flex: 1}} />
         <View style={styles.banner}>
-          <Text style={{paddingLeft: 340, fontSize: 18}}>Likes Me</Text>
-          <Text style={{paddingLeft: 340, fontSize: 18}}>I Like</Text>
+          <TouchableOpacity>
+            <Text style={styles.likesMe}>Likes Me </Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.iLike}> I Like</Text>
+          </TouchableOpacity>
         </View>
       </View>
     );
@@ -38,6 +42,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'whitesmoke'
   },
   banner: {
+    justifyContent: 'center',
     flexDirection: 'row',
     ...Platform.select({
       ios: { flex: 0.1 },
@@ -47,5 +52,12 @@ const styles = StyleSheet.create({
     height: 50,
     borderColor: 'green',
     alignItems: 'center'
+  },
+  likesMe: {
+    alignSelf: 'flex-end',
+    fontSize: 18
+  },
+  iLike: {
+    fontSize: 18
   }
 });
