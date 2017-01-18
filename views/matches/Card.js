@@ -186,6 +186,7 @@ const styles = StyleSheet.create({
     color: '#fff'
   },
   backtext: {
+    alignSelf: 'center',
     fontSize: 10,
     fontWeight: '300',
     color: '#fff'
