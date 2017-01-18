@@ -8,37 +8,34 @@ import {
 } from 'react-native';
 import SwipeCards from './SwipeCards';
 
-var band1 = require('./band.jpg');
-var band2 = require('./band.jpg');
-var band3 = require('./band.jpg');
-var band4 = require('./band.jpg');
-var band5 = require('./band.jpg');
-var band6 = require('./band.jpg');
+import FlipCard from 'react-native-flip-card';
+
+var band = require('./band.jpg');
 
 const Cards = [{
   'id': 1,
   'band_name': 'Frank Carter and the Rattlesnakes',
-  'image': band1
+  'image': band
 }, {
   'id': 2,
   'band_name': 'Creeper',
-  'image': band2
+  'image': band
 }, {
   'id': 3,
   'band_name': 'Ballista',
-  'image': band3
+  'image': band
 }, {
   'id': 4,
   'band_name': 'Black Peaks',
-  'image': band4
+  'image': band
 }, {
   'id': 5,
   'band_name': 'Milk Teeth',
-  'image': band5
+  'image': band
 }, {
   'id': 6,
   'band_name': 'Architects',
-  'image': band6
+  'image': band
 }];
 
 export default class BandCards extends Component {
@@ -50,15 +47,31 @@ export default class BandCards extends Component {
   }
   Card (x) {
     return (
-      <View style={styles.card}>
-        <Image source={x.image} resizeMode='contain' style={{width: 350, height: 350}} />
-        <View style={{width: 350, height: 70, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-          <View style={{flexDirection: 'row', margin: 15, marginTop: 25}} >
-            <Text style={{fontSize: 20, fontWeight: '300', color: '#fff'}}>{x.band_name} </Text>
+      <FlipCard>
+      <View style={styles.face}>
+        <View style={styles.card}>
+          <View style={styles.imagebox}>
+            <Image source={x.image} style={styles.image} />
           </View>
-          <View style={{flexDirection: 'row'}} />
+          <View>
+            <Text style={styles.name}>{x.band_name} </Text>
+          </View>
         </View>
       </View>
+      <View style={styles.back}>
+        <View style={styles.card}>
+          <View style={styles.imagebox}>
+            <Image source={x.image} style={styles.backimage} />
+          </View>
+          <View>
+            <Text style={styles.name}>{x.band_name} </Text>
+            <Text style={styles.backtext}>Some Band Info</Text>
+            <Text style={styles.backtext}>Some More Band Info</Text>
+            <Text style={styles.backtext}>etc.</Text>
+          </View>
+        </View>
+      </View>
+    </FlipCard>
     );
   }
   handleYup (card) {
@@ -86,7 +99,7 @@ export default class BandCards extends Component {
         <SwipeCards
           ref={'swiper'}
           cards={this.state.cards}
-          containerStyle={{ backgroundColor: '#f7f7f7', alignItems: 'center', margin: 20 }}
+          containerStyle={styles.cardcontainer}
           renderCard={(cardData) => this.Card(cardData)}
           handleYup={this.handleYup}
           handleNope={this.handleNope} />
@@ -99,6 +112,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#f7f7f7'
+  },
+  cardcontainer: {
+    flex: 1,
+    paddingTop: 24,
+    backgroundColor: 'black',
+    alignItems: 'center',
+    margin: 5
   },
   buttons: {
     width: 80,
@@ -118,13 +138,57 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 25
   },
-  card: {
-    flex: 1,
+  face: {
     alignItems: 'center',
     alignSelf: 'center',
     borderWidth: 2,
     borderColor: '#e3e3e3',
     width: 350,
-    height: 420
+    height: 420,
+    backgroundColor: 'red'
+  },
+  back: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    borderWidth: 2,
+    borderColor: '#e3e3e3',
+    width: 350,
+    height: 420,
+    backgroundColor: 'red'
+  },
+  card: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    borderWidth: 2,
+    borderColor: '#e3e3e3',
+    width: 350,
+    height: 420,
+    backgroundColor: 'red'
+  },
+  imagebox: {
+    paddingTop: 20
+  },
+  image: {
+    width: 250,
+    height: 250,
+    borderWidth: 1,
+    borderColor: 'white'
+  },
+  backimage: {
+    width: 150,
+    height: 150,
+    borderWidth: 1,
+    borderColor: 'white'
+  },
+  name: {
+    fontSize: 20,
+    fontWeight: '300',
+    color: '#fff'
+  },
+  backtext: {
+    alignSelf: 'center',
+    fontSize: 10,
+    fontWeight: '300',
+    color: '#fff'
   }
 });

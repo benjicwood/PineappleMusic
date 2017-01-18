@@ -36,7 +36,7 @@ export default class Matches extends Component {
           <TouchableOpacity
             onPress={this.onProfilePress.bind(this)}
             >
-            <Text style={{paddingLeft: 340, fontSize: 18}}>Profile</Text>
+            <Text style={styles.profile}>Profile</Text>
           </TouchableOpacity>
         </View>
         <Card
@@ -60,29 +60,31 @@ export default class Matches extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 4,
-    borderWidth: 0.5,
-    justifyContent: 'center',
-    flex: 1,
-    backgroundColor: 'whitesmoke'
+    flex: 1
   },
   banner: {
     justifyContent: 'center',
     flexDirection: 'row',
     ...Platform.select({
       ios: { flex: 0.1 },
-      android: { flex: 0.12 }
+      android: { flex: 0.1 }
     }),
     borderWidth: 1,
-    height: 50,
-    borderColor: 'green',
-    alignItems: 'center'
+    borderColor: 'black',
+    alignItems: 'center',
+    backgroundColor: 'whitesmoke'
+  },
+  profile: {
+    fontSize: 18,
+    color: 'grey'
   },
   likesMe: {
     alignSelf: 'flex-end',
-    fontSize: 18
+    fontSize: 18,
+    color: 'grey'
   },
   iLike: {
-    fontSize: 18
+    fontSize: 18,
+    color: 'grey'
   }
 });
