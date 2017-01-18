@@ -48,30 +48,30 @@ export default class BandCards extends Component {
   Card (x) {
     return (
       <FlipCard>
-      <View style={styles.face}>
-        <View style={styles.card}>
-          <View style={styles.imagebox}>
-            <Image source={x.image} style={styles.image} />
-          </View>
-          <View>
-            <Text style={styles.name}>{x.band_name} </Text>
-          </View>
-        </View>
-      </View>
-      <View style={styles.back}>
-        <View style={styles.card}>
-          <View style={styles.imagebox}>
-            <Image source={x.image} style={styles.backimage} />
-          </View>
-          <View>
-            <Text style={styles.name}>{x.band_name} </Text>
-            <Text style={styles.backtext}>Some Band Info</Text>
-            <Text style={styles.backtext}>Some More Band Info</Text>
-            <Text style={styles.backtext}>etc.</Text>
+        <View style={styles.face}>
+          <View style={styles.card}>
+            <View style={styles.imagebox}>
+              <Image source={x.image} style={styles.image} />
+            </View>
+            <View>
+              <Text style={styles.name}>{x.band_name} </Text>
+            </View>
           </View>
         </View>
-      </View>
-    </FlipCard>
+        <View style={styles.back}>
+          <View style={styles.card}>
+            <View style={styles.imagebox}>
+              <Image source={x.image} style={styles.backimage} />
+            </View>
+            <View>
+              <Text style={styles.name}>{x.band_name} </Text>
+              <Text style={styles.backtext}>Some Band Info</Text>
+              <Text style={styles.backtext}>Some More Band Info</Text>
+              <Text style={styles.backtext}>etc.</Text>
+            </View>
+          </View>
+        </View>
+      </FlipCard>
     );
   }
   handleYup (card) {
