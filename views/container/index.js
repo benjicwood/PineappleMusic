@@ -23,6 +23,8 @@ export default class PineappleFront extends Component {
         renderScene={
   this.navigatorRenderScene
   }
+        configureScene={(route, routeStack) =>
+          Navigator.SceneConfigs.FadeAndroid}
   />
     );
   }
