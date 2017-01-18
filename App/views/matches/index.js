@@ -36,7 +36,9 @@ export default class Matches extends Component {
           <TouchableOpacity
             onPress={this.onProfilePress.bind(this)}
             >
-            <Text style={styles.profile}>Profile</Text>
+            <View style={styles.profilelink}>
+              <Text style={styles.profile}>Profile</Text>
+            </View>
           </TouchableOpacity>
         </View>
         <Card
@@ -44,13 +46,17 @@ export default class Matches extends Component {
         <View style={styles.banner}>
           <TouchableOpacity
             onPress={this.onLikesMePress.bind(this)}
-            >
-            <Text style={styles.likesMe}>Likes Me </Text>
+              >
+            <View style={styles.likesMeLink}>
+              <Text style={styles.likesMe}>Likes Me </Text>
+            </View>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={this.onILikePress.bind(this)}
-            >
-            <Text style={styles.iLike}> I Like</Text>
+              >
+            <View style={styles.iLikeLink}>
+              <Text style={styles.iLike}> I Like</Text>
+            </View>
           </TouchableOpacity>
         </View>
       </View>
@@ -74,14 +80,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'whitesmoke'
   },
+  profilelink: {
+    paddingLeft: 325
+  },
   profile: {
     fontSize: 18,
     color: 'grey'
+  },
+  likesMeLink: {
   },
   likesMe: {
     alignSelf: 'flex-end',
     fontSize: 18,
     color: 'grey'
+  },
+  iLikeLink: {
+    paddingLeft: 250
   },
   iLike: {
     fontSize: 18,

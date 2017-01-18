@@ -50,11 +50,11 @@ export default class BandCards extends Component {
       <FlipCard>
         <View style={styles.face}>
           <View style={styles.card}>
-            <View style={styles.imagebox}>
-              <Image source={x.image} style={styles.image} />
-            </View>
             <View>
               <Text style={styles.name}>{x.band_name} </Text>
+            </View>
+            <View style={styles.imagebox}>
+              <Image source={x.image} style={styles.image} />
             </View>
           </View>
         </View>
@@ -156,23 +156,16 @@ const styles = StyleSheet.create({
     height: 420,
     backgroundColor: 'red'
   },
-  card: {
-    alignItems: 'center',
-    alignSelf: 'center',
-    borderWidth: 2,
-    borderColor: '#e3e3e3',
-    width: 350,
-    height: 420,
-    backgroundColor: 'red'
-  },
   imagebox: {
-    paddingTop: 20
+    paddingTop: 5,
+    alignItems: 'center',
+    alignSelf: 'center'
   },
   image: {
-    width: 250,
-    height: 250,
+    width: 300,
+    height: 330,
     borderWidth: 1,
-    borderColor: 'white'
+    borderColor: 'black'
   },
   backimage: {
     width: 150,
@@ -182,6 +175,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 20,
+    alignSelf: 'center',
     fontWeight: '300',
     color: '#fff'
   },
