@@ -52,7 +52,7 @@ export default class SignupMusician extends Component {
             </View>
 
             <View style={styles.headerTitleView}>
-              <Text style={styles.titleViewText}>Musician signup</Text>
+              <Text style={styles.titleViewText}>Musician Sign Up</Text>
             </View>
 
           </View>
