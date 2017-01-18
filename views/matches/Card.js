@@ -8,6 +8,8 @@ import {
 } from 'react-native';
 import SwipeCards from './SwipeCards';
 
+import FlipCard from 'react-native-flip-card';
+
 var band = require('./band.jpg');
 
 const Cards = [{
@@ -45,7 +47,8 @@ export default class BandCards extends Component {
   }
   Card (x) {
     return (
-      <View>
+      <FlipCard>
+      <View style={styles.face}>
         <View style={styles.card}>
           <View style={styles.imagebox}>
             <Image source={x.image} style={styles.image} />
@@ -55,6 +58,20 @@ export default class BandCards extends Component {
           </View>
         </View>
       </View>
+      <View style={styles.back}>
+        <View style={styles.card}>
+          <View style={styles.imagebox}>
+            <Image source={x.image} style={styles.backimage} />
+          </View>
+          <View>
+            <Text style={styles.name}>{x.band_name} </Text>
+            <Text style={styles.backtext}>Some Band Info</Text>
+            <Text style={styles.backtext}>Some More Band Info</Text>
+            <Text style={styles.backtext}>etc.</Text>
+          </View>
+        </View>
+      </View>
+    </FlipCard>
     );
   }
   handleYup (card) {
@@ -121,6 +138,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 25
   },
+  face: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    borderWidth: 2,
+    borderColor: '#e3e3e3',
+    width: 350,
+    height: 420,
+    backgroundColor: 'red'
+  },
+  back: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    borderWidth: 2,
+    borderColor: '#e3e3e3',
+    width: 350,
+    height: 420,
+    backgroundColor: 'red'
+  },
   card: {
     alignItems: 'center',
     alignSelf: 'center',
@@ -139,8 +174,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white'
   },
+  backimage: {
+    width: 150,
+    height: 150,
+    borderWidth: 1,
+    borderColor: 'white'
+  },
   name: {
     fontSize: 20,
+    fontWeight: '300',
+    color: '#fff'
+  },
+  backtext: {
+    alignSelf: 'center',
+    fontSize: 10,
     fontWeight: '300',
     color: '#fff'
   }
