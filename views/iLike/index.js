@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  AppRegistry,
   StyleSheet,
   ListView,
   Text,
@@ -8,34 +7,34 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import Row from './Row'
-import Header from './Header'
-import SectionHeader from './SectionHeader'
-import Footer from './Footer'
-import dumyData from './data'
+import Row from './Row';
+import Header from './Header';
+import SectionHeader from './SectionHeader';
+import Footer from './Footer';
+import dumyData from './data';
 
 export default class iLike extends Component {
-  constructor(props) {
-    super(props)
+  constructor (props) {
+    super(props);
 
     const getSectionData = (dataBlock, sectionId) => dataBlock[sectionId];
     const getRowData = (dataBlock, sectionId, rowId) => dataBlock[`${rowId}`];
 
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2,
-      sectionHeaderHasChanged : (s1, s2) => s1 !== s2,
+      sectionHeaderHasChanged: (s1, s2) => s1 !== s2,
       getSectionData,
-      getRowData,
+      getRowData
     });
 
     const { dataBlock, sectionIds, rowIds } = this.formatData(dumyData);
 
     this.state = {
       dataSource: ds.cloneWithRowsAndSections(dataBlock, sectionIds, rowIds)
-    }
+    };
   }
 
-  formatData(data) {
+  formatData (data) {
     // sorting alphabetically
     const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
@@ -83,20 +82,20 @@ export default class iLike extends Component {
     return { dataBlock, sectionIds, rowIds };
   }
   onMatchPress () {
-      this.props.navigator.push({
-        id: 'Matches'
-      });
+    this.props.navigator.push({
+      id: 'Matches'
+    });
   }
-  render() {
+  render () {
     return (
       <View style={styles.container}>
-      <View>
-        <TouchableOpacity
-          onPress={this.onMatchPress.bind(this)}
-          >
-          <Text style={styles.toMatches}>Back to Matches</Text>
-        </TouchableOpacity>
-        <Text>I LIKE PAGE</Text>
+        <View>
+          <TouchableOpacity
+            onPress={this.onMatchPress.bind(this)}
+            >
+            <Text style={styles.toMatches}>Back to Matches</Text>
+          </TouchableOpacity>
+          <Text>I LIKE PAGE</Text>
         </View>
         <ListView
           style={styles.container}
@@ -115,16 +114,16 @@ export default class iLike extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
+    marginTop: 20
   },
 
   separator: {
     flex: 1,
     height: StyleSheet.hairlineWidth,
-    backgroundColor: '#8E8E8E',
+    backgroundColor: '#8E8E8E'
   },
   toMatches: {
-   paddingTop: 20,
-   fontSize: 20
-}
+    paddingTop: 20,
+    fontSize: 20
+  }
 });

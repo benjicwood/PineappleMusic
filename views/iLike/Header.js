@@ -1,12 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
-
+import { View, StyleSheet, TextInput } from 'react-native';
 
 const Header = (props) => (
   <View style={styles.container}>
     <TextInput
       style={styles.input}
-      placeholder="Search..."
+      placeholder='Search...'
       onChangeText={(text) => console.log('searching for ', text)}
     />
   </View>
@@ -18,7 +17,7 @@ const styles = StyleSheet.create({
     padding: 8,
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: '#C1C1C1',
+    backgroundColor: '#C1C1C1'
   },
   input: {
     height: 30,
@@ -26,8 +25,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 8,
     fontSize: 15,
     backgroundColor: '#FFFFFF',
-    borderRadius: 2,
-  },
+    borderRadius: 2
+  }
 });
 
 export default Header;
