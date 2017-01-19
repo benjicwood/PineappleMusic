@@ -85,6 +85,8 @@ export default class SignupMusician extends Component {
                 />
               </View>
               <TextInput
+                keyboardType='email-address'
+                autoCapitalize='none'
                 style={[styles.input, styles.whiteFont]}
                 placeholder='Email'
                 placeholderTextColor='#FFF'
