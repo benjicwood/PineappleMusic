@@ -7,6 +7,7 @@ import {
   TextInput,
   TouchableOpacity
 } from 'react-native';
+import ModalDropdown from 'react-native-modal-dropdown';
 
 const background = require('./signup_bg.png');
 const backIcon = require('./back.png');
@@ -114,12 +115,40 @@ export default class SignupMusician extends Component {
                   resizeMode='contain'
                 />
               </View>
-              <TextInput
-                style={[styles.input, styles.whiteFont]}
-                placeholder='Genre'
-                placeholderTextColor='#FFF'
-                underlineColorAndroid='transparent'
-              />
+<View>
+              <ModalDropdown
+              options={["Electric Guitar",
+              "Bass Guitar",
+              "Acoustic Guitar",
+              "Violin",
+              "Cello",
+              "Saxophone",
+              "Trumpet",
+              "Piccolo",
+              "Flute",
+              "Clarinet",
+              "Oboe",
+              "Bassoon",
+              "Trombone",
+              "French horn",
+              "Tuba",
+              "Drums",
+              "Kettledrum",
+              "Bongos",
+              "Conga (drum)",
+              "Cymbals",
+              "Xylophone",
+              "Gong",
+              "Cymbals",
+              "Tambourine",
+              "Trialgle",
+              "Maracas",
+              "Organ",
+              "Electric piano/ digital piano",
+              "Synthesizer",
+              "Piano"]}>
+              </ModalDropdown>
+              </View>
             </View>
 
           </View>
