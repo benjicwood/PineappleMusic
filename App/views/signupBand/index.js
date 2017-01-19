@@ -9,6 +9,8 @@ import {
   Platform
 } from 'react-native';
 
+import ModalDropdown from 'react-native-modal-dropdown';
+
 const background = require('./signup_bg.png');
 const backIcon = require('./back.png');
 const bandIcon = require('./signup_band.png');
@@ -117,9 +119,28 @@ export default class SignupBand extends Component {
                   resizeMode='contain'
                 />
               </View>
+              <View style={styles.selection}>
+                <ModalDropdown
+                  defaultValue='Looking for...'
+                  textStyle={[styles.dropdownFont]}
+                  dropdownStyle={styles.dropdownBox}
+                  options={[
+                    'Electric Guitar',
+                    'Bass Guitar',
+                    'Acoustic Guitar',
+                    'Violin',
+                    'Cello',
+                    'Saxophone',
+                    'Trumpet',
+                    'Piccolo',
+                    'Flute',
+                    'Clarinet',
+                    'Oboe',
+                    'Piano']} />
+              </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
-                placeholder='Instrument'
+                placeholder=''
                 placeholderTextColor='#FFF'
                 underlineColorAndroid='transparent'
               />
@@ -133,9 +154,21 @@ export default class SignupBand extends Component {
                   resizeMode='contain'
                 />
               </View>
+              <View style={styles.selection}>
+                <ModalDropdown
+                  defaultValue='Select Genre'
+                  textStyle={[styles.dropdownFont]}
+                  dropdownStyle={styles.dropdownBox}
+                  options={['Metal',
+                    'Trance',
+                    'Pop',
+                    'Rock',
+                    'SpookyCore']}
+                />
+              </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
-                placeholder='Genre'
+                placeholder=''
                 placeholderTextColor='#FFF'
                 underlineColorAndroid='transparent'
               />
@@ -250,5 +283,19 @@ let styles = StyleSheet.create({
   },
   whiteFont: {
     color: '#FFF'
+  },
+  dropdownFont: {
+    alignItems: 'center',
+    color: '#FFF',
+    fontSize: 20
+  },
+  dropdownBox: {
+    width: 300,
+    justifyContent: 'center'
+  },
+  selection: {
+    alignItems: 'flex-end',
+    paddingTop: 20
+
   }
 });
