@@ -4,6 +4,13 @@ import {
    Navigator
  } from 'react-native';
 
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
+
+import mainReducer from '../../reducers/mainReducer';
+
 import SignupMusician from '../signupMusician/index';
 import SignupBand from '../signupBand/index';
 import InitialScreen from '../splash/index';
@@ -12,20 +19,22 @@ import Profile from '../profile/index';
 import ILike from '../iLike/index';
 import LikesMe from '../likesMe/index';
 
+const logger = createLogger();
+const store = createStore(mainReducer, applyMiddleware(logger, thunk));
+
 export default class PineappleFront extends Component {
   render () {
     return (
-      <Navigator
-        style={styles.container}
-        initialRoute={{
-          id: 'InitialScreen'
-        }}
-        renderScene={
-  this.navigatorRenderScene
-  }
-        configureScene={(route, routeStack) =>
-          Navigator.SceneConfigs.FadeAndroid}
-  />
+      <Provider store={store}>
+        <Navigator
+          style={styles.container}
+          initialRoute={{
+            id: 'InitialScreen'
+          }}
+          renderScene={this.navigatorRenderScene}
+          configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
+          />
+      </Provider>
     );
   }
   navigatorRenderScene (route, navigator) {
