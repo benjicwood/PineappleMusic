@@ -120,41 +120,23 @@ export default class SignupMusician extends Component {
                 />
               </View>
               <View style={styles.selection}>
-              <ModalDropdown
-                defaultValue='Select Instrument'
-                textStyle={[styles.dropdownFont]}
-                options={["Electric Guitar",
-"Bass Guitar",
-"Acoustic Guitar",
-"Violin",
-"Cello",
-"Saxophone",
-"Trumpet",
-"Piccolo",
-"Flute",
-"Clarinet",
-"Oboe",
-"Bassoon",
-"Trombone",
-"French horn",
-"Tuba",
-"Drums",
-"Kettledrum",
-"Bongos",
-"Conga (drum)",
-"Cymbals",
-"Xylophone",
-"Gong",
-"Cymbals",
-"Tambourine",
-"Trialgle",
-"Maracas",
-"Organ",
-"Electric piano/ digital piano",
-"Synthesizer",
-"Piano"]}>
-</ModalDropdown>
-</View>
+                <ModalDropdown
+                  defaultValue='Select Instrument'
+                  textStyle={[styles.dropdownFont]}
+                  options={[
+                    'Electric Guitar',
+                    'Bass Guitar',
+                    'Acoustic Guitar',
+                    'Violin',
+                    'Cello',
+                    'Saxophone',
+                    'Trumpet',
+                    'Piccolo',
+                    'Flute',
+                    'Clarinet',
+                    'Oboe',
+                    'Piano']} />
+              </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
                 placeholder=''
@@ -172,16 +154,16 @@ export default class SignupMusician extends Component {
                 />
               </View>
               <View style={styles.selection}>
-              <ModalDropdown
-                defaultValue='Select Genre'
-                textStyle={[styles.dropdownFont]}
-                options={["Metal",
-"Trance",
-"Pop",
-"Rock",
-"SpookyCore"]}>
-</ModalDropdown>
-</View>
+                <ModalDropdown
+                  defaultValue='Select Genre'
+                  textStyle={[styles.dropdownFont]}
+                  options={['Metal',
+                    'Trance',
+                    'Pop',
+                    'Rock',
+                    'SpookyCore']}
+                />
+              </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
                 placeholder=''
