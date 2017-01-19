@@ -5,7 +5,8 @@ import {
   View,
   Image,
   TextInput,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from 'react-native';
 
 const background = require('./signup_bg.png');
@@ -116,6 +117,22 @@ export default class SignupBand extends Component {
               </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
+                placeholder='Instrument'
+                placeholderTextColor='#FFF'
+                underlineColorAndroid='transparent'
+              />
+            </View>
+
+            <View style={styles.inputContainer}>
+              <View style={styles.iconContainer}>
+                <Image
+                  source={musicalNoteIcon}
+                  style={styles.inputIcon}
+                  resizeMode='contain'
+                />
+              </View>
+              <TextInput
+                style={[styles.input, styles.whiteFont]}
                 placeholder='Genre'
                 placeholderTextColor='#FFF'
                 underlineColorAndroid='transparent'
@@ -163,7 +180,10 @@ let styles = StyleSheet.create({
     marginTop: 50
   },
   footerContainer: {
-    flex: 1
+    ...Platform.select({
+      ios: { flex: 0.65 },
+      android: { flex: 0.6 }
+    })
   },
   headerIconView: {
     marginLeft: 10,
@@ -211,10 +231,12 @@ let styles = StyleSheet.create({
   },
   signup: {
     backgroundColor: '#FF3366',
-    paddingVertical: 25,
+    ...Platform.select({
+      ios: { paddingVertical: 23 },
+      android: { paddingVertical: 18 }
+    }),
     alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 15
+    justifyContent: 'center'
   },
   signin: {
     justifyContent: 'center',
