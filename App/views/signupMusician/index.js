@@ -9,6 +9,8 @@ import {
   Platform
 } from 'react-native';
 
+import ModalDropdown from 'react-native-modal-dropdown';
+
 const background = require('./signup_bg.png');
 const backIcon = require('./back.png');
 const musicianIcon = require('./signup_musician.png');
@@ -117,9 +119,45 @@ export default class SignupMusician extends Component {
                   resizeMode='contain'
                 />
               </View>
+              <View style={styles.selection}>
+              <ModalDropdown
+                defaultValue='Select Instrument'
+                textStyle={[styles.dropdownFont]}
+                options={["Electric Guitar",
+"Bass Guitar",
+"Acoustic Guitar",
+"Violin",
+"Cello",
+"Saxophone",
+"Trumpet",
+"Piccolo",
+"Flute",
+"Clarinet",
+"Oboe",
+"Bassoon",
+"Trombone",
+"French horn",
+"Tuba",
+"Drums",
+"Kettledrum",
+"Bongos",
+"Conga (drum)",
+"Cymbals",
+"Xylophone",
+"Gong",
+"Cymbals",
+"Tambourine",
+"Trialgle",
+"Maracas",
+"Organ",
+"Electric piano/ digital piano",
+"Synthesizer",
+"Piano"]}>
+</ModalDropdown>
+</View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
-                placeholder='Instrument'
+                placeholder=''
                 placeholderTextColor='#FFF'
                 underlineColorAndroid='transparent'
               />
@@ -133,9 +171,20 @@ export default class SignupMusician extends Component {
                   resizeMode='contain'
                 />
               </View>
+              <View style={styles.selection}>
+              <ModalDropdown
+                defaultValue='Select Genre'
+                textStyle={[styles.dropdownFont]}
+                options={["Metal",
+"Trance",
+"Pop",
+"Rock",
+"SpookyCore"]}>
+</ModalDropdown>
+</View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
-                placeholder='Genre'
+                placeholder=''
                 placeholderTextColor='#FFF'
                 underlineColorAndroid='transparent'
               />
@@ -250,5 +299,15 @@ let styles = StyleSheet.create({
   },
   whiteFont: {
     color: '#FFF'
+  },
+  dropdownFont: {
+    alignItems: 'center',
+    color: '#FFF',
+    fontSize: 20
+  },
+  selection: {
+    alignItems: 'flex-end',
+    paddingTop: 20
+
   }
 });
