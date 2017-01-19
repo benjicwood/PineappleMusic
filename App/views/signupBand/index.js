@@ -123,6 +123,7 @@ export default class SignupBand extends Component {
                 <ModalDropdown
                   defaultValue='Looking for...'
                   textStyle={[styles.dropdownFont]}
+                  dropdownStyle={styles.dropdownBox}
                   options={[
                     'Electric Guitar',
                     'Bass Guitar',
@@ -157,6 +158,7 @@ export default class SignupBand extends Component {
                 <ModalDropdown
                   defaultValue='Select Genre'
                   textStyle={[styles.dropdownFont]}
+                  dropdownStyle={styles.dropdownBox}
                   options={['Metal',
                     'Trance',
                     'Pop',
@@ -286,6 +288,10 @@ let styles = StyleSheet.create({
     alignItems: 'center',
     color: '#FFF',
     fontSize: 20
+  },
+  dropdownBox: {
+    width: 300,
+    justifyContent: 'center'
   },
   selection: {
     alignItems: 'flex-end',
