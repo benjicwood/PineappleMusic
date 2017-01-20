@@ -71,68 +71,203 @@ actions.updateProfileError = function (error) {
   };
 };
 
-actions.fetchBandProfile = function (id) {
+actions.fetchProfile = function (type, id) {
   return function (dispatch) {
-    dispatch(actions.fetchBandProfileReq());
-    axios.get(api + 'profile/band' + id)
+    dispatch(actions.fetchProfileReq());
+    axios.get(api + 'profile/'+ type + '/' + id)
             .then(function (response) {
-              actions.fetchBandProfileSuccess(response.data);
+              actions.fetchProfileSuccess(response.data);
             })
             .catch(function (error) {
-              actions.fetchBandProfileError(error);
+              actions.fetchProfileError(error);
             });
   };
 };
 
-actions.fetchBandProfileReq = function () {
+actions.fetchProfileReq = function () {
   return {
     type: types.FETCH_BAND_PROFILE_REQ
   };
 };
 
-actions.fetchBandProfileSuccess = function (data) {
+actions.fetchProfileSuccess = function (data) {
   return {
     type: types.FETCH_BAND_PROFILE_SUCCESS,
     data: data
   };
 };
 
-actions.fetchBandProfileError = function (error) {
+actions.fetchProfileError = function (error) {
   return {
     type: types.FETCH_BAND_PROFILE_ERROR,
     error: error
   };
 };
 
-actions.fetchMusicianProfile = function (id) {
+
+actions.fetchGenres = function () {
   return function (dispatch) {
-    dispatch(actions.fetchMusicianProfileReq());
-    axios.get(api + 'profile/musician' + id)
-      .then(function (response) {
-        actions.fetchMusicianProfileSuccess(response.data);
-      })
-            .catch(function (error) {
-              actions.fetchMusicianProfileError(error);
-            });
+    dispatch(actions.fetchGenresReq());
+    axios.get(api + 'genre')
+        .then(function (response) {
+          dispatch(actions.fetchGenresSuccess(response.data));
+        })
+        .catch(function (error) {
+          dispatch(actions.fetchGenresError(error));
+        });
   };
 };
 
-actions.fetchMusicianProfileReq = function () {
+actions.fetchGenresReq = function () {
   return {
-    type: types.FETCH_MUSICIAN_PROFILE_REQ
+    type: types.FETCH_GENRES_REQ
   };
 };
 
-actions.fetchMusicianProfileSuccess = function (data) {
+actions.fetchGenresSuccess = function (data) {
   return {
-    type: types.FETCH_MUSICIAN_PROFILE_SUCCESS,
+    type: types.FETCH_GENRES_SUCCESS,
     data: data
   };
 };
 
-actions.fetchMusicianProfileError = function (error) {
+actions.fetchGenresError = function (error) {
   return {
-    type: types.FETCH_MUSICIAN_PROFILE_ERROR,
+    type: types.FETCH_GENRES_ERROR,
+    error: error
+  };
+};
+
+
+actions.fetchInstruments = function () {
+  return function (dispatch) {
+    dispatch(actions.fetchInstrumentsReq());
+    axios.get(api+'instrument')
+        .then(function (response) {
+          dispatch(actions.fetchInstrumentsSuccess(response.data));
+        })
+        .catch(function (error) {
+          dispatch(actions.fetchInstrumentsError(error));
+        });
+  };
+};
+
+actions.fetchInstrumentsReq = function () {
+  return {
+    type: types.FETCH_INSTRUMENTS_REQ,
+  }
+};
+
+actions.fetchInstrumentsSuccess = function (data) {
+  return {
+    type: types.FETCH_INSTRUMENTS_SUCCESS,
+    data: data
+  }
+};
+
+actions.fetchInstrumentsError = function (error) {
+  return {
+    type: types.FETCH_INSTRUMENTS_ERROR,
+    error: error
+  }
+};
+
+
+actions.fetchMyHeaven = function (id) {
+  return function (dispatch) {
+    dispatch(actions.fetchMyHeaven());
+    axios.get(api+'myheaven/'+id)
+        .then(function (response) {
+          dispatch(actions.fetchMyHeavenSuccess(response.data))
+        })
+        .catch(function (error) {
+          dispatch(actions.fetchMyHeavenError(error))
+        });
+  }
+};
+
+actions.fetchMyHeavenReq = function () {
+  return {
+    type: types.FETCH_MY_HEAVEN_REQ,
+  };
+};
+
+actions.fetchMyHeavenSuccess = function (data) {
+  return {
+    type: types.FETCH_MY_HEAVEN_SUCCESS,
+    data: data
+  };
+};
+
+actions.fetchMyHeavenError = function (error) {
+  return {
+    type: types.FETCH_MY_HEAVEN_ERROR,
+    error: error
+  };
+};
+
+actions.fetchTheirHeaven = function (id) {
+  return function (dispatch) {
+    dispatch(actions.fetchTheirHeaven());
+    axios.get(api+'theirheaven/'+id)
+        .then(function (response) {
+          dispatch(actions.fetchTheirHeavenSuccess(response.data))
+        })
+        .catch(function (error) {
+          dispatch(actions.fetchTheirHeavenError(error))
+        });
+  }
+};
+
+actions.fetchTheirHeavenReq = function () {
+  return {
+    type: types.FETCH_THEIR_HEAVEN_REQ,
+  };
+};
+
+actions.fetchTheirHeavenSuccess = function (data) {
+  return {
+    type: types.FETCH_THEIR_HEAVEN_SUCCESS,
+    data: data
+  };
+};
+
+actions.fetchTheirHeavenError = function (error) {
+  return {
+    type: types.FETCH_THEIR_HEAVEN_ERROR,
+    error: error
+  };
+};
+
+actions.fetchMyHell = function (id) {
+  return function (dispatch) {
+    dispatch(actions.fetchMyHell());
+    axios.get(api+'myhell/'+id)
+        .then(function (response) {
+          dispatch(actions.fetchMyHellSuccess(response.data))
+        })
+        .catch(function (error) {
+          dispatch(actions.fetchMyHellError(error))
+        });
+  }
+};
+
+actions.fetchMyHellReq = function () {
+  return {
+    type: types.FETCH_MY_HELL_REQ,
+  };
+};
+
+actions.fetchMyHellSuccess = function (data) {
+  return {
+    type: types.FETCH_MY_HELL_SUCCESS,
+    data: data
+  };
+};
+
+actions.fetchMyHellError = function (error) {
+  return {
+    type: types.FETCH_MY_HELL_ERROR,
     error: error
   };
 };

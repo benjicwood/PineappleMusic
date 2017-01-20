@@ -60,49 +60,28 @@ describe('profile reducer ', function () {
     });
 
 
-    it('returns {isLoading:true} for FETCH_BAND_PROFILE_REQ', function() {
+    it('returns {isLoading:true} for FETCH_PROFILE_REQ', function() {
         const state = {isLoading: false};
         const action = {};
-        action.type = 'FETCH_BAND_PROFILE_REQ';
+        action.type = 'FETCH_PROFILE_REQ';
         expect(profile(state, action)).to.eql({isLoading:true});
     });
 
-    it('returns {isLoading:false, bandProfile:{some:data}} for FETCH_BAND_PROFILE_SUCCESS', function() {
+    it('returns {isLoading:false, profile:{some:data}} for FETCH_PROFILE_SUCCESS', function() {
         const state = {isLoading: true};
         const action = {};
-        action.type = 'FETCH_BAND_PROFILE_SUCCESS';
+        action.type = 'FETCH_PROFILE_SUCCESS';
         action.data = {some:'data'};
-        expect(profile(state, action)).to.eql({isLoading:false, bandProfile:{some:'data'}});
+        expect(profile(state, action)).to.eql({isLoading:false, profile:{some:'data'}});
     });
 
-    it('returns {isLoading:false,error:errormsg} for FETCH_BAND_PROFILE_ERROR', function() {
+    it('returns {isLoading:false,error:errormsg} for FETCH_PROFILE_ERROR', function() {
         const state = {isLoading: true};
         const action = {};
-        action.type = 'FETCH_BAND_PROFILE_ERROR';
+        action.type = 'FETCH_PROFILE_ERROR';
         action.error = 'errormsg';
         expect(profile(state, action)).to.eql({isLoading:false,error:'errormsg'});
     });
 
-    it('returns {isLoading:true} for FETCH_MUSICIAN_PROFILE_REQ', function() {
-        const state = {isLoading: false};
-        const action = {};
-        action.type = 'FETCH_MUSICIAN_PROFILE_REQ';
-        expect(profile(state, action)).to.eql({isLoading:true});
-    });
 
-    it('returns {isLoading:false, musicianProfile:{some:data}} for FETCH_MUSICIAN_PROFILE_SUCCESS', function() {
-        const state = {isLoading: true};
-        const action = {};
-        action.type = 'FETCH_MUSICIAN_PROFILE_SUCCESS';
-        action.data = {some:'data'};
-        expect(profile(state, action)).to.eql({isLoading:false, musicianProfile:{some:'data'}});
-    });
-
-    it('returns {isLoading:false,error:errormsg} for FETCH_MUSICIAN_PROFILE_ERROR', function() {
-        const state = {isLoading: true};
-        const action = {};
-        action.type = 'FETCH_BAND_PROFILE_ERROR';
-        action.error = 'errormsg';
-        expect(profile(state, action)).to.eql({isLoading:false,error:'errormsg'});
-    })
 });

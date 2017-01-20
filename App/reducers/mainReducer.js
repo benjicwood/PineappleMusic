@@ -1,14 +1,16 @@
 import { combineReducers } from 'redux';
-import lists from './lists';
+import connection from './connection';
 import profile from './profile';
+import genre from './genre';
+import instrument from './instrument';
 import matches from './matches';
-import heavenHell from './heavenHell';
+import myHeaven from './myHeaven';
+import myHell from './myHell';
+import theirHeaven from './theirHeaven';
+
 
 const mainReducer = combineReducers({
-  lists: lists,
-  profile: profile,
-  matches: matches,
-  heavenHell: heavenHell
+  profile, connection, genre, instrument, matches, myHeaven, myHell, theirHeaven
 });
 
 export default mainReducer;
