@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import GeolocationExample from './geo';
+import ImagePicker from './imagepick';
 
 export default class MyComponent extends Component {
 
