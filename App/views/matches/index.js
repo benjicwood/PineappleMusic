@@ -8,17 +8,10 @@ import {
 } from 'react-native';
 
 import Card from './Card';
-import { connect } from 'react-redux';
-import actions  from '../../actions/actions'
 
 class Matches extends Component {
 
 
-   componentWillMount(){
-   this.props.fetchGenres();
-     console.warn(this.props.genres[0].name);
-
-   }
 
   onProfilePress () {
     this.props.navigator.push({
@@ -112,20 +105,3 @@ const styles = StyleSheet.create({
   }
 });
 
-
- function mapStateToProps (state) {
- return {
- genres: state.genre.genres
- };
- }
-
-function mapDispatchToProps (dispatch) {
-  return {
-    fetchGenres: function () {
-      dispatch (actions.fetchGenres());
-    }
-  };
-}
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(Matches);
