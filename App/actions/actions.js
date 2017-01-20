@@ -8,13 +8,13 @@ const api = 'http://pineapple-api.herokuapp.com/api/';
 actions.createProfile = function (profileType, newProfile) {
   return function (dispatch) {
     dispatch(actions.createProfileReq());
-    axios.post(api + profileType + '/profile', newProfile)
-          .then(function (response) {
-            dispatch(actions.createProfileSuccess(response.data));
-          })
-          .catch(function (error) {
-            dispatch(actions.createProfileError(error));
-          });
+    axios.post(api + '/profile/'+ profileType, newProfile)
+        .then(function (response) {
+          dispatch(actions.createProfileSuccess(response.data));
+        })
+        .catch(function (error) {
+          dispatch(actions.createProfileError(error));
+        });
   };
 };
 
@@ -41,13 +41,13 @@ actions.createProfileError = function (error) {
 actions.updateProfile = function (profileType, id, updatedProfile) {
   return function (dispatch) {
     dispatch(actions.updateProfileReq());
-    axios.post(api + profileType + '/profile/' + id, updatedProfile)
-      .then(function (response) {
-        dispatch(actions.createProfileSuccess(response.data));
-      })
-            .catch(function (error) {
-              dispatch(actions.createProfileError(error));
-            });
+    axios.post(api + 'profile/' + profileType + '/' + id, updatedProfile)
+        .then(function (response) {
+          dispatch(actions.createProfileSuccess(response.data));
+        })
+        .catch(function (error) {
+          dispatch(actions.createProfileError(error));
+        });
   };
 };
 
@@ -75,12 +75,12 @@ actions.fetchProfile = function (type, id) {
   return function (dispatch) {
     dispatch(actions.fetchProfileReq());
     axios.get(api + 'profile/'+ type + '/' + id)
-            .then(function (response) {
-              actions.fetchProfileSuccess(response.data);
-            })
-            .catch(function (error) {
-              actions.fetchProfileError(error);
-            });
+        .then(function (response) {
+          actions.fetchProfileSuccess(response.data);
+        })
+        .catch(function (error) {
+          actions.fetchProfileError(error);
+        });
   };
 };
 
@@ -176,7 +176,7 @@ actions.fetchInstrumentsError = function (error) {
 actions.fetchMyHeaven = function (id) {
   return function (dispatch) {
     dispatch(actions.fetchMyHeaven());
-    axios.get(api+'myheaven/'+id)
+    axios.get(api+'connection/heaven/'+id)
         .then(function (response) {
           dispatch(actions.fetchMyHeavenSuccess(response.data))
         })
@@ -209,7 +209,7 @@ actions.fetchMyHeavenError = function (error) {
 actions.fetchTheirHeaven = function (id) {
   return function (dispatch) {
     dispatch(actions.fetchTheirHeaven());
-    axios.get(api+'theirheaven/'+id)
+    axios.get(api+'connection/theirheaven/'+id)
         .then(function (response) {
           dispatch(actions.fetchTheirHeavenSuccess(response.data))
         })
@@ -242,7 +242,7 @@ actions.fetchTheirHeavenError = function (error) {
 actions.fetchMyHell = function (id) {
   return function (dispatch) {
     dispatch(actions.fetchMyHell());
-    axios.get(api+'myhell/'+id)
+    axios.get(api+'connection/hell/'+id)
         .then(function (response) {
           dispatch(actions.fetchMyHellSuccess(response.data))
         })
@@ -271,5 +271,74 @@ actions.fetchMyHellError = function (error) {
     error: error
   };
 };
+
+actions.fetchMatches = function (profile) {
+  return function (dispatch) {
+    dispatch(actions.fetchMatches());
+    axios.post(api+'matches', profile)
+        .then(function (response) {
+          dispatch(actions.fetchMatchesSuccess(response.data))
+        })
+        .catch(function (error) {
+          dispatch(actions.fetchMatchesError(error))
+        });
+  }
+};
+
+actions.fetchMatchesReq = function () {
+  return {
+    type: types.FETCH_MATCHES_REQ,
+  };
+};
+
+actions.fetchMatchesSuccess = function (data) {
+  return {
+    type: types.FETCH_MATCHES_SUCCESS,
+    data: data
+  };
+};
+
+actions.fetchMatchesError = function (error) {
+  return {
+    type: types.FETCH_MATCHES_ERROR,
+    error: error
+  };
+};
+
+actions.createConnection = function (connection) {
+  return function (dispatch) {
+    dispatch(actions.createConnection());
+    axios.post(api+'connection', connection)
+        .then(function (response) {
+          dispatch(actions.createConnectionSuccess(response.data))
+        })
+        .catch(function (error) {
+          dispatch(actions.createConnectionError(error))
+        });
+  }
+};
+
+actions.createConnectionReq = function () {
+  return {
+    type: types.CREATE_CONNECTION_REQ,
+  };
+};
+
+actions.createConnectionSuccess = function (data) {
+  return {
+    type: types.CREATE_CONNECTION_SUCCESS,
+    data: data
+  };
+};
+
+actions.createConnectionError = function (error) {
+  return {
+    type: types.CREATE_CONNECTION_ERROR,
+    error: error
+  };
+};
+
+
+
 
 export default actions;
