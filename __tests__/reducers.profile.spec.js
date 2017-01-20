@@ -59,7 +59,6 @@ describe('profile reducer ', function () {
         expect(profile(state, action)).to.eql({isLoading:false,error:'errormsg'});
     });
 
-
     it('returns {isLoading:true} for FETCH_PROFILE_REQ', function() {
         const state = {isLoading: false};
         const action = {};
@@ -82,6 +81,5 @@ describe('profile reducer ', function () {
         action.error = 'errormsg';
         expect(profile(state, action)).to.eql({isLoading:false,error:'errormsg'});
     });
-
 
 });

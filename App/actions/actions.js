@@ -86,24 +86,23 @@ actions.fetchProfile = function (type, id) {
 
 actions.fetchProfileReq = function () {
   return {
-    type: types.FETCH_BAND_PROFILE_REQ
-  };
+    type: types.FETCH_PROFILE_REQ
+  }
 };
 
 actions.fetchProfileSuccess = function (data) {
   return {
-    type: types.FETCH_BAND_PROFILE_SUCCESS,
+    type: types.FETCH_PROFILE_SUCCESS,
     data: data
-  };
+  }
 };
 
 actions.fetchProfileError = function (error) {
   return {
-    type: types.FETCH_BAND_PROFILE_ERROR,
+    type: types.FETCH_PROFILE_ERROR,
     error: error
-  };
+  }
 };
-
 
 actions.fetchGenres = function () {
   return function (dispatch) {
