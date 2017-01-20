@@ -3,10 +3,15 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity
+  TouchableOpacity,
+  Image
 } from 'react-native';
 
-export default class MyComponent extends Component {
+import Camera from './camera';
+
+const backIcon = require('../signupBand/back.png');
+
+export default class Profile extends Component {
 
   onMatchPress () {
     this.props.navigator.push({
@@ -20,9 +25,13 @@ export default class MyComponent extends Component {
         <TouchableOpacity
           onPress={this.onMatchPress.bind(this)}
         >
-          <Text style={styles.toMatches}>Back to Matches</Text>
+        <Image
+          source={backIcon}
+          style={styles.toMatches}
+          resizeMode='contain'
+        />
         </TouchableOpacity>
-        <Text>THIS IS THE PROFILE PAGE</Text>
+          <Camera />
       </View>
     );
   }
@@ -30,10 +39,18 @@ export default class MyComponent extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2
+    flex: 1,
+    backgroundColor: 'lightgrey'
   },
   toMatches: {
     paddingTop: 20,
     fontSize: 20
+  },
+  thisthing: {
+    alignItems: 'center',
+    width: 300,
+    height: 200,
+    borderWidth: 5,
+    borderColor: 'black'
   }
 });
