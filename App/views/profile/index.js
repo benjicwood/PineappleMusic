@@ -6,6 +6,8 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+import GeolocationExample from './geo';
+
 export default class MyComponent extends Component {
 
   onMatchPress () {
@@ -23,6 +25,7 @@ export default class MyComponent extends Component {
           <Text style={styles.toMatches}>Back to Matches</Text>
         </TouchableOpacity>
         <Text>THIS IS THE PROFILE PAGE</Text>
+        <GeolocationExample />
       </View>
     );
   }
