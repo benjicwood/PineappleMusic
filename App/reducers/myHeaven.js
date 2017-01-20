@@ -23,6 +23,11 @@ export default function myHeaven (state, action) {
                 isLoading: false,
                 error: action.error
             });
+        default:
+            return state;
     }
 };
+
+
+
 

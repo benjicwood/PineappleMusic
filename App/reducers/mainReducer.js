@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import connection from './connection';
 import profile from './profile';
 import genre from './genre';
 import instrument from './instrument';

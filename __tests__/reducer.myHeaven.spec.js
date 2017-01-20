@@ -23,8 +23,8 @@ describe('myHeaven reducer ', function () {
         const state = {isLoading: true};
         const action = {};
         action.type = 'FETCH_MY_HEAVEN_SUCCESS';
-        action.data = {some:'data'};
-        expect(myHeaven(state, action)).to.eql({isLoading:false, myHeaven:{some:'data'}});
+        action.data = [{some:'data'}];
+        expect(myHeaven(state, action)).to.eql({isLoading:false, myHeaven:[{some:'data'}]});
     });
 
     it('returns {isLoading:false,error:errormsg} for FETCH_MY_HEAVEN_ERROR', function() {
