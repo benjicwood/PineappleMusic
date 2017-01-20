@@ -9,7 +9,7 @@ import {
 
 import Card from './Card';
 
-class Matches extends Component {
+export default class Matches extends Component {
 
 
 
