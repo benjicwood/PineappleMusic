@@ -8,8 +8,6 @@ import {
 } from 'react-native';
 
 import Card from './Card';
-import { connect } from 'react-redux';
-import actions  from '../../actions/actions'
 
 //const userProfile = {"type":"musician","instrument":"5877c4893aecdd49742d833b", "genre":"5877c48b3aecdd49742d8359"};
 
