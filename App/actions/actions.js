@@ -8,13 +8,13 @@ const api = 'http://pineapple-api.herokuapp.com/api/';
 actions.createProfile = function (profileType, newProfile) {
   return function (dispatch) {
     dispatch(actions.createProfileReq());
-    axios.post(api + profileType + '/profile', newProfile)
-          .then(function (response) {
-            dispatch(actions.createProfileSuccess(response.data));
-          })
-          .catch(function (error) {
-            dispatch(actions.createProfileError(error));
-          });
+    axios.post(api + '/profile/'+ profileType, newProfile)
+        .then(function (response) {
+          dispatch(actions.createProfileSuccess(response.data));
+        })
+        .catch(function (error) {
+          dispatch(actions.createProfileError(error));
+        });
   };
 };
 
@@ -41,13 +41,13 @@ actions.createProfileError = function (error) {
 actions.updateProfile = function (profileType, id, updatedProfile) {
   return function (dispatch) {
     dispatch(actions.updateProfileReq());
-    axios.post(api + profileType + '/profile/' + id, updatedProfile)
-      .then(function (response) {
-        dispatch(actions.createProfileSuccess(response.data));
-      })
-            .catch(function (error) {
-              dispatch(actions.createProfileError(error));
-            });
+    axios.post(api + 'profile/' + profileType + '/' + id, updatedProfile)
+        .then(function (response) {
+          dispatch(actions.createProfileSuccess(response.data));
+        })
+        .catch(function (error) {
+          dispatch(actions.createProfileError(error));
+        });
   };
 };
 
@@ -71,70 +71,273 @@ actions.updateProfileError = function (error) {
   };
 };
 
-actions.fetchBandProfile = function (id) {
+actions.fetchProfile = function (type, id) {
   return function (dispatch) {
-    dispatch(actions.fetchBandProfileReq());
-    axios.get(api + 'profile/band' + id)
-            .then(function (response) {
-              actions.fetchBandProfileSuccess(response.data);
-            })
-            .catch(function (error) {
-              actions.fetchBandProfileError(error);
-            });
+    dispatch(actions.fetchProfileReq());
+    axios.get(api + 'profile/'+ type + '/' + id)
+        .then(function (response) {
+          actions.fetchProfileSuccess(response.data);
+        })
+        .catch(function (error) {
+          actions.fetchProfileError(error);
+        });
   };
 };
 
-actions.fetchBandProfileReq = function () {
+actions.fetchProfileReq = function () {
   return {
-    type: types.FETCH_BAND_PROFILE_REQ
+    type: types.FETCH_PROFILE_REQ
+  }
+};
+
+actions.fetchProfileSuccess = function (data) {
+  return {
+    type: types.FETCH_PROFILE_SUCCESS,
+    data: data
+  }
+};
+
+actions.fetchProfileError = function (error) {
+  return {
+    type: types.FETCH_PROFILE_ERROR,
+    error: error
+  }
+};
+
+actions.fetchGenres = function () {
+  return function (dispatch) {
+    dispatch(actions.fetchGenresReq());
+    axios.get(api + 'genre')
+        .then(function (response) {
+          dispatch(actions.fetchGenresSuccess(response.data));
+        })
+        .catch(function (error) {
+          dispatch(actions.fetchGenresError(error));
+        });
   };
 };
 
-actions.fetchBandProfileSuccess = function (data) {
+actions.fetchGenresReq = function () {
   return {
-    type: types.FETCH_BAND_PROFILE_SUCCESS,
+    type: types.FETCH_GENRES_REQ
+  };
+};
+
+actions.fetchGenresSuccess = function (data) {
+  return {
+    type: types.FETCH_GENRES_SUCCESS,
     data: data
   };
 };
 
-actions.fetchBandProfileError = function (error) {
+actions.fetchGenresError = function (error) {
   return {
-    type: types.FETCH_BAND_PROFILE_ERROR,
+    type: types.FETCH_GENRES_ERROR,
     error: error
   };
 };
 
-actions.fetchMusicianProfile = function (id) {
+
+actions.fetchInstruments = function () {
   return function (dispatch) {
-    dispatch(actions.fetchMusicianProfileReq());
-    axios.get(api + 'profile/musician' + id)
-      .then(function (response) {
-        actions.fetchMusicianProfileSuccess(response.data);
-      })
-            .catch(function (error) {
-              actions.fetchMusicianProfileError(error);
-            });
+    dispatch(actions.fetchInstrumentsReq());
+    axios.get(api+'instrument')
+        .then(function (response) {
+          dispatch(actions.fetchInstrumentsSuccess(response.data));
+        })
+        .catch(function (error) {
+          dispatch(actions.fetchInstrumentsError(error));
+        });
   };
 };
 
-actions.fetchMusicianProfileReq = function () {
+actions.fetchInstrumentsReq = function () {
   return {
-    type: types.FETCH_MUSICIAN_PROFILE_REQ
+    type: types.FETCH_INSTRUMENTS_REQ,
+  }
+};
+
+actions.fetchInstrumentsSuccess = function (data) {
+  return {
+    type: types.FETCH_INSTRUMENTS_SUCCESS,
+    data: data
+  }
+};
+
+actions.fetchInstrumentsError = function (error) {
+  return {
+    type: types.FETCH_INSTRUMENTS_ERROR,
+    error: error
+  }
+};
+
+
+actions.fetchMyHeaven = function (id) {
+  return function (dispatch) {
+    dispatch(actions.fetchMyHeavenReq());
+    axios.get(api+'connection/heaven/'+id)
+        .then(function (response) {
+          dispatch(actions.fetchMyHeavenSuccess(response.data))
+        })
+        .catch(function (error) {
+          dispatch(actions.fetchMyHeavenError(error))
+        });
+  }
+};
+
+actions.fetchMyHeavenReq = function () {
+  return {
+    type: types.FETCH_MY_HEAVEN_REQ,
   };
 };
 
-actions.fetchMusicianProfileSuccess = function (data) {
+actions.fetchMyHeavenSuccess = function (data) {
   return {
-    type: types.FETCH_MUSICIAN_PROFILE_SUCCESS,
+    type: types.FETCH_MY_HEAVEN_SUCCESS,
     data: data
   };
 };
 
-actions.fetchMusicianProfileError = function (error) {
+actions.fetchMyHeavenError = function (error) {
   return {
-    type: types.FETCH_MUSICIAN_PROFILE_ERROR,
+    type: types.FETCH_MY_HEAVEN_ERROR,
     error: error
   };
 };
+
+actions.fetchTheirHeaven = function (id) {
+  return function (dispatch) {
+    dispatch(actions.fetchTheirHeavenReq());
+    axios.get(api+'connection/theirheaven/'+id)
+        .then(function (response) {
+          dispatch(actions.fetchTheirHeavenSuccess(response.data))
+        })
+        .catch(function (error) {
+          dispatch(actions.fetchTheirHeavenError(error))
+        });
+  }
+};
+
+actions.fetchTheirHeavenReq = function () {
+  return {
+    type: types.FETCH_THEIR_HEAVEN_REQ,
+  };
+};
+
+actions.fetchTheirHeavenSuccess = function (data) {
+  return {
+    type: types.FETCH_THEIR_HEAVEN_SUCCESS,
+    data: data
+  };
+};
+
+actions.fetchTheirHeavenError = function (error) {
+  return {
+    type: types.FETCH_THEIR_HEAVEN_ERROR,
+    error: error
+  };
+};
+
+actions.fetchMyHell = function (id) {
+  return function (dispatch) {
+    dispatch(actions.fetchMyHellReq());
+    axios.get(api+'connection/hell/'+id)
+        .then(function (response) {
+          dispatch(actions.fetchMyHellSuccess(response.data))
+        })
+        .catch(function (error) {
+          dispatch(actions.fetchMyHellError(error))
+        });
+  }
+};
+
+actions.fetchMyHellReq = function () {
+  return {
+    type: types.FETCH_MY_HELL_REQ,
+  };
+};
+
+actions.fetchMyHellSuccess = function (data) {
+  return {
+    type: types.FETCH_MY_HELL_SUCCESS,
+    data: data
+  };
+};
+
+actions.fetchMyHellError = function (error) {
+  return {
+    type: types.FETCH_MY_HELL_ERROR,
+    error: error
+  };
+};
+
+actions.fetchMatches = function (profile) {
+  return function (dispatch) {
+    dispatch(actions.fetchMatchesReq());
+    axios.post(api+'matches', profile)
+        .then(function (response) {
+          dispatch(actions.fetchMatchesSuccess(response.data))
+        })
+        .catch(function (error) {
+          dispatch(actions.fetchMatchesError(error))
+        });
+  }
+};
+
+actions.fetchMatchesReq = function () {
+  return {
+    type: types.FETCH_MATCHES_REQ,
+  };
+};
+
+actions.fetchMatchesSuccess = function (data) {
+  return {
+    type: types.FETCH_MATCHES_SUCCESS,
+    data: data
+  };
+};
+
+actions.fetchMatchesError = function (error) {
+  return {
+    type: types.FETCH_MATCHES_ERROR,
+    error: error
+  };
+};
+
+actions.createConnection = function (connection) {
+  return function (dispatch) {
+    dispatch(actions.createConnectionReq());
+    axios.post(api+'connection', connection)
+        .then(function (response) {
+          dispatch(actions.createConnectionSuccess(response.data))
+        })
+        .catch(function (error) {
+          dispatch(actions.createConnectionError(error))
+        });
+  }
+};
+
+actions.createConnectionReq = function () {
+  return {
+    type: types.CREATE_CONNECTION_REQ,
+  };
+};
+
+actions.createConnectionSuccess = function (data) {
+  return {
+    type: types.CREATE_CONNECTION_SUCCESS,
+    data: data
+  };
+};
+
+actions.createConnectionError = function (error) {
+  return {
+    type: types.CREATE_CONNECTION_ERROR,
+    error: error
+  };
+};
+
+
+
 
 export default actions;

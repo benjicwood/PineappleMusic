@@ -8,7 +8,6 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
-
 import mainReducer from '../../reducers/mainReducer';
 
 import SignupMusician from '../signupMusician/index';
@@ -23,17 +22,19 @@ const logger = createLogger();
 const store = createStore(mainReducer, applyMiddleware(logger, thunk));
 
 export default class PineappleFront extends Component {
+
+
   render () {
     return (
       <Provider store={store}>
         <Navigator
-          style={styles.container}
-          initialRoute={{
-            id: 'InitialScreen'
-          }}
-          renderScene={this.navigatorRenderScene}
-          configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
-          />
+            style={styles.container}
+            initialRoute={{
+              id: 'InitialScreen'
+            }}
+            renderScene={this.navigatorRenderScene}
+            configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
+        />
       </Provider>
     );
   }
@@ -62,3 +63,4 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
+
