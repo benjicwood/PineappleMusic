@@ -3,7 +3,7 @@ import * as types from '../actions/types';
 const initState = {
   isLoading: false,
   error: '',
-  userProfile: {},
+  userProfile: {"type":"musician","instrument":"5877c4893aecdd49742d833b", "genre":"5877c48b3aecdd49742d8359"},
   profile: {}
 };
 

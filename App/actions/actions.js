@@ -174,7 +174,7 @@ actions.fetchInstrumentsError = function (error) {
 
 actions.fetchMyHeaven = function (id) {
   return function (dispatch) {
-    dispatch(actions.fetchMyHeaven());
+    dispatch(actions.fetchMyHeavenReq());
     axios.get(api+'connection/heaven/'+id)
         .then(function (response) {
           dispatch(actions.fetchMyHeavenSuccess(response.data))
@@ -207,7 +207,7 @@ actions.fetchMyHeavenError = function (error) {
 
 actions.fetchTheirHeaven = function (id) {
   return function (dispatch) {
-    dispatch(actions.fetchTheirHeaven());
+    dispatch(actions.fetchTheirHeavenReq());
     axios.get(api+'connection/theirheaven/'+id)
         .then(function (response) {
           dispatch(actions.fetchTheirHeavenSuccess(response.data))
@@ -240,7 +240,7 @@ actions.fetchTheirHeavenError = function (error) {
 
 actions.fetchMyHell = function (id) {
   return function (dispatch) {
-    dispatch(actions.fetchMyHell());
+    dispatch(actions.fetchMyHellReq());
     axios.get(api+'connection/hell/'+id)
         .then(function (response) {
           dispatch(actions.fetchMyHellSuccess(response.data))
@@ -273,7 +273,7 @@ actions.fetchMyHellError = function (error) {
 
 actions.fetchMatches = function (profile) {
   return function (dispatch) {
-    dispatch(actions.fetchMatches());
+    dispatch(actions.fetchMatchesReq());
     axios.post(api+'matches', profile)
         .then(function (response) {
           dispatch(actions.fetchMatchesSuccess(response.data))
@@ -306,7 +306,7 @@ actions.fetchMatchesError = function (error) {
 
 actions.createConnection = function (connection) {
   return function (dispatch) {
-    dispatch(actions.createConnection());
+    dispatch(actions.createConnectionReq());
     axios.post(api+'connection', connection)
         .then(function (response) {
           dispatch(actions.createConnectionSuccess(response.data))
