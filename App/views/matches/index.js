@@ -11,6 +11,8 @@ import Card from './Card';
 
 export default class Matches extends Component {
 
+
+
   onProfilePress () {
     this.props.navigator.push({
       id: 'Profile'
@@ -102,3 +104,4 @@ const styles = StyleSheet.create({
     color: 'grey'
   }
 });
+

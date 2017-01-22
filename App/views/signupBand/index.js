@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 
 import ModalDropdown from 'react-native-modal-dropdown';
+import { connect } from 'react-redux';
+import actions  from '../../actions/actions'
 
 const background = require('./signup_bg.png');
 const backIcon = require('./back.png');
@@ -18,8 +20,21 @@ const lockIcon = require('./signup_lock.png');
 const emailIcon = require('./signup_email.png');
 const musicalNoteIcon = require('./signup_musicalnote.png');
 
-export default class SignupBand extends Component {
+var modalDropdownOptionsGenres = [];
+var modalDropdownOptionsIntruments = [];
 
+class SignupBand extends Component {
+
+  componentWillMount(){
+    this.props.fetchGenres();
+    this.props.fetchInstruments();
+     modalDropdownOptionsGenres = this.props.genres.map(function(genre){
+      return genre.name;
+    });
+     modalDropdownOptionsIntruments = this.props.instruments.map(function(instrument){
+      return instrument.name;
+    });
+  }
   onBackPress () {
     this.props.navigator.push({
       id: 'InitialScreen'
@@ -124,7 +139,7 @@ export default class SignupBand extends Component {
                   defaultValue='Looking for...'
                   textStyle={[styles.dropdownFont]}
                   dropdownStyle={styles.dropdownBox}
-                  options={[
+                  options={modalDropdownOptionsIntruments/*[
                     'Electric Guitar',
                     'Bass Guitar',
                     'Acoustic Guitar',
@@ -136,7 +151,7 @@ export default class SignupBand extends Component {
                     'Flute',
                     'Clarinet',
                     'Oboe',
-                    'Piano']} />
+                    'Piano']*/} />
               </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
@@ -159,11 +174,11 @@ export default class SignupBand extends Component {
                   defaultValue='Select Genre'
                   textStyle={[styles.dropdownFont]}
                   dropdownStyle={styles.dropdownBox}
-                  options={['Metal',
+                  options={modalDropdownOptionsGenres/*['Metal',
                     'Trance',
                     'Pop',
                     'Rock',
-                    'SpookyCore']}
+                    'SpookyCore']*/}
                 />
               </View>
               <TextInput
@@ -197,6 +212,29 @@ export default class SignupBand extends Component {
     );
   }
 }
+
+
+function mapStateToProps (state) {
+  return {
+    genres: state.genre.genres,
+    instruments: state.instrument.instruments
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchGenres: function () {
+      dispatch (actions.fetchGenres());
+    },
+    fetchInstruments: function () {
+      dispatch (actions.fetchInstruments());
+    }
+  };
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupBand);
+
 
 let styles = StyleSheet.create({
   container: {

@@ -3,7 +3,7 @@ import * as types from '../actions/types';
 const initState = {
     isLoading: false,
     error: '',
-    genres: []
+    genres: [{name:'blah'}]
 };
 
 export default function genre (state, action) {

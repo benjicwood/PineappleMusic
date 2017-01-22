@@ -8,9 +8,6 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
-import { connect } from 'react-redux';
-import * as actions from '../../actions/actions';
-
 import mainReducer from '../../reducers/mainReducer';
 
 import SignupMusician from '../signupMusician/index';
@@ -24,25 +21,20 @@ import LikesMe from '../likesMe/index';
 const logger = createLogger();
 const store = createStore(mainReducer, applyMiddleware(logger, thunk));
 
-class PineappleFront extends Component {
+export default class PineappleFront extends Component {
 
-  componentWillMount(){
-    this.props.fetchGenres();
-  }
 
   render () {
-    console.warn(this.props.genres);
-
     return (
       <Provider store={store}>
         <Navigator
-          style={styles.container}
-          initialRoute={{
-            id: 'InitialScreen'
-          }}
-          renderScene={this.navigatorRenderScene}
-          configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
-          />
+            style={styles.container}
+            initialRoute={{
+              id: 'InitialScreen'
+            }}
+            renderScene={this.navigatorRenderScene}
+            configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
+        />
       </Provider>
     );
   }
@@ -72,19 +64,3 @@ const styles = StyleSheet.create({
   }
 });
 
-function mapStateToProps (state) {
-  return {
-    genres: state.genre.genres
-  };
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    fetchGenres: function () {
-      dispatch (actions.fetchGenres());
-    }
-  }
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PineappleFront)
