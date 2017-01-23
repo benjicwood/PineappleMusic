@@ -20,6 +20,22 @@ const musicalNoteIcon = require('./signup_musicalnote.png');
 
 export default class SignupMusician extends Component {
 
+  componentWillMount(){
+    this.props.fetchGenres();
+    this.props.fetchInstruments();
+    modalDropdownOptionsGenres = this.props.genres.map(function(genre){
+      return genre.name;
+    });
+    modalDropdownOptionsIntruments = this.props.instruments.map(function(instrument){
+      return instrument.name;
+    });
+  }
+  // save userData for local storage
+  saveData (value) {
+    AsyncStorage.setItem('userData', value);
+    this.setState({'userData': value});
+  }
+
   onBackPress () {
     this.props.navigator.push({
       id: 'InitialScreen'

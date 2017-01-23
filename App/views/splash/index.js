@@ -11,18 +11,6 @@ const background = require('./pineappple.png');
 
 export default class InitialScreen extends Component {
 
-  componentDidMount () {
-    AsyncStorage.getItem("userData").then((value) => {
-      this.setState({"userData": value});
-    }).done();
-  }
-
-  saveData (value) {
-    AsyncStorage.setItem('userData', value);
-    this.setState({'userData': value});
-  }
-
-
   onBandPress () {
     this.props.navigator.push({
       id: 'SignupBand'

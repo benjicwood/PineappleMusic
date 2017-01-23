@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, AsyncStorage } from 'react';
 import {
   View,
   Text,
@@ -7,6 +7,12 @@ import {
 } from 'react-native';
 
 export default class MyComponent extends Component {
+// save userData for local storage
+  saveData (value) {
+    AsyncStorage.setItem('userData', value);
+    this.setState({'userData': value});
+  }
+
 
   onMatchPress () {
     this.props.navigator.push({

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, AsyncStorage } from 'react';
 import {
    StyleSheet,
    Navigator
@@ -22,7 +22,13 @@ const logger = createLogger();
 const store = createStore(mainReducer, applyMiddleware(logger, thunk));
 
 export default class PineappleFront extends Component {
-
+// look for userData: profile ASAP if found get matches
+  // if not found load splash view
+  componentDidMount () {
+    AsyncStorage.getItem("userData").then((value) => {
+      this.setState({"userData": value});
+    }).done();
+  }
 
   render () {
     return (

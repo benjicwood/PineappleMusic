@@ -25,6 +25,13 @@ var modalDropdownOptionsIntruments = [];
 
 class SignupBand extends Component {
 
+
+  // save userData for local storage
+  saveData (value) {
+    AsyncStorage.setItem('userData', value);
+    this.setState({'userData': value});
+  }
+
   componentWillMount(){
     this.props.fetchGenres();
     this.props.fetchInstruments();
