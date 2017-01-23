@@ -9,45 +9,25 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import mainReducer from '../../reducers/mainReducer';
-
-import { connect } from 'react-redux';
-import actions  from '../../actions/actions'
+import {AsyncStorage} from 'react-native';
 
 import SignupMusician from '../signupMusician/index';
 import SignupBand from '../signupBand/index';
-import InitialScreen from '../splash/index';
+import UserTypeSelect from '../userTypeSelect/index';
 import Matches from '../matches/index';
 import Profile from '../profile/index';
 import ILike from '../iLike/index';
 import LikesMe from '../likesMe/index';
+import Splash from '../splash/index';
 
 const logger = createLogger();
 const store = createStore(mainReducer, applyMiddleware(logger, thunk));
-const defaultRouteId='loadingScreen';
 
-class PineappleFront extends Component {
+export default class PineappleFront extends Component {
 
-  componentWillMount() {
-
-    AsyncStorage.getItem("userData").then((value) => {
-      if (value === null) {
-        console.warn('error fetching local userData')
-      }
-      console.warn('local user data = ', value);
-      this.setState({"userData": value});
-    }).done();
-
-    this.props.fetchGenres();
-    this.props.fetchInstruments();
+  componentDidMount() {
 
   }
-
-// check for userprofile on local storage
-  // if found - load it to state , set initialRoute id to Matches,
-  // get matches, load matches view
-  //
-  // if not found set initialRoute id to 'splash' ,display splash,
-  // choose band or musician type for new acct signup.
 
   render () {
     return (
@@ -55,7 +35,7 @@ class PineappleFront extends Component {
         <Navigator
             style={styles.container}
             initialRoute={{
-              id: defaultRouteId
+              id: 'Splash'
             }}
             renderScene={this.navigatorRenderScene}
             configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid} />
@@ -64,8 +44,10 @@ class PineappleFront extends Component {
   }
   navigatorRenderScene (route, navigator) {
     switch (route.id) {
-      case 'InitialScreen':
-        return (<InitialScreen navigator={navigator} title='InitialScreen' />);
+      case 'UserTypeSelect':
+        return (<UserTypeSelect navigator={navigator} title='UserTypeSelect' />);
+      case 'Splash':
+        return (<Splash navigator={navigator} title='Splash Screen' />);
       case 'SignupBand':
         return (<SignupBand navigator={navigator} title='SignupBand' />);
       case 'SignupMusician':
@@ -83,25 +65,6 @@ class PineappleFront extends Component {
 }
 
 
-function mapStateToProps (state) {
-  return {
-    genres: state.genre.genres,
-    instruments: state.instrument.instruments
-  };
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    fetchGenres: function () {
-      dispatch (actions.fetchGenres());
-    },
-    fetchInstruments: function () {
-      dispatch (actions.fetchInstruments());
-    }
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(PineappleFront);
 
 const styles = StyleSheet.create({
   container: {

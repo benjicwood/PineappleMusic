@@ -26,8 +26,6 @@ var modalDropdownOptionsIntruments = [];
 class SignupBand extends Component {
 
   componentWillMount(){
-    this.props.fetchGenres();
-    this.props.fetchInstruments();
      modalDropdownOptionsGenres = this.props.genres.map(function(genre){
       return genre.name;
     });
@@ -42,8 +40,7 @@ class SignupBand extends Component {
   }
 
   onMatchPress () {
-    AsyncStorage.setItem("userData", "hairy bollocks");
-    // signup click handler
+c    // signup click handler
     // verify new profile info post it to API , set it to state, set it to local storage
     // OR
     // reject info as incorrect / incomplete
@@ -145,19 +142,7 @@ class SignupBand extends Component {
                   defaultValue='Looking for...'
                   textStyle={[styles.dropdownFont]}
                   dropdownStyle={styles.dropdownBox}
-                  options={modalDropdownOptionsIntruments/*[
-                    'Electric Guitar',
-                    'Bass Guitar',
-                    'Acoustic Guitar',
-                    'Violin',
-                    'Cello',
-                    'Saxophone',
-                    'Trumpet',
-                    'Piccolo',
-                    'Flute',
-                    'Clarinet',
-                    'Oboe',
-                    'Piano']*/} />
+                  options={modalDropdownOptionsIntruments} />
               </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
@@ -180,11 +165,7 @@ class SignupBand extends Component {
                   defaultValue='Select Genre'
                   textStyle={[styles.dropdownFont]}
                   dropdownStyle={styles.dropdownBox}
-                  options={modalDropdownOptionsGenres/*['Metal',
-                    'Trance',
-                    'Pop',
-                    'Rock',
-                    'SpookyCore']*/}
+                  options={modalDropdownOptionsGenres}
                 />
               </View>
               <TextInput

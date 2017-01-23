@@ -6,6 +6,9 @@ import {
   Text,
   View
 } from 'react-native';
+import { connect } from 'react-redux';
+//import actions  from '../../actions/actions'
+
 import SwipeCards from './SwipeCards';
 
 import FlipCard from 'react-native-flip-card';
@@ -16,6 +19,7 @@ var band = require('./band.jpg');
 // if isLOading: false && matches userMAtches.length >0
 // map userMAtches to Cards
 
+/*
 const Cards = [{
   'id': 1,
   'band_name': 'Frank Carter and the Rattlesnakes',
@@ -41,12 +45,13 @@ const Cards = [{
   'band_name': 'Architects',
   'image': band
 }];
+*/
 
-export default class BandCards extends Component {
+class BandCards extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      cards: Cards
+      cards: this.props.matches
     };
   }
   Card (x) {
@@ -58,14 +63,14 @@ export default class BandCards extends Component {
               <Text style={styles.name}>{x.band_name} </Text>
             </View>
             <View style={styles.imagebox}>
-              <Image source={x.image} style={styles.image} />
+              <Image source={{uri: x.profile_pic}} style={styles.image} />
             </View>
           </View>
         </View>
         <View style={styles.back}>
           <View style={styles.card}>
             <View style={styles.imagebox}>
-              <Image source={x.image} style={styles.backimage} />
+              <Image source={{uri: x.profile_pic}} style={styles.backimage} />
             </View>
             <View>
               <Text style={styles.name}>{x.band_name} </Text>
@@ -111,6 +116,15 @@ export default class BandCards extends Component {
     );
   }
 }
+
+
+function mapStateToProps (state) {
+  return {
+    matches: state.matches.userMatches
+  };
+}
+
+export default connect(mapStateToProps)(BandCards);
 
 const styles = StyleSheet.create({
   container: {

@@ -19,8 +19,7 @@ class Matches extends Component {
 
    componentWillMount(){
 
-     this.props.fetchMatches(this.props.userProfile);
-     console.warn('user matches ' ,this.props.userMatches[0])
+//     this.props.fetchMatches(this.props.userProfile);
    }
 
   onProfilePress () {
@@ -42,7 +41,11 @@ class Matches extends Component {
   }
 
   render () {
-console.log(this.props.userMatches);
+    if(this.props.isLoading===true){
+      <Text>Loading ...</Text>
+    }
+    console.warn('user matches ' ,this.props.userMatches[0])
+
     return (
       <View style={styles.container}>
         <View style={styles.banner}>
@@ -121,6 +124,7 @@ const styles = StyleSheet.create({
  return {
    userProfile: state.profile.userProfile,
    userMatches: state.matches.userMatches,
+   isLoading: state.matches.isLoading
  };
  }
 

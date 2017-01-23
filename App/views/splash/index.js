@@ -1,4 +1,4 @@
-import React, { Component, AsyncStorage } from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,10 +7,47 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const background = require('./pineappple.png');
+import { connect } from 'react-redux';
+import actions  from '../../actions/actions'
+import {AsyncStorage} from 'react-native';
 
-export default class InitialScreen extends Component {
+var profile = {"type":"musician","instrument":"5877c4893aecdd49742d833b", "genre":"5877c48b3aecdd49742d8359"};
 
+class Splash extends Component {
+
+  // check for userprofile on local storage
+  // if found - load it to state , set initialRoute id to Matches,
+  // get matches, load matches view
+  //
+  // if not found set initialRoute id to 'UserTypeSelect' ,display UserTypeSelect,
+  // choose band or musician type for new acct signup.
+  componentWillMount() {
+
+    this.props.fetchGenres();
+    this.props.fetchInstruments();
+    this.props.fetchMatches(profile);
+
+    var that=this;
+
+    AsyncStorage.getItem("foo").then((value) => {
+          // did not get value
+          if(value===null){
+            this.props.navigator.push({
+              id: 'UserTypeSelect'
+            });
+          }
+          // got value
+     console.warn('got value', value);
+      var profileObj = JSON.parse(value);
+     that.props.fetchMatches(profileObj);
+
+    }).done(() => {
+      this.props.navigator.push({
+        id: 'Matches'
+      })
+    })
+
+  };
   onBandPress () {
     this.props.navigator.push({
       id: 'SignupBand'
@@ -26,25 +63,37 @@ export default class InitialScreen extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Image
-          source={background}
-          style={[styles.container, styles.bg]}
-          resizeMode='cover'
-        />
-        <TouchableOpacity
-          onPress={this.onBandPress.bind(this)}
-          style={styles.button}>
-          <Text style={styles.buttonText}>BAND</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={this.OnMusicianPress.bind(this)}
-          style={styles.button}>
-          <Text style={styles.buttonText}>MUSICIAN</Text>
-        </TouchableOpacity>
+    <Text> Loading </Text>
       </View>
     );
   }
 }
+
+
+function mapStateToProps (state) {
+  return {
+    genres: state.genre.genres,
+    instruments: state.instrument.instruments,
+    userProfile: state.profile.userProfile,
+    isLoading: state.matches.isLoading
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchGenres: function () {
+      dispatch (actions.fetchGenres());
+    },
+    fetchInstruments: function () {
+      dispatch (actions.fetchInstruments());
+    },
+    fetchMatches: function (profile) {
+      dispatch (actions.fetchMatches(profile));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Splash);
 
 const styles = StyleSheet.create({
   container: {
