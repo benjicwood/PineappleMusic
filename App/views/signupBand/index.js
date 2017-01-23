@@ -19,6 +19,7 @@ const bandIcon = require('./signup_band.png');
 const lockIcon = require('./signup_lock.png');
 const emailIcon = require('./signup_email.png');
 const musicalNoteIcon = require('./signup_musicalnote.png');
+const bandbackground = require('./bandimage.png');
 
 var modalDropdownOptionsGenres = [];
 var modalDropdownOptionsIntruments = [];
@@ -51,7 +52,7 @@ class SignupBand extends Component {
     return (
       <View style={styles.container}>
         <Image
-          source={background}
+          source={bandbackground}
           style={[styles.container, styles.bg]}
           resizeMode='cover'
         >
@@ -139,19 +140,7 @@ class SignupBand extends Component {
                   defaultValue='Looking for...'
                   textStyle={[styles.dropdownFont]}
                   dropdownStyle={styles.dropdownBox}
-                  options={modalDropdownOptionsIntruments/*[
-                    'Electric Guitar',
-                    'Bass Guitar',
-                    'Acoustic Guitar',
-                    'Violin',
-                    'Cello',
-                    'Saxophone',
-                    'Trumpet',
-                    'Piccolo',
-                    'Flute',
-                    'Clarinet',
-                    'Oboe',
-                    'Piano']*/} />
+                   />
               </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
@@ -174,11 +163,6 @@ class SignupBand extends Component {
                   defaultValue='Select Genre'
                   textStyle={[styles.dropdownFont]}
                   dropdownStyle={styles.dropdownBox}
-                  options={modalDropdownOptionsGenres/*['Metal',
-                    'Trance',
-                    'Pop',
-                    'Rock',
-                    'SpookyCore']*/}
                 />
               </View>
               <TextInput
@@ -303,7 +287,7 @@ let styles = StyleSheet.create({
     fontSize: 20
   },
   signup: {
-    backgroundColor: '#FF3366',
+    backgroundColor: '#e9e104',
     ...Platform.select({
       ios: { paddingVertical: 23 },
       android: { paddingVertical: 18 }

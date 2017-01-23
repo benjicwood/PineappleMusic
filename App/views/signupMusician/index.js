@@ -17,6 +17,7 @@ const musicianIcon = require('./signup_musician.png');
 const lockIcon = require('./signup_lock.png');
 const emailIcon = require('./signup_email.png');
 const musicalNoteIcon = require('./signup_musicalnote.png');
+const musician = require('./musicianpagebackground.png');
 
 export default class SignupMusician extends Component {
 
@@ -36,7 +37,7 @@ export default class SignupMusician extends Component {
     return (
       <View style={styles.container}>
         <Image
-          source={background}
+          source={musician}
           style={[styles.container, styles.bg]}
           resizeMode='cover'
         >
@@ -265,7 +266,7 @@ let styles = StyleSheet.create({
     fontSize: 20
   },
   signup: {
-    backgroundColor: '#FF3366',
+    backgroundColor: '#e9e104',
     ...Platform.select({
       ios: { paddingVertical: 23 },
       android: { paddingVertical: 18 }
