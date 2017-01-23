@@ -7,13 +7,11 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-//import actions  from '../../actions/actions'
+// import actions  from '../../actions/actions'
 
 import SwipeCards from './SwipeCards';
 
 import FlipCard from 'react-native-flip-card';
-
-var band = require('./band.jpg');
 
 // if matches isLoading=true , use soem default loadin card
 // if isLOading: false && matches userMAtches.length >0
@@ -65,6 +63,7 @@ class BandCards extends Component {
             <View style={styles.imagebox}>
               <Image source={{uri: x.profile_pic}} style={styles.image} />
             </View>
+            <Text style={styles.name}>location here</Text>
           </View>
         </View>
         <View style={styles.back}>
@@ -117,7 +116,6 @@ class BandCards extends Component {
   }
 }
 
-
 function mapStateToProps (state) {
   return {
     matches: state.matches.userMatches
@@ -134,7 +132,8 @@ const styles = StyleSheet.create({
   cardcontainer: {
     flex: 1,
     paddingTop: 24,
-    backgroundColor: 'black',
+    paddingBottom: 24,
+    backgroundColor: 'whitesmoke',
     alignItems: 'center',
     margin: 5
   },
@@ -162,7 +161,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#e3e3e3',
     width: 350,
-    height: 420,
+    height: 486,
     backgroundColor: 'red'
   },
   back: {
@@ -171,7 +170,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#e3e3e3',
     width: 350,
-    height: 420,
+    height: 486,
     backgroundColor: 'red'
   },
   imagebox: {
@@ -180,8 +179,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   image: {
-    width: 300,
-    height: 330,
+    width: 330,
+    height: 350,
     borderWidth: 1,
     borderColor: 'black'
   },

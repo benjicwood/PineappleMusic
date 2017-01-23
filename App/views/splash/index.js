@@ -42,11 +42,11 @@ class Splash extends Component {
       var profileObj = JSON.parse(value);
      that.props.fetchMatches(profileObj);
 
-    }).done(() => {
-      this.props.navigator.push({
-        id: 'Matches'
+  }).done(() => {
+       this.props.navigator.push({
+         id: 'Matches'
       })
-    })
+   })
 
   };
   onBandPress () {

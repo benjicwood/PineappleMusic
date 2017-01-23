@@ -8,7 +8,7 @@ const api = 'http://pineapple-api.herokuapp.com/api/';
 actions.createProfile = function (profileType, newProfile) {
   return function (dispatch) {
     dispatch(actions.createProfileReq());
-    axios.post(api + '/profile/'+ profileType, newProfile)
+    axios.post(api + '/profile/' + profileType, newProfile)
         .then(function (response) {
           dispatch(actions.createProfileSuccess(response.data));
         })
@@ -74,7 +74,7 @@ actions.updateProfileError = function (error) {
 actions.fetchProfile = function (type, id) {
   return function (dispatch) {
     dispatch(actions.fetchProfileReq());
-    axios.get(api + 'profile/'+ type + '/' + id)
+    axios.get(api + 'profile/' + type + '/' + id)
         .then(function (response) {
           actions.fetchProfileSuccess(response.data);
         })
@@ -87,21 +87,21 @@ actions.fetchProfile = function (type, id) {
 actions.fetchProfileReq = function () {
   return {
     type: types.FETCH_PROFILE_REQ
-  }
+  };
 };
 
 actions.fetchProfileSuccess = function (data) {
   return {
     type: types.FETCH_PROFILE_SUCCESS,
     data: data
-  }
+  };
 };
 
 actions.fetchProfileError = function (error) {
   return {
     type: types.FETCH_PROFILE_ERROR,
     error: error
-  }
+  };
 };
 
 actions.fetchGenres = function () {
@@ -137,11 +137,10 @@ actions.fetchGenresError = function (error) {
   };
 };
 
-
 actions.fetchInstruments = function () {
   return function (dispatch) {
     dispatch(actions.fetchInstrumentsReq());
-    axios.get(api+'instrument')
+    axios.get(api + 'instrument')
         .then(function (response) {
           dispatch(actions.fetchInstrumentsSuccess(response.data));
         })
@@ -153,41 +152,40 @@ actions.fetchInstruments = function () {
 
 actions.fetchInstrumentsReq = function () {
   return {
-    type: types.FETCH_INSTRUMENTS_REQ,
-  }
+    type: types.FETCH_INSTRUMENTS_REQ
+  };
 };
 
 actions.fetchInstrumentsSuccess = function (data) {
   return {
     type: types.FETCH_INSTRUMENTS_SUCCESS,
     data: data
-  }
+  };
 };
 
 actions.fetchInstrumentsError = function (error) {
   return {
     type: types.FETCH_INSTRUMENTS_ERROR,
     error: error
-  }
+  };
 };
-
 
 actions.fetchMyHeaven = function (id) {
   return function (dispatch) {
     dispatch(actions.fetchMyHeavenReq());
-    axios.get(api+'connection/heaven/'+id)
+    axios.get(api + 'connection/heaven/' + id)
         .then(function (response) {
-          dispatch(actions.fetchMyHeavenSuccess(response.data))
+          dispatch(actions.fetchMyHeavenSuccess(response.data));
         })
         .catch(function (error) {
-          dispatch(actions.fetchMyHeavenError(error))
+          dispatch(actions.fetchMyHeavenError(error));
         });
-  }
+  };
 };
 
 actions.fetchMyHeavenReq = function () {
   return {
-    type: types.FETCH_MY_HEAVEN_REQ,
+    type: types.FETCH_MY_HEAVEN_REQ
   };
 };
 
@@ -208,19 +206,19 @@ actions.fetchMyHeavenError = function (error) {
 actions.fetchTheirHeaven = function (id) {
   return function (dispatch) {
     dispatch(actions.fetchTheirHeavenReq());
-    axios.get(api+'connection/theirheaven/'+id)
+    axios.get(api + 'connection/theirheaven/' + id)
         .then(function (response) {
-          dispatch(actions.fetchTheirHeavenSuccess(response.data))
+          dispatch(actions.fetchTheirHeavenSuccess(response.data));
         })
         .catch(function (error) {
-          dispatch(actions.fetchTheirHeavenError(error))
+          dispatch(actions.fetchTheirHeavenError(error));
         });
-  }
+  };
 };
 
 actions.fetchTheirHeavenReq = function () {
   return {
-    type: types.FETCH_THEIR_HEAVEN_REQ,
+    type: types.FETCH_THEIR_HEAVEN_REQ
   };
 };
 
@@ -241,19 +239,19 @@ actions.fetchTheirHeavenError = function (error) {
 actions.fetchMyHell = function (id) {
   return function (dispatch) {
     dispatch(actions.fetchMyHellReq());
-    axios.get(api+'connection/hell/'+id)
+    axios.get(api + 'connection/hell/' + id)
         .then(function (response) {
-          dispatch(actions.fetchMyHellSuccess(response.data))
+          dispatch(actions.fetchMyHellSuccess(response.data));
         })
         .catch(function (error) {
-          dispatch(actions.fetchMyHellError(error))
+          dispatch(actions.fetchMyHellError(error));
         });
-  }
+  };
 };
 
 actions.fetchMyHellReq = function () {
   return {
-    type: types.FETCH_MY_HELL_REQ,
+    type: types.FETCH_MY_HELL_REQ
   };
 };
 
@@ -274,19 +272,19 @@ actions.fetchMyHellError = function (error) {
 actions.fetchMatches = function (profile) {
   return function (dispatch) {
     dispatch(actions.fetchMatchesReq());
-    axios.post(api+'matches', profile)
+    axios.post(api + 'matches', profile)
         .then(function (response) {
-          dispatch(actions.fetchMatchesSuccess(response.data))
+          dispatch(actions.fetchMatchesSuccess(response.data));
         })
         .catch(function (error) {
-          dispatch(actions.fetchMatchesError(error))
+          dispatch(actions.fetchMatchesError(error));
         });
-  }
+  };
 };
 
 actions.fetchMatchesReq = function () {
   return {
-    type: types.FETCH_MATCHES_REQ,
+    type: types.FETCH_MATCHES_REQ
   };
 };
 
@@ -307,19 +305,19 @@ actions.fetchMatchesError = function (error) {
 actions.createConnection = function (connection) {
   return function (dispatch) {
     dispatch(actions.createConnectionReq());
-    axios.post(api+'connection', connection)
+    axios.post(api + 'connection', connection)
         .then(function (response) {
-          dispatch(actions.createConnectionSuccess(response.data))
+          dispatch(actions.createConnectionSuccess(response.data));
         })
         .catch(function (error) {
-          dispatch(actions.createConnectionError(error))
+          dispatch(actions.createConnectionError(error));
         });
-  }
+  };
 };
 
 actions.createConnectionReq = function () {
   return {
-    type: types.CREATE_CONNECTION_REQ,
+    type: types.CREATE_CONNECTION_REQ
   };
 };
 
@@ -336,8 +334,5 @@ actions.createConnectionError = function (error) {
     error: error
   };
 };
-
-
-
 
 export default actions;

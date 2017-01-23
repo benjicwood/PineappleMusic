@@ -8,19 +8,16 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import actions  from '../../actions/actions'
-
+import actions from '../../actions/actions';
 
 import Card from './Card';
 
-
 class Matches extends Component {
 
-
-   componentWillMount(){
+  componentWillMount () {
 
 //     this.props.fetchMatches(this.props.userProfile);
-   }
+  }
 
   onProfilePress () {
     this.props.navigator.push({
@@ -41,10 +38,10 @@ class Matches extends Component {
   }
 
   render () {
-    if(this.props.isLoading===true){
-      <Text>Loading ...</Text>
+    if (this.props.isLoading === true) {
+      <Text> Loading ... </Text>;
     }
-    console.warn('user matches ' ,this.props.userMatches[0])
+    console.warn('user matches ', this.props.userMatches[0]);
 
     return (
       <View style={styles.container}>
@@ -119,19 +116,18 @@ const styles = StyleSheet.create({
   }
 });
 
-
- function mapStateToProps (state) {
- return {
-   userProfile: state.profile.userProfile,
-   userMatches: state.matches.userMatches,
-   isLoading: state.matches.isLoading
- };
- }
+function mapStateToProps (state) {
+  return {
+    userProfile: state.profile.userProfile,
+    userMatches: state.matches.userMatches,
+    isLoading: state.matches.isLoading
+  };
+}
 
 function mapDispatchToProps (dispatch) {
   return {
     fetchMatches: function (profile) {
-      dispatch (actions.fetchMatches(profile));
+      dispatch(actions.fetchMatches(profile));
     }
   };
 }

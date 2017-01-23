@@ -13,7 +13,7 @@ import ModalDropdown from 'react-native-modal-dropdown';
 import { connect } from 'react-redux';
 import actions  from '../../actions/actions'
 
-const background = require('./signup_bg.png');
+const background = require('./bandpage.png');
 const backIcon = require('./back.png');
 const bandIcon = require('./signup_band.png');
 const lockIcon = require('./signup_lock.png');
@@ -188,11 +188,7 @@ c    // signup click handler
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity>
-              <View style={styles.signin}>
-                <Text style={styles.greyFont}>Already have an account?<Text style={styles.whiteFont}> Sign In</Text></Text>
-              </View>
-            </TouchableOpacity>
+
           </View>
         </Image>
       </View>
@@ -290,10 +286,10 @@ let styles = StyleSheet.create({
     fontSize: 20
   },
   signup: {
-    backgroundColor: '#FF3366',
+    backgroundColor: '#e9e104',
     ...Platform.select({
       ios: { paddingVertical: 23 },
-      android: { paddingVertical: 18 }
+      android: { paddingVertical: 20 }
     }),
     alignItems: 'center',
     justifyContent: 'center'
@@ -302,12 +298,11 @@ let styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'transparent'
-  },
-  greyFont: {
-    color: '#D8D8D8'
+
   },
   whiteFont: {
-    color: '#FFF'
+    color: '#FFF',
+    fontSize: 22
   },
   dropdownFont: {
     alignItems: 'center',
@@ -321,6 +316,12 @@ let styles = StyleSheet.create({
   selection: {
     alignItems: 'flex-end',
     paddingTop: 20
+  },
+  picker: {
+    width: 200,
+    color: '#FFF',
+    paddingTop: 20
+
 
   }
 });
