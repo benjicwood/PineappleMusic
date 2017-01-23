@@ -7,6 +7,8 @@ import {
   Image
 } from 'react-native';
 
+import Geolocation from './geo.js';
+
 import FlipCard from 'react-native-flip-card';
 
 export default class MyComponent extends Component {
@@ -34,7 +36,7 @@ export default class MyComponent extends Component {
             <View style={styles.imagebox}>
               <Image source={require('../matches/band.jpg')} style={styles.image} />
             </View>
-            <Text style={styles.name}>location here</Text>
+            <Geolocation />
           </View>
           <View style={styles.back}>
             <View style={styles.card}>
