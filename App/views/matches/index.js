@@ -14,14 +14,7 @@ import actions  from '../../actions/actions'
 import Card from './Card';
 
 
-class Matches extends Component {
-
-
-   componentWillMount(){
-
-     this.props.fetchMatches(this.props.userProfile);
-     console.warn('user matches ' ,this.props.userMatches[0])
-   }
+export default class Matches extends Component {
 
   onProfilePress () {
     this.props.navigator.push({
@@ -42,7 +35,6 @@ class Matches extends Component {
   }
 
   render () {
-console.log(this.props.userMatches);
     return (
       <View style={styles.container}>
         <View style={styles.banner}>
@@ -115,21 +107,3 @@ const styles = StyleSheet.create({
     color: 'grey'
   }
 });
-
-
- function mapStateToProps (state) {
- return {
-   userProfile: state.profile.userProfile,
-   userMatches: state.matches.userMatches,
- };
- }
-
-function mapDispatchToProps (dispatch) {
-  return {
-    fetchMatches: function (profile) {
-      dispatch (actions.fetchMatches(profile));
-    }
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Matches);
