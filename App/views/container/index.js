@@ -20,6 +20,7 @@ import LikesMe from '../likesMe/index';
 
 const logger = createLogger();
 const store = createStore(mainReducer, applyMiddleware(logger, thunk));
+const defaultRouteId='loadingScreen';
 
 export default class PineappleFront extends Component {
 
@@ -36,7 +37,7 @@ export default class PineappleFront extends Component {
         <Navigator
             style={styles.container}
             initialRoute={{
-              id: 'Matches'
+              id: defaultRouteId
             }}
             renderScene={this.navigatorRenderScene}
             configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
