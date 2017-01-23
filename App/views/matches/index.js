@@ -7,6 +7,10 @@ import {
   Platform
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import actions  from '../../actions/actions'
+
+
 import Card from './Card';
 
 

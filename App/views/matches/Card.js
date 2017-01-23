@@ -12,6 +12,10 @@ import FlipCard from 'react-native-flip-card';
 
 var band = require('./band.jpg');
 
+// if matches isLoading=true , use soem default loadin card
+// if isLOading: false && matches userMAtches.length >0
+// map userMAtches to Cards
+
 const Cards = [{
   'id': 1,
   'band_name': 'Frank Carter and the Rattlesnakes',

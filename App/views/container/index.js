@@ -23,6 +23,12 @@ const store = createStore(mainReducer, applyMiddleware(logger, thunk));
 
 export default class PineappleFront extends Component {
 
+// check for userprofile on local storage
+  // if found - load it to state , set initialRoute id to Matches,
+  // get matches, load matches view
+  //
+  // if not found set initialRoute id to 'splash' ,display splash,
+  // choose band or musician type for new acct signup.
 
   render () {
     return (
@@ -30,7 +36,7 @@ export default class PineappleFront extends Component {
         <Navigator
             style={styles.container}
             initialRoute={{
-              id: 'InitialScreen'
+              id: 'Matches'
             }}
             renderScene={this.navigatorRenderScene}
             configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
