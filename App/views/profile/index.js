@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
+import VideoPlayer from './streamer.js'
 
 export default class MyComponent extends Component {
 
@@ -23,6 +24,7 @@ export default class MyComponent extends Component {
           <Text style={styles.toMatches}>Back to Matches</Text>
         </TouchableOpacity>
         <Text>THIS IS THE PROFILE PAGE</Text>
+<VideoPlayer />
       </View>
     );
   }
