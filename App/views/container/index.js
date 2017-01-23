@@ -17,6 +17,7 @@ import Matches from '../matches/index';
 import Profile from '../profile/index';
 import ILike from '../iLike/index';
 import LikesMe from '../likesMe/index';
+import PlayList from '../profile/Playlist'
 
 const logger = createLogger();
 const store = createStore(mainReducer, applyMiddleware(logger, thunk));
@@ -54,6 +55,8 @@ export default class PineappleFront extends Component {
         return (<ILike navigator={navigator} title='ILike' />);
       case 'LikesMe':
         return (<LikesMe navigator={navigator} title='LikesMe' />);
+      case 'PlayList':
+        return (<PlayList navigator={navigator} title='PlayList' />);
     }
   }
 }
@@ -63,4 +66,3 @@ const styles = StyleSheet.create({
     flex: 1
   }
 });
-

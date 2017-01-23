@@ -5,13 +5,19 @@ import {
   StyleSheet,
   TouchableOpacity
 } from 'react-native';
-import VideoPlayer from './streamer.js'
+import PlayList from './Playlist.js'
 
 export default class MyComponent extends Component {
 
   onMatchPress () {
     this.props.navigator.push({
       id: 'Matches'
+    });
+  }
+
+  onPlaylistPress () {
+    this.props.navigator.push({
+      id: 'PlayList'
     });
   }
 
@@ -24,7 +30,9 @@ export default class MyComponent extends Component {
           <Text style={styles.toMatches}>Back to Matches</Text>
         </TouchableOpacity>
         <Text>THIS IS THE PROFILE PAGE</Text>
-<VideoPlayer />
+        <TouchableOpacity onPress={this.onPlaylistPress.bind(this)}>
+        <Text>Playlist</Text>
+        </TouchableOpacity>
       </View>
     );
   }
