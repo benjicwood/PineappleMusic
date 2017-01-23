@@ -6,12 +6,13 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Platform
+  Platform,
+  Picker
 } from 'react-native';
 
 import ModalDropdown from 'react-native-modal-dropdown';
 import { connect } from 'react-redux';
-import actions  from '../../actions/actions'
+import actions  from '../../actions/actions';
 
 const background = require('./signup_bg.png');
 const backIcon = require('./back.png');
@@ -135,6 +136,13 @@ class SignupBand extends Component {
                   resizeMode='contain'
                 />
               </View>
+              <Picker
+                style={styles.picker}
+
+                >
+                <Picker.Item label="Java" value="java" />
+                <Picker.Item label="JavaScript" value="js" />
+              </Picker>
               <View style={styles.selection}>
                 <ModalDropdown
                   defaultValue='Looking for...'
@@ -318,6 +326,12 @@ let styles = StyleSheet.create({
   selection: {
     alignItems: 'flex-end',
     paddingTop: 20
+  },
+  picker: {
+    width: 200,
+    color: '#FFF',
+    paddingTop: 20
+
 
   }
 });
