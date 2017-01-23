@@ -10,6 +10,9 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import mainReducer from '../../reducers/mainReducer';
 
+import { connect } from 'react-redux';
+import actions  from '../../actions/actions'
+
 import SignupMusician from '../signupMusician/index';
 import SignupBand from '../signupBand/index';
 import InitialScreen from '../splash/index';
@@ -22,7 +25,22 @@ const logger = createLogger();
 const store = createStore(mainReducer, applyMiddleware(logger, thunk));
 const defaultRouteId='loadingScreen';
 
-export default class PineappleFront extends Component {
+class PineappleFront extends Component {
+
+  componentWillMount() {
+
+    AsyncStorage.getItem("userData").then((value) => {
+      if (value === null) {
+        console.warn('error fetching local userData')
+      }
+      console.warn('local user data = ', value);
+      this.setState({"userData": value});
+    }).done();
+
+    this.props.fetchGenres();
+    this.props.fetchInstruments();
+
+  }
 
 // check for userprofile on local storage
   // if found - load it to state , set initialRoute id to Matches,
@@ -40,8 +58,7 @@ export default class PineappleFront extends Component {
               id: defaultRouteId
             }}
             renderScene={this.navigatorRenderScene}
-            configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
-        />
+            configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid} />
       </Provider>
     );
   }
@@ -64,6 +81,27 @@ export default class PineappleFront extends Component {
     }
   }
 }
+
+
+function mapStateToProps (state) {
+  return {
+    genres: state.genre.genres,
+    instruments: state.instrument.instruments
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchGenres: function () {
+      dispatch (actions.fetchGenres());
+    },
+    fetchInstruments: function () {
+      dispatch (actions.fetchInstruments());
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(PineappleFront);
 
 const styles = StyleSheet.create({
   container: {
