@@ -10,16 +10,12 @@ import {
 import { connect } from 'react-redux';
 import actions  from '../../actions/actions'
 
-
 import Card from './Card';
-
 
 class Matches extends Component {
 
-
    componentWillMount(){
-
-//     this.props.fetchMatches(this.props.userProfile);
+     // do stuff ASAP
    }
 
   onProfilePress () {
@@ -29,12 +25,14 @@ class Matches extends Component {
   }
 
   onLikesMePress () {
+    this.props.fetchTheirHeaven(this.props.userProfile._id);
     this.props.navigator.push({
       id: 'LikesMe'
     });
   }
 
   onILikePress () {
+    this.props.fetchMyHeaven(this.props.userProfile._id);
     this.props.navigator.push({
       id: 'ILike'
     });
@@ -80,6 +78,31 @@ class Matches extends Component {
   }
 }
 
+
+function mapStateToProps (state) {
+  return {
+    userProfile: state.profile.userProfile,
+    userMatches: state.matches.userMatches,
+    isLoading: state.matches.isLoading
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchMatches: function (profile) {
+      dispatch (actions.fetchMatches(profile));
+    },
+    fetchMyHeaven: function (id) {
+      dispatch (actions.fetchMyHeaven(id));
+    },
+    fetchTheirHeaven: function (id) {
+      dispatch (actions.fetchTheirHeaven(id));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Matches);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1
@@ -119,21 +142,3 @@ const styles = StyleSheet.create({
   }
 });
 
-
- function mapStateToProps (state) {
- return {
-   userProfile: state.profile.userProfile,
-   userMatches: state.matches.userMatches,
-   isLoading: state.matches.isLoading
- };
- }
-
-function mapDispatchToProps (dispatch) {
-  return {
-    fetchMatches: function (profile) {
-      dispatch (actions.fetchMatches(profile));
-    }
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Matches);

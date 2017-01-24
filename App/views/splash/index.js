@@ -15,33 +15,28 @@ var profile = {"type":"musician","instrument":"5877c4893aecdd49742d833b", "genre
 
 class Splash extends Component {
 
-  // check for userprofile on local storage
-  // if found - load it to state , set initialRoute id to Matches,
-  // get matches, load matches view
-  //
-  // if not found set initialRoute id to 'UserTypeSelect' ,display UserTypeSelect,
-  // choose band or musician type for new acct signup.
   componentWillMount() {
-
+    // fetchGenres API call
     this.props.fetchGenres();
+    // fetchInstruments API call
     this.props.fetchInstruments();
-    this.props.fetchMatches(profile);
-
+    // defeat the arrow
     var that=this;
-
     AsyncStorage.getItem("foo").then((value) => {
-          // did not get value
+          // did we get some value ? NO
           if(value===null){
+            // switch view to band or musician signup
             this.props.navigator.push({
               id: 'UserTypeSelect'
             });
           }
-          // got value
-     console.warn('got value', value);
+          // did get some value ? YES
+      //parse JSON
       var profileObj = JSON.parse(value);
+      // fetchMatches API call
      that.props.fetchMatches(profileObj);
-
     }).done(() => {
+      // all done, switch view to matches
       this.props.navigator.push({
         id: 'Matches'
       })
