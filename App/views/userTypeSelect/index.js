@@ -7,7 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const background = require('./uts.png');
+const background = require('./utsbackground.png');
 
 export default class UserTypeSelect extends Component {
 

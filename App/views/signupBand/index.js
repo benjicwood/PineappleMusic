@@ -25,11 +25,11 @@ var modalDropdownOptionsIntruments = [];
 
 class SignupBand extends Component {
 
-  componentWillMount(){
-     modalDropdownOptionsGenres = this.props.genres.map(function(genre){
+  componentWillMount () {
+    modalDropdownOptionsGenres = this.props.genres.map(function (genre) {
       return genre.name;
     });
-     modalDropdownOptionsIntruments = this.props.instruments.map(function(instrument){
+     modalDropdownOptionsIntruments = this.props.instruments.map(function (instrument) {
       return instrument.name;
     });
   }
