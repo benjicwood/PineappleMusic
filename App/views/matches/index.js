@@ -13,7 +13,7 @@ import actions  from '../../actions/actions'
 import Card from './Card';
 
 class Matches extends Component {
-   
+
   componentWillMount(){
      // do stuff ASAP
    }
@@ -139,4 +139,3 @@ const styles = StyleSheet.create({
     color: 'grey'
   }
 });
-
