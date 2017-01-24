@@ -6,14 +6,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-import { connect } from 'react-redux';
-import actions  from '../../actions/actions'
-var date='';
-class LikesMe extends Component {
-
-  componentWillMount(){
-    date = this.props.list[0].liked_by;
-  }
+export default class LikesMe extends Component {
 
   onMatchPress () {
     this.props.navigator.push({
@@ -22,11 +15,6 @@ class LikesMe extends Component {
   }
 
   render () {
-    if( this.props.isLoading){
-      return (
-          <Text>Loading ...</Text>
-      )
-    }
     return (
       <View style={styles.container}>
         <TouchableOpacity
@@ -35,35 +23,10 @@ class LikesMe extends Component {
           <Text style={styles.toMatches}>Back to Matches</Text>
         </TouchableOpacity>
         <Text>I LIKE PAGE</Text>
-        <Text>{date}</Text>
       </View>
     );
   }
 }
-
-
-function mapStateToProps (state) {
-  return {
-    isLoading: state.theirHeaven.isLoading,
-    list: state.theirHeaven.list
-  };
-}
-
-function mapDispatchToProps (dispatch) {
-  return {
-    fetchMatches: function (profile) {
-      dispatch (actions.fetchMatches(profile));
-    },
-    fetchMyHeaven: function (id) {
-      dispatch (actions.fetchMyHeaven(id));
-    },
-    fetchTheirHeaven: function (id) {
-      dispatch (actions.fetchTheirHeaven(id));
-    }
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(LikesMe);
 
 const styles = StyleSheet.create({
   container: {

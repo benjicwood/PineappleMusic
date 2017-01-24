@@ -17,16 +17,34 @@ class Splash extends Component {
 
   componentWillMount() {
     //console.warn('state profile userprofile: ', state.profile.userProfile);
-   // console.warn('this props userprofile: ', this.props.userProfile);
+    console.warn('this props userprofile: ', this.props.userProfile);
 
     // fetchGenres API call
     this.props.fetchGenres();
     // fetchInstruments API call
     this.props.fetchInstruments();
-
+    // defeat the arrow
+    var that=this;
+    AsyncStorage.getItem("foo").then((value) => {
+          // did we get some value ? NO
+          if(value===null){
+            // switch view to band or musician signup
+            this.props.navigator.push({
+              id: 'UserTypeSelect'
+            });
+          }
+          // did get some value ? YES
+      //parse JSON
+      var profileObj = JSON.parse(value);
+      // fetchMatches API call
+     that.props.fetchMatches(profileObj);
+    }).done(() => {
+      // all done, switch view to matches
       this.props.navigator.push({
         id: 'UserTypeSelect'
       })
+    })
+
   };
   onBandPress () {
     this.props.navigator.push({

@@ -247,7 +247,7 @@ actions.fetchMyHeavenError = function (error) {
 actions.fetchTheirHeaven = function (id) {
   return function (dispatch) {
     dispatch(actions.fetchTheirHeavenReq());
-    axios.get(api+'likesme/'+id)
+    axios.get(api+'connection/theirheaven/'+id)
         .then(function (response) {
           dispatch(actions.fetchTheirHeavenSuccess(response.data))
         })
