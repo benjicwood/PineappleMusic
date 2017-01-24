@@ -42,8 +42,7 @@ class Matches extends Component {
     if(this.props.isLoading===true){
       <Text>Loading ...</Text>
     }
-    console.warn('user matches ' ,this.props.userMatches[0])
-
+    console.warn('user matches ' ,this.props.userMatches)
     return (
       <View style={styles.container}>
         <View style={styles.banner}>
