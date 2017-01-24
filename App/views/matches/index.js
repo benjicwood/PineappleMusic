@@ -15,7 +15,7 @@ import Card from './Card';
 class Matches extends Component {
 
   componentWillMount(){
-     // do stuff ASAP
+    
    }
   onProfilePress () {
     this.props.navigator.push({
@@ -24,7 +24,7 @@ class Matches extends Component {
   }
 
   onLikesMePress () {
-    this.props.fetchTheirHeaven(this.props.userProfile._id);
+    this.props.fetchTheirHeaven('5877c4863aecdd49742d8338');
     this.props.navigator.push({
       id: 'LikesMe'
     });
@@ -38,10 +38,12 @@ class Matches extends Component {
   }
 
   render () {
-    while(this.props.isLoading===true){
-      return (<Text>Loading ...</Text>)
+    if(this.props.isLoading){
+      return (
+          <Text>Loading ...</Text>
+      )
     }
-    console.warn('user matches ' ,this.props.userMatches[0])
+
     return (
       <View style={styles.container}>
         <View style={styles.banner}>

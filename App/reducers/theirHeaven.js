@@ -3,7 +3,7 @@ import * as types from '../actions/types';
 const initState = {
     isLoading: false,
     error: '',
-    theirHeaven: []
+    list: [{date:'fo0'}]
 };
 
 export default function theirHeaven (state, action) {
@@ -16,7 +16,7 @@ export default function theirHeaven (state, action) {
         case types.FETCH_THEIR_HEAVEN_SUCCESS:
             return Object.assign({}, state, {
                 isLoading: false,
-                theirHeaven: action.data
+                list: action.data
             });
         case types.FETCH_THEIR_HEAVEN_ERROR:
             return Object.assign({}, state, {
