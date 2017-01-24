@@ -38,8 +38,8 @@ class Matches extends Component {
   }
 
   render () {
-    if(this.props.isLoading===true){
-      <Text>Loading ...</Text>
+    while(this.props.isLoading===true){
+      return (<Text>Loading ...</Text>)
     }
     console.warn('user matches ' ,this.props.userMatches[0])
     return (
