@@ -11,13 +11,12 @@ import { connect } from 'react-redux';
 import actions  from '../../actions/actions'
 
 import Card from './Card';
-
-class Matches extends Component {
-
-   componentWillMount(){
+  
+export default class Matches extends Component {
+   
+  componentWillMount(){
      // do stuff ASAP
    }
-
   onProfilePress () {
     this.props.navigator.push({
       id: 'Profile'
@@ -39,11 +38,11 @@ class Matches extends Component {
   }
 
   render () {
+
     if(this.props.isLoading===true){
       <Text>Loading ...</Text>
     }
     console.warn('user matches ' ,this.props.userMatches[0])
-
     return (
       <View style={styles.container}>
         <View style={styles.banner}>
