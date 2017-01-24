@@ -11,8 +11,8 @@ import { connect } from 'react-redux';
 import actions  from '../../actions/actions'
 
 import Card from './Card';
-  
-export default class Matches extends Component {
+
+class Matches extends Component {
    
   componentWillMount(){
      // do stuff ASAP
@@ -38,8 +38,8 @@ export default class Matches extends Component {
   }
 
   render () {
-    if(this.props.isLoading===true){
-      <Text>Loading ...</Text>
+    while(this.props.isLoading===true){
+      return (<Text>Loading ...</Text>)
     }
     console.warn('user matches ' ,this.props.userMatches[0])
     return (
