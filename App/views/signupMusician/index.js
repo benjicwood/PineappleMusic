@@ -72,14 +72,14 @@ class SignupMusician extends Component {
 
     // send profile obj to API call getMatches
 
-    actions.createProfile(profileObj.type, profileObj);
+    this.props.createProfile(profileObj.type, profileObj);
       var matchProfile = {
           type: profileObj.type,
           genre: profileObj.genre,
           instrument: profileObj.instrument
       };
 
-    actions.fetchMatches({"type":"musician","instrument":"5877c4893aecdd49742d833b", "genre":"5877c48b3aecdd49742d8359"});
+    this.props.fetchMatches({"type":"musician","instrument":"5877c4893aecdd49742d833b", "genre":"5877c48b3aecdd49742d8359"});
 
     //load matches view
 
@@ -309,6 +309,9 @@ function mapDispatchToProps (dispatch) {
   return {
     createProfile: function (profileType, profile) {
       dispatch (actions.createProfile(profileType, profile));
+    },
+    fetchMatches: function (profile) {
+      dispatch (actions.fetchMatches(profile));
     }
   };
 }

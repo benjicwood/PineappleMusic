@@ -38,7 +38,6 @@ class Matches extends Component {
   }
 
   render () {
-
     if(this.props.isLoading===true){
       <Text>Loading ...</Text>
     }
