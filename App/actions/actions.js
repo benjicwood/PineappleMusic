@@ -5,6 +5,45 @@ const actions = {};
 
 const api = 'http://pineapple-api.herokuapp.com/api/';
 
+actions.createProfileLocalStorage = function (profile) {
+  return function (dispatch) {
+    dispatch(actions.createProfileLocalStorageReq());
+    var foo = JSON.stringify(profile);
+    AsyncStorage.setItem("foo", foo)
+        .then(function () {
+          dispatch(actions.createProfileLocalStorageSuccess(profile))
+        })
+        .done(function () {
+      console.warn('LOCAL STORAGE UPDATED')
+          .catch(function () {
+            dispatch(actions.createProfileLocalStorageError());
+        console.warn('ERROR STORING PROFILE ON DEVICE');
+      })
+    });
+    this.setState({"foo": profile});
+  }
+};
+
+actions.createProfileLocalStorageReq = function () {
+  return {
+    type: types.CREATE_PROFILE_LOCAL_STORAGE_REQ
+  }
+};
+
+actions.createProfileLocalStorageSuccess = function (data) {
+  return {
+    type: types.CREATE_PROFILE_LOCAL_STORAGE_SUCCESS,
+    profile: data
+  }
+};
+
+actions.createProfileLocalStorageError = function (error) {
+  return {
+    type: types.CREATE_PROFILE_LOCAL_STORAGE_ERROR,
+    error: error
+  }
+};
+
 actions.createProfile = function (profileType, newProfile) {
   return function (dispatch) {
     dispatch(actions.createProfileReq());
@@ -336,8 +375,5 @@ actions.createConnectionError = function (error) {
     error: error
   };
 };
-
-
-
 
 export default actions;

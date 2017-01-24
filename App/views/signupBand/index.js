@@ -40,7 +40,7 @@ class SignupBand extends Component {
   }
 
   onMatchPress () {
-c    // signup click handler
+    // signup click handler
     // verify new profile info post it to API , set it to state, set it to local storage
     // OR
     // reject info as incorrect / incomplete
