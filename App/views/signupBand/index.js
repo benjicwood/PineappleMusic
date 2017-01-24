@@ -6,14 +6,14 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Platform
+  Platform,
+  Picker
 } from 'react-native';
 
-import ModalDropdown from 'react-native-modal-dropdown';
 import { connect } from 'react-redux';
-import actions  from '../../actions/actions'
+import actions from '../../actions/actions';
 
-const background = require('./signup_bg.png');
+const background = require('./bandbackground.png');
 const backIcon = require('./back.png');
 const bandIcon = require('./signup_band.png');
 const lockIcon = require('./signup_lock.png');
@@ -138,11 +138,14 @@ class SignupBand extends Component {
                 />
               </View>
               <View style={styles.selection}>
-                <ModalDropdown
-                  defaultValue='Looking for...'
-                  textStyle={[styles.dropdownFont]}
-                  dropdownStyle={styles.dropdownBox}
-                  options={modalDropdownOptionsIntruments} />
+                <Picker
+                  style={styles.picker}
+                  onValueChange={() => this.setState({})}
+                  >
+                  <Picker.Item label='guitar' value='guitar' />
+                  <Picker.Item label='piano' value='piano' />
+                  <Picker.Item label='violin' value='violin' />
+                </Picker>
               </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
@@ -161,12 +164,17 @@ class SignupBand extends Component {
                 />
               </View>
               <View style={styles.selection}>
-                <ModalDropdown
-                  defaultValue='Select Genre'
-                  textStyle={[styles.dropdownFont]}
-                  dropdownStyle={styles.dropdownBox}
-                  options={modalDropdownOptionsGenres}
-                />
+                <View style={styles.selection}>
+                <Picker
+                  style={styles.picker}
+                  onValueChange={() => this.setState({})}
+                  >
+                  <Picker.Item label='rock' value='rock' />
+                  <Picker.Item label='pop' value='pop' />
+                  <Picker.Item label='metal' value='metal' />
+                  <Picker.Item label='rap' value='rap' />
+                </Picker>
+              </View>
               </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
@@ -184,13 +192,7 @@ class SignupBand extends Component {
               onPress={this.onMatchPress.bind(this)}
               >
               <View style={styles.signup}>
-                <Text style={styles.whiteFont}>Create a Pineapple</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <View style={styles.signin}>
-                <Text style={styles.greyFont}>Already have an account?<Text style={styles.whiteFont}> Sign In</Text></Text>
+                <Text style={styles.whiteFont}>Signupple</Text>
               </View>
             </TouchableOpacity>
           </View>
@@ -290,7 +292,7 @@ let styles = StyleSheet.create({
     fontSize: 20
   },
   signup: {
-    backgroundColor: '#FF3366',
+    backgroundColor: '#e9e104',
     ...Platform.select({
       ios: { paddingVertical: 23 },
       android: { paddingVertical: 18 }
@@ -307,7 +309,8 @@ let styles = StyleSheet.create({
     color: '#D8D8D8'
   },
   whiteFont: {
-    color: '#FFF'
+    color: '#FFF',
+    fontSize: 20
   },
   dropdownFont: {
     alignItems: 'center',
@@ -322,5 +325,13 @@ let styles = StyleSheet.create({
     alignItems: 'flex-end',
     paddingTop: 20
 
-  }
+  },
+  picker: {
+    width: 200,
+    color: '#FFF',
+    ...Platform.select({
+      ios: { bottom: 100 },
+      android: { paddingVertical: 18 }
+})
+}
 });
