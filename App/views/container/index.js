@@ -9,21 +9,26 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import mainReducer from '../../reducers/mainReducer';
+import {AsyncStorage} from 'react-native';
 
 import SignupMusician from '../signupMusician/index';
 import SignupBand from '../signupBand/index';
-import InitialScreen from '../splash/index';
+import UserTypeSelect from '../userTypeSelect/index';
 import Matches from '../matches/index';
 import Profile from '../profile/index';
 import ILike from '../iLike/index';
 import LikesMe from '../likesMe/index';
-import PlayList from '../profile/Playlist'
+import Splash from '../splash/index';
+import PlayList from '../profile/Playlist';
 
 const logger = createLogger();
 const store = createStore(mainReducer, applyMiddleware(logger, thunk));
 
 export default class PineappleFront extends Component {
 
+  componentDidMount() {
+
+  }
 
   render () {
     return (
@@ -31,18 +36,19 @@ export default class PineappleFront extends Component {
         <Navigator
             style={styles.container}
             initialRoute={{
-              id: 'InitialScreen'
+              id: 'Splash'
             }}
             renderScene={this.navigatorRenderScene}
-            configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid}
-        />
+            configureScene={(route, routeStack) => Navigator.SceneConfigs.FadeAndroid} />
       </Provider>
     );
   }
   navigatorRenderScene (route, navigator) {
     switch (route.id) {
-      case 'InitialScreen':
-        return (<InitialScreen navigator={navigator} title='InitialScreen' />);
+      case 'UserTypeSelect':
+        return (<UserTypeSelect navigator={navigator} title='UserTypeSelect' />);
+      case 'Splash':
+        return (<Splash navigator={navigator} title='Splash Screen' />);
       case 'SignupBand':
         return (<SignupBand navigator={navigator} title='SignupBand' />);
       case 'SignupMusician':
@@ -60,6 +66,8 @@ export default class PineappleFront extends Component {
     }
   }
 }
+
+
 
 const styles = StyleSheet.create({
   container: {

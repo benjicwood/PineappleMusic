@@ -11,6 +11,24 @@ export default function profile (state, action) {
   state = state || initState;
 
   switch (action.type) {
+
+    case types.CREATE_PROFILE_LOCAL_STORAGE_REQ:
+      return Object.assign({}, state, {
+        isLoading: true
+      });
+
+    case types.CREATE_PROFILE_LOCAL_STORAGE_SUCCESS:
+      return Object.assign({}, state, {
+        isLoading: false,
+        userProfile: action.profile
+      });
+
+    case types.CREATE_PROFILE_LOCAL_STORAGE_ERROR:
+      return Object.assign({}, state, {
+        isLoading: false,
+        error: action.error
+      });
+
     case types.CREATE_PROFILE_REQ:
       return Object.assign({}, state, {
         isLoading: true

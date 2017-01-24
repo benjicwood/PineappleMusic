@@ -7,10 +7,45 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const background = require('./pineappple.png');
+import { connect } from 'react-redux';
+import actions  from '../../actions/actions'
+import {AsyncStorage} from 'react-native';
 
-export default class InitialScreen extends Component {
+var profile = {"type":"musician","instrument":"5877c4893aecdd49742d833b", "genre":"5877c48b3aecdd49742d8359"};
 
+class Splash extends Component {
+
+  componentWillMount() {
+    //console.warn('state profile userprofile: ', state.profile.userProfile);
+    console.warn('this props userprofile: ', this.props.userProfile);
+
+    // fetchGenres API call
+    this.props.fetchGenres();
+    // fetchInstruments API call
+    this.props.fetchInstruments();
+    // defeat the arrow
+    var that=this;
+    AsyncStorage.getItem("foo").then((value) => {
+          // did we get some value ? NO
+          if(value===null){
+            // switch view to band or musician signup
+            this.props.navigator.push({
+              id: 'UserTypeSelect'
+            });
+          }
+          // did get some value ? YES
+      //parse JSON
+      var profileObj = JSON.parse(value);
+      // fetchMatches API call
+     that.props.fetchMatches(profileObj);
+    }).done(() => {
+      // all done, switch view to matches
+      this.props.navigator.push({
+        id: 'UserTypeSelect'
+      })
+    })
+
+  };
   onBandPress () {
     this.props.navigator.push({
       id: 'SignupBand'
@@ -26,25 +61,37 @@ export default class InitialScreen extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Image
-          source={background}
-          style={[styles.container, styles.bg]}
-          resizeMode='cover'
-        />
-        <TouchableOpacity
-          onPress={this.onBandPress.bind(this)}
-          style={styles.button}>
-          <Text style={styles.buttonText}>BAND</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={this.OnMusicianPress.bind(this)}
-          style={styles.button}>
-          <Text style={styles.buttonText}>MUSICIAN</Text>
-        </TouchableOpacity>
+    <Text> Loading </Text>
       </View>
     );
   }
 }
+
+
+function mapStateToProps (state) {
+  return {
+    genres: state.genre.genres,
+    instruments: state.instrument.instruments,
+    userProfile: state.profile.userProfile,
+    isLoading: state.matches.isLoading
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchGenres: function () {
+      dispatch (actions.fetchGenres());
+    },
+    fetchInstruments: function () {
+      dispatch (actions.fetchInstruments());
+    },
+    fetchMatches: function (profile) {
+      dispatch (actions.fetchMatches(profile));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Splash);
 
 const styles = StyleSheet.create({
   container: {

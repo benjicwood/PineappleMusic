@@ -6,9 +6,11 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  Platform
+  Platform,
+    AsyncStorage
 } from 'react-native';
-
+import { connect } from 'react-redux';
+import actions  from '../../actions/actions'
 import ModalDropdown from 'react-native-modal-dropdown';
 
 const background = require('./signup_bg.png');
@@ -18,7 +20,19 @@ const lockIcon = require('./signup_lock.png');
 const emailIcon = require('./signup_email.png');
 const musicalNoteIcon = require('./signup_musicalnote.png');
 
-export default class SignupMusician extends Component {
+class SignupMusician extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      type: 'Musician',
+      userName: 'some-text',
+      email: 'some@email.bla',
+      password: 'some_sekret_pwd',
+      instrument: 'Violin',
+      genre: 'Pop'
+    };
+  }
 
   onBackPress () {
     this.props.navigator.push({
@@ -27,9 +41,86 @@ export default class SignupMusician extends Component {
   }
 
   onMatchPress () {
+    // signup click handler
+
+    // create profile object with text / select inputs
+  var profileObj = {
+    type: this.state.type,
+    user_name: this.state.userName,
+    email: this.state.email,
+    user: this.state.password,
+      // need to save the instrument ID , not the instrument name **********
+    instrument: this.state.instrument,
+      // same goes for genres. *********************************************
+    genre: this.state.genre
+  };
+    // verify profile info here
+
+    // set profile obj to store - need action dispatcher for that
+
+    // make JSON profile obj to send to API
+    //var foo = JSON.stringify(newProfileObj);
+
+    // send JSON profile str to API
+
+   // console.warn(foo);
+
+    // JSON.stringify profile obj for local storage
+
+    //set JSON profile obj to local storage
+   // AsyncStorage.setItem('foo', foo).done(); // fuck this off for now
+
+    // send profile obj to API call getMatches
+
+    actions.createProfile(profileObj.type, profileObj);
+      var matchProfile = {
+          type: profileObj.type,
+          genre: profileObj.genre,
+          instrument: profileObj.instrument
+      };
+
+    actions.fetchMatches({"type":"musician","instrument":"5877c4893aecdd49742d833b", "genre":"5877c48b3aecdd49742d8359"});
+
+    //load matches view
+
+
+
+/*
+
+    waterfall(){
+
+      // nav : loading
+
+      // one thing
+
+      // another thing
+
+      // some other thing
+
+      // CB nav : matches
+    }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     this.props.navigator.push({
       id: 'Matches'
-    });
+    })
   }
 
   render () {
@@ -75,6 +166,8 @@ export default class SignupMusician extends Component {
                 placeholder='User Name'
                 placeholderTextColor='#FFF'
                 underlineColorAndroid='transparent'
+                onChangeText={(userName) => this.setState({userName})}
+                value={this.state.userName}
               />
             </View>
 
@@ -92,6 +185,8 @@ export default class SignupMusician extends Component {
                 style={[styles.input, styles.whiteFont]}
                 placeholder='Email'
                 placeholderTextColor='#FFF'
+                onChangeText={(email) => this.setState({email})}
+                value={this.state.email}
               />
             </View>
 
@@ -108,6 +203,8 @@ export default class SignupMusician extends Component {
                 style={[styles.input, styles.whiteFont]}
                 placeholder='Password'
                 placeholderTextColor='#FFF'
+                onChangeText={(password) => this.setState({password})}
+                value={this.state.password}
               />
             </View>
 
@@ -197,6 +294,26 @@ export default class SignupMusician extends Component {
     );
   }
 }
+
+
+function mapStateToProps (state) {
+  return {
+    genres: state.genre.genres,
+    instruments: state.instrument.instruments,
+    userProfile: state.profile.userProfile,
+    isLoading: state.matches.isLoading
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    createProfile: function (profileType, profile) {
+      dispatch (actions.createProfile(profileType, profile));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupMusician);
 
 let styles = StyleSheet.create({
   container: {

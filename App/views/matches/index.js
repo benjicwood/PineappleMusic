@@ -7,10 +7,16 @@ import {
   Platform
 } from 'react-native';
 
+import { connect } from 'react-redux';
+import actions  from '../../actions/actions'
+
 import Card from './Card';
-
+  
 export default class Matches extends Component {
-
+   
+  componentWillMount(){
+     // do stuff ASAP
+   }
   onProfilePress () {
     this.props.navigator.push({
       id: 'Profile'
@@ -18,18 +24,25 @@ export default class Matches extends Component {
   }
 
   onLikesMePress () {
+    this.props.fetchTheirHeaven(this.props.userProfile._id);
     this.props.navigator.push({
       id: 'LikesMe'
     });
   }
 
   onILikePress () {
+    this.props.fetchMyHeaven(this.props.userProfile._id);
     this.props.navigator.push({
       id: 'ILike'
     });
   }
 
   render () {
+
+    if(this.props.isLoading===true){
+      <Text>Loading ...</Text>
+    }
+    console.warn('user matches ' ,this.props.userMatches[0])
     return (
       <View style={styles.container}>
         <View style={styles.banner}>
@@ -63,6 +76,31 @@ export default class Matches extends Component {
     );
   }
 }
+
+
+function mapStateToProps (state) {
+  return {
+    userProfile: state.profile.userProfile,
+    userMatches: state.matches.userMatches,
+    isLoading: state.matches.isLoading
+  };
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    fetchMatches: function (profile) {
+      dispatch (actions.fetchMatches(profile));
+    },
+    fetchMyHeaven: function (id) {
+      dispatch (actions.fetchMyHeaven(id));
+    },
+    fetchTheirHeaven: function (id) {
+      dispatch (actions.fetchTheirHeaven(id));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Matches);
 
 const styles = StyleSheet.create({
   container: {
@@ -102,3 +140,4 @@ const styles = StyleSheet.create({
     color: 'grey'
   }
 });
+
