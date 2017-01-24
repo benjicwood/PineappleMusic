@@ -15,7 +15,7 @@ import Card from './Card';
 class Matches extends Component {
 
   componentWillMount(){
-     // do stuff ASAP
+    
    }
   onProfilePress () {
     this.props.navigator.push({
@@ -43,7 +43,7 @@ class Matches extends Component {
           <Text>Loading ...</Text>
       )
     }
-    //console.warn('user matches ' ,this.props.userMatches);
+
     return (
       <View style={styles.container}>
         <View style={styles.banner}>
