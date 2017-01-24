@@ -48,7 +48,8 @@ export default class UserTypeSelect extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: 'black'
   },
   bg: {
     paddingTop: 30,
@@ -61,16 +62,16 @@ const styles = StyleSheet.create({
     padding: 40
   },
   button: {
-    flex: 0.3,
-    borderWidth: 1,
-    height: 50,
-    borderColor: 'blue',
-    borderRadius: 3,
+    flex: 0.2,
+    borderWidth: 2,
+    borderColor: 'white',
+    borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center'
   },
   buttonText: {
     fontSize: 24,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    color: 'white'
   }
 });
