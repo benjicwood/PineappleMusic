@@ -21,7 +21,7 @@ export default class UserTypeSelect extends Component {
     });
   }
 
-  OnMusicianPress () {
+  onMusicianPress () {
     this.props.navigator.push({
       id: 'SignupMusician'
     });
@@ -43,7 +43,7 @@ export default class UserTypeSelect extends Component {
             <Text style={styles.buttonText}>BAND</Text>
           </TouchableOpacity>
           <TouchableOpacity
-            onPress={this.OnMusicianPress.bind(this)}
+            onPress={this.onMusicianPress.bind(this)}
             style={styles.button}
             >
             <Text style={styles.buttonText}>MUSICIAN</Text>
