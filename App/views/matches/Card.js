@@ -157,13 +157,11 @@ const styles = StyleSheet.create({
     borderRadius: 25
   },
   face: {
-    alignItems: 'center',
-    alignSelf: 'center',
-    borderWidth: 2,
-    borderColor: '#e3e3e3',
-    width: 350,
-    height: 420,
-    backgroundColor: 'red'
+    flex:1,
+    width:null,
+    height:null,
+    resizeMode:'cover'
+
   },
   back: {
     alignItems: 'center',
