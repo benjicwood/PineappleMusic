@@ -4,10 +4,11 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  TouchableHighlight
 } from 'react-native';
 
-const background = require('./utsbackground.png');
+const background = require('./pineapplemusicmatching.png');
 
 export default class UserTypeSelect extends Component {
 
@@ -29,7 +30,6 @@ export default class UserTypeSelect extends Component {
         <Image
           source={background}
           style={[styles.container, styles.background]}
-          resizeMode='cover'
         />
         <TouchableOpacity
           onPress={this.onBandPress.bind(this)}
@@ -49,26 +49,20 @@ export default class UserTypeSelect extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black'
+    backgroundColor: 'black',
   },
   background: {
     paddingTop: 60,
     width: null,
-    height: null
+    height: null,
+    resizeMode: 'cover'
   },
   band: {
     flex: 1,
     justifyContent: 'center',
     padding: 40
   },
-  button: {
-    flex: 0.2,
-    borderWidth: 2,
-    borderColor: 'whitesmoke',
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
+
   buttonText: {
     fontSize: 26,
     color: 'whitesmoke'
