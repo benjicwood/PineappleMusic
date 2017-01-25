@@ -16,25 +16,35 @@ var profile = {"type":"musician","instrument":"5877c4893aecdd49742d833b", "genre
 class Splash extends Component {
 
   componentWillMount() {
-    //console.warn('state profile userprofile: ', state.profile.userProfile);
-   // console.warn('this props userprofile: ', this.props.userProfile);
 
-    // fetchGenres API call
-    this.props.fetchGenres();
-    // fetchInstruments API call
-    this.props.fetchInstruments();
 
       this.props.navigator.push({
         id: 'UserTypeSelect'
       })
   };
   onBandPress () {
+    // fetchGenres API call BAND
+    // console.warn('fetching genres ');
+    this.props.fetchGenres();
+
+    // fetchInstruments API call
+    this.props.fetchInstruments();
+
     this.props.navigator.push({
       id: 'SignupBand'
     });
   }
 
   OnMusicianPress () {
+    // fetchGenres API call MUSICIAN
+    console.warn('fetching genres ');
+    this.props.fetchGenres();
+
+    // fetchInstruments API call
+    console.warn('fetching instruments ');
+    this.props.fetchInstruments();
+
+
     this.props.navigator.push({
       id: 'SignupMusician'
     });

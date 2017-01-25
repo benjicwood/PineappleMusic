@@ -60,7 +60,7 @@ class BandCards extends Component {
         <View style={styles.face}>
           <View style={styles.card}>
             <View>
-              <Text style={styles.name}>{x.band_name} </Text>
+              <Text style={styles.name}>{x.user_name} </Text>
             </View>
             <View style={styles.imagebox}>
               <Image source={{uri: x.profile_pic}} style={styles.image} />
@@ -73,7 +73,7 @@ class BandCards extends Component {
               <Image source={{uri: x.profile_pic}} style={styles.backimage} />
             </View>
             <View>
-              <Text style={styles.name}>{x.band_name} </Text>
+              <Text style={styles.name}>{x.user_name} </Text>
               <Text style={styles.backtext}>Some Band Info</Text>
               <Text style={styles.backtext}>Some More Band Info</Text>
               <Text style={styles.backtext}>etc.</Text>
