@@ -63,7 +63,8 @@ class BandCards extends Component {
               <Text style={styles.name}>{x.band_name} </Text>
             </View>
             <View style={styles.imagebox}>
-              <Image source={{uri: x.profile_pic}} style={styles.image} />
+              <Image source={{uri: x.profile_pic}} style={styles.image}
+              >{this.props.children}</Image>
             </View>
           </View>
         </View>
@@ -129,12 +130,12 @@ export default connect(mapStateToProps)(BandCards);
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f7f7f7'
+    backgroundColor: '#d3d3d3'
   },
   cardcontainer: {
     flex: 1,
     paddingTop: 24,
-    backgroundColor: 'black',
+    backgroundColor: '#d3d3d3',
     alignItems: 'center',
     margin: 5
   },
@@ -151,7 +152,7 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderWidth: 10,
-    borderColor: '#e7e7e7',
+    borderColor: '#d3d3d3',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25
@@ -167,10 +168,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     borderWidth: 2,
-    borderColor: '#e3e3e3',
+    borderColor: '#d3d3d3',
     width: 350,
     height: 420,
-    backgroundColor: 'red'
+    backgroundColor: '#d3d3d3'
   },
   imagebox: {
     paddingTop: 5,
@@ -181,13 +182,13 @@ const styles = StyleSheet.create({
     width: 300,
     height: 330,
     borderWidth: 1,
-    borderColor: 'black'
+    borderColor: '#d3d3d3'
   },
   backimage: {
     width: 150,
     height: 150,
     borderWidth: 1,
-    borderColor: 'white'
+    borderColor: '#d3d3d3'
   },
   name: {
     fontSize: 20,
