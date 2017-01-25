@@ -7,7 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const background = require('./utsbackground.png');
+const background = require('./pineapplemusicmatching.png');
 
 export default class UserTypeSelect extends Component {
 
@@ -61,14 +61,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 40
   },
-  button: {
-    flex: 0.2,
-    borderWidth: 2,
-    borderColor: 'whitesmoke',
-    borderRadius: 12,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
+
   buttonText: {
     fontSize: 26,
     color: 'whitesmoke'
