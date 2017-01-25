@@ -9,6 +9,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "chai": "^3.5.0",
+    "exponent": "^13.1.1-rc.1",
     "jest": "^18.1.0",
     "native-base": "^0.5.22",
     "react": "15.4.2",
