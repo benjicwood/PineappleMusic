@@ -7,19 +7,18 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
-    AsyncStorage
+  Picker,
+  AsyncStorage
 } from 'react-native';
 import { connect } from 'react-redux';
 import actions  from '../../actions/actions'
-import ModalDropdown from 'react-native-modal-dropdown';
 
-const background = require('./signup_bg.png');
+const background = require('./musicianbackground.png');
 const backIcon = require('./back.png');
 const musicianIcon = require('./signup_musician.png');
 const lockIcon = require('./signup_lock.png');
 const emailIcon = require('./signup_email.png');
 const musicalNoteIcon = require('./signup_musicalnote.png');
-
 
 class SignupMusician extends Component {
 
@@ -45,30 +44,83 @@ class SignupMusician extends Component {
     // signup click handler
 
     // create profile object with text / select inputs
-    var profileObj = {
-      type: this.state.type,
-      user_name: this.state.userName,
-      email: this.state.email,
-      user: this.state.password,
+  var profileObj = {
+    type: this.state.type,
+    user_name: this.state.userName,
+    email: this.state.email,
+    user: this.state.password,
       // need to save the instrument ID , not the instrument name **********
-      instrument: this.state.instrument,
+    instrument: this.state.instrument,
       // same goes for genres. *********************************************
-      genre: this.state.genre
-    };
+    genre: this.state.genre
+  };
+    // verify profile info here
+
+    // set profile obj to store - need action dispatcher for that
+
+    // make JSON profile obj to send to API
+    //var foo = JSON.stringify(newProfileObj);
+
+    // send JSON profile str to API
+
+   // console.warn(foo);
+
+    // JSON.stringify profile obj for local storage
+
+    //set JSON profile obj to local storage
+   // AsyncStorage.setItem('foo', foo).done(); // fuck this off for now
+
+    // send profile obj to API call getMatches
 
     this.props.createProfile(profileObj.type, profileObj);
-    var matchProfile = {
-      type: profileObj.type,
-      genre: profileObj.genre,
-      instrument: profileObj.instrument
-    };
+      var matchProfile = {
+          type: profileObj.type,
+          genre: profileObj.genre,
+          instrument: profileObj.instrument
+      };
+
+    this.props.fetchMatches({"type":"musician","instrument":"5877c4893aecdd49742d833b", "genre":"5877c48b3aecdd49742d8359"});
+
+    //load matches view
 
 
-      this.props.fetchMatches(this.props.userProfile);
 
-      this.props.navigator.push({
-        id: 'Matches'
-      })
+/*
+
+    waterfall(){
+
+      // nav : loading
+
+      // one thing
+
+      // another thing
+
+      // some other thing
+
+      // CB nav : matches
+    }
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    this.props.navigator.push({
+      id: 'Matches'
+    })
   }
 
   render () {
@@ -165,23 +217,16 @@ class SignupMusician extends Component {
                 />
               </View>
               <View style={styles.selection}>
-                <ModalDropdown
-                  defaultValue='Select Instrument'
-                  textStyle={[styles.dropdownFont]}
-                  dropdownStyle={styles.dropdownBox}
-                  options={[
-                    'Electric Guitar',
-                    'Bass Guitar',
-                    'Acoustic Guitar',
-                    'Violin',
-                    'Cello',
-                    'Saxophone',
-                    'Trumpet',
-                    'Piccolo',
-                    'Flute',
-                    'Clarinet',
-                    'Oboe',
-                    'Piano']} />
+              <Picker
+                style={styles.picker}
+                onValueChange={() => this.setState({})}
+                >
+                <Picker.Item label='guitar' value='guitar' />
+                <Picker.Item label='piano' value='piano' />
+                <Picker.Item label='violin' value='violin' />
+              </Picker>
+            </View>
+              <View style={styles.selection}>
               </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
@@ -200,16 +245,17 @@ class SignupMusician extends Component {
                 />
               </View>
               <View style={styles.selection}>
-                <ModalDropdown
-                  defaultValue='Select Genre'
-                  textStyle={[styles.dropdownFont]}
-                  dropdownStyle={styles.dropdownBox}
-                  options={['Metal',
-                    'Trance',
-                    'Pop',
-                    'Rock',
-                    'SpookyCore']}
-                />
+              <Picker
+                style={styles.picker}
+                onValueChange={() => this.setState({})}
+                >
+                <Picker.Item label='rock' value='rock' />
+                <Picker.Item label='pop' value='pop' />
+                <Picker.Item label='metal' value='metal' />
+                <Picker.Item label='rap' value='rap' />
+              </Picker>
+            </View>
+              <View style={styles.selection}>
               </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
@@ -227,15 +273,10 @@ class SignupMusician extends Component {
               onPress={this.onMatchPress.bind(this)}
               >
               <View style={styles.signup}>
-                <Text style={styles.whiteFont}>Create a Pineapple</Text>
+                <Text style={styles.whiteFont}>Signupple</Text>
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity>
-              <View style={styles.signin}>
-                <Text style={styles.greyFont}>Already have an account?<Text style={styles.whiteFont}> Sign In</Text></Text>
-              </View>
-            </TouchableOpacity>
           </View>
         </Image>
       </View>
@@ -333,7 +374,7 @@ let styles = StyleSheet.create({
     fontSize: 20
   },
   signup: {
-    backgroundColor: '#FF3366',
+    backgroundColor: '#e9e104',
     ...Platform.select({
       ios: { paddingVertical: 23 },
       android: { paddingVertical: 18 }
@@ -350,7 +391,8 @@ let styles = StyleSheet.create({
     color: '#D8D8D8'
   },
   whiteFont: {
-    color: '#FFF'
+    color: '#FFF',
+    fontSize: 20
   },
   dropdownFont: {
     alignItems: 'center',
@@ -364,6 +406,13 @@ let styles = StyleSheet.create({
   selection: {
     alignItems: 'flex-end',
     paddingTop: 20
-
-  }
+  },
+  picker: {
+    width: 200,
+    color: '#FFF',
+    ...Platform.select({
+      ios: { bottom: 100 },
+      android: { paddingVertical: 18 }
+})
+}
 });

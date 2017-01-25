@@ -1,4 +1,4 @@
-import React, { Component, AsyncStorage } from 'react';
+import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,7 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const background = require('./pineappple.png');
+const background = require('./utsbackground.png');
 
 export default class UserTypeSelect extends Component {
 
@@ -28,7 +28,7 @@ export default class UserTypeSelect extends Component {
       <View style={styles.container}>
         <Image
           source={background}
-          style={[styles.container, styles.bg]}
+          style={[styles.container, styles.background]}
           resizeMode='cover'
         />
         <TouchableOpacity
@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'black'
   },
-  bg: {
-    paddingTop: 30,
+  background: {
+    paddingTop: 60,
     width: null,
     height: null
   },
@@ -64,14 +64,13 @@ const styles = StyleSheet.create({
   button: {
     flex: 0.2,
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: 'whitesmoke',
     borderRadius: 12,
     justifyContent: 'center',
     alignItems: 'center'
   },
   buttonText: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white'
+    fontSize: 26,
+    color: 'whitesmoke'
   }
 });
