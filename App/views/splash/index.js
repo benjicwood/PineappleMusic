@@ -16,8 +16,6 @@ var profile = {"type":"musician","instrument":"5877c4893aecdd49742d833b", "genre
 class Splash extends Component {
 
   componentWillMount() {
-    //console.warn('state profile userprofile: ', state.profile.userProfile);
-   // console.warn('this props userprofile: ', this.props.userProfile);
 
     // fetchGenres API call
     this.props.fetchGenres();

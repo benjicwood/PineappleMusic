@@ -27,7 +27,7 @@ class SignupMusician extends Component {
     super(props);
     this.state = {
       type: 'Musician',
-      userName: 'some-text',
+      user_name: 'some-text',
       email: 'some@email.bla',
       password: 'some_sekret_pwd',
       instrument: 'Violin',
@@ -114,8 +114,8 @@ class SignupMusician extends Component {
                 placeholder='User Name'
                 placeholderTextColor='#FFF'
                 underlineColorAndroid='transparent'
-                onChangeText={(userName) => this.setState({userName})}
-                value={this.state.userName}
+                onChangeText={(user_name) => this.setState({user_name})}
+                value={this.state.user_name}
               />
             </View>
 

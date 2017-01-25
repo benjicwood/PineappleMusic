@@ -3,7 +3,7 @@ import * as types from '../actions/types';
 const initState = {
     isLoading: false,
     error: '',
-    myHeaven: [],
+    list: [{date:'fo0'}]
 };
 
 export default function myHeaven (state, action) {

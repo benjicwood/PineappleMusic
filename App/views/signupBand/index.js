@@ -25,6 +25,18 @@ var modalDropdownOptionsIntruments = [];
 
 class SignupBand extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      type: 'Band',
+      user_name: 'some-text',
+      email: 'some@email.bla',
+      password: 'some_sekret_pwd',
+      instrument: 'Violin',
+      genre: 'Pop'
+    };
+  }
+
   componentWillMount(){
      modalDropdownOptionsGenres = this.props.genres.map(function(genre){
       return genre.name;
@@ -41,13 +53,32 @@ class SignupBand extends Component {
 
   onMatchPress () {
     // signup click handler
-    // verify new profile info post it to API , set it to state, set it to local storage
-    // OR
-    // reject info as incorrect / incomplete
+
+    // create profile object with text / select inputs
+    var profileObj = {
+      type: this.state.type,
+      user_name: this.state.userName,
+      email: this.state.email,
+      user: this.state.password,
+      // need to save the instrument ID , not the instrument name **********
+      instrument: this.state.instrument,
+      // same goes for genres. *********************************************
+      genre: this.state.genre
+    };
+
+    this.props.createProfile(profileObj.type, profileObj);
+    var matchProfile = {
+      type: profileObj.type,
+      genre: profileObj.genre,
+      instrument: profileObj.instrument
+    };
+
+
+    this.props.fetchMatches(this.props.userProfile);
 
     this.props.navigator.push({
       id: 'Matches'
-    });
+    })
   }
 
   render () {
@@ -93,6 +124,8 @@ class SignupBand extends Component {
                 placeholder='Band Name'
                 placeholderTextColor='#FFF'
                 underlineColorAndroid='transparent'
+                onChangeText={(user_name) => this.setState({user_name:user_name})}
+                value={this.state.user_name}
               />
             </View>
 
@@ -110,6 +143,9 @@ class SignupBand extends Component {
                 style={[styles.input, styles.whiteFont]}
                 placeholder='Email'
                 placeholderTextColor='#FFF'
+                onChangeText={(email) => this.setState({email})}
+                value={this.state.email}
+
               />
             </View>
 
@@ -204,17 +240,19 @@ class SignupBand extends Component {
 function mapStateToProps (state) {
   return {
     genres: state.genre.genres,
-    instruments: state.instrument.instruments
+    instruments: state.instrument.instruments,
+    userProfile: state.profile.userProfile,
+    isLoading: state.matches.isLoading
   };
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchGenres: function () {
-      dispatch (actions.fetchGenres());
+    createProfile: function (profileType, profile) {
+      dispatch (actions.createProfile(profileType, profile));
     },
-    fetchInstruments: function () {
-      dispatch (actions.fetchInstruments());
+    fetchMatches: function (profile) {
+      dispatch (actions.fetchMatches(profile));
     }
   };
 }

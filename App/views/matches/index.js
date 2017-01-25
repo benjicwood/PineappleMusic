@@ -31,7 +31,7 @@ class Matches extends Component {
   }
 
   onILikePress () {
-    this.props.fetchMyHeaven(this.props.userProfile._id);
+    this.props.fetchMyHeaven('5877c4863aecdd49742d8338');
     this.props.navigator.push({
       id: 'ILike'
     });
@@ -62,14 +62,14 @@ class Matches extends Component {
             onPress={this.onLikesMePress.bind(this)}
               >
             <View style={styles.likesMeLink}>
-              <Text style={styles.likesMe}>Likes Me </Text>
+              <Text style={styles.likesMe}>Their Heaven</Text>
             </View>
           </TouchableOpacity>
           <TouchableOpacity
             onPress={this.onILikePress.bind(this)}
               >
             <View style={styles.iLikeLink}>
-              <Text style={styles.iLike}> I Like</Text>
+              <Text style={styles.iLike}>My Heaven</Text>
             </View>
           </TouchableOpacity>
         </View>

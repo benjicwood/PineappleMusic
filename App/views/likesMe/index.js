@@ -34,13 +34,12 @@ class LikesMe extends Component {
           >
           <Text style={styles.toMatches}>Back to Matches</Text>
         </TouchableOpacity>
-        <Text>I LIKE PAGE</Text>
+        <Text>THEIR HEAVEN</Text>
         <Text>{date}</Text>
       </View>
     );
   }
 }
-
 
 function mapStateToProps (state) {
   return {
@@ -53,12 +52,6 @@ function mapDispatchToProps (dispatch) {
   return {
     fetchMatches: function (profile) {
       dispatch (actions.fetchMatches(profile));
-    },
-    fetchMyHeaven: function (id) {
-      dispatch (actions.fetchMyHeaven(id));
-    },
-    fetchTheirHeaven: function (id) {
-      dispatch (actions.fetchTheirHeaven(id));
     }
   };
 }
