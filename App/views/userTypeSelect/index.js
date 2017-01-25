@@ -4,8 +4,12 @@ import {
   Text,
   View,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Dimensions,
+  Platform
 } from 'react-native';
+
+const { height, width } = Dimensions.get('window');
 
 const background = require('./pineapplemusicmatching.png');
 
@@ -30,17 +34,20 @@ export default class UserTypeSelect extends Component {
           source={background}
           style={[styles.container, styles.background]}
           resizeMode='cover'
-        />
-        <TouchableOpacity
-          onPress={this.onBandPress.bind(this)}
-          style={styles.button}>
-          <Text style={styles.buttonText}>BAND</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={this.OnMusicianPress.bind(this)}
-          style={styles.button}>
-          <Text style={styles.buttonText}>MUSICIAN</Text>
-        </TouchableOpacity>
+        >
+          <TouchableOpacity
+            onPress={this.onBandPress.bind(this)}
+            style={styles.button}
+            >
+            <Text style={styles.buttonText}>BAND</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.onBandPress.bind(this)}
+            style={styles.button}
+            >
+            <Text style={styles.buttonText}>MUSICIAN</Text>
+          </TouchableOpacity>
+        </Image>
       </View>
     );
   }
@@ -48,20 +55,25 @@ export default class UserTypeSelect extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: 'black'
+    flex: 1
   },
   background: {
-    paddingTop: 60,
+    ...Platform.select({
+      ios: { paddingTop: 500 },
+      android: { paddingTop: 490 }
+    }),
     width: null,
     height: null
   },
-  band: {
-    flex: 1,
+  button: {
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 12,
     justifyContent: 'center',
-    padding: 40
+    alignItems: 'center',
+    width: Dimensions.width,
+    height: 80
   },
-
   buttonText: {
     fontSize: 26,
     color: 'whitesmoke'
