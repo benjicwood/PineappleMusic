@@ -6,10 +6,10 @@ import {
     Image,
     TextInput,
     TouchableOpacity,
-    Platform
+    Platform,
+    Picker
 } from 'react-native';
 
-import ModalDropdown from 'react-native-modal-dropdown';
 import { connect } from 'react-redux';
 import actions  from '../../actions/actions'
 
@@ -53,7 +53,7 @@ class SignupBand extends Component {
 
   onMatchPress () {
     // signup click handler
-
+     
     // create profile object with text / select inputs
     var profileObj = {
       type: this.state.type,
@@ -173,13 +173,14 @@ class SignupBand extends Component {
                       resizeMode='contain'
                   />
                 </View>
-                <View style={styles.selection}>
-                  <ModalDropdown
-                      defaultValue='Looking for...'
-                      textStyle={[styles.dropdownFont]}
-                      dropdownStyle={styles.dropdownBox}
-                      options={modalDropdownOptionsIntruments} />
-                </View>
+                <Picker
+                    style={styles.picker}
+                    onValueChange={() => this.setState({})}
+                >
+                  <Picker.Item label='guitar' value='guitar' />
+                  <Picker.Item label='piano' value='piano' />
+                  <Picker.Item label='violin' value='violin' />
+                </Picker>
                 <TextInput
                     style={[styles.input, styles.whiteFont]}
                     placeholder=''
@@ -196,14 +197,15 @@ class SignupBand extends Component {
                       resizeMode='contain'
                   />
                 </View>
-                <View style={styles.selection}>
-                  <ModalDropdown
-                      defaultValue='Select Genre'
-                      textStyle={[styles.dropdownFont]}
-                      dropdownStyle={styles.dropdownBox}
-                      options={modalDropdownOptionsGenres}
-                  />
-                </View>
+                <Picker
+                    style={styles.picker}
+                    onValueChange={() => this.setState({})}
+                >
+                  <Picker.Item label='rock' value='rock' />
+                  <Picker.Item label='pop' value='pop' />
+                  <Picker.Item label='metal' value='metal' />
+                  <Picker.Item label='rap' value='rap' />
+                </Picker>
                 <TextInput
                     style={[styles.input, styles.whiteFont]}
                     placeholder=''
@@ -360,5 +362,13 @@ let styles = StyleSheet.create({
     alignItems: 'flex-end',
     paddingTop: 20
 
+  },
+  picker: {
+    width: 200,
+    color: '#FFF',
+    ...Platform.select({
+      ios: { bottom: 100 },
+      android: { paddingVertical: 18 }
+    })
   }
 });
