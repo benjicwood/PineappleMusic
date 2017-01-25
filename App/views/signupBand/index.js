@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TextInput,
-  TouchableOpacity,
-  Platform,
-  Picker
+    StyleSheet,
+    Text,
+    View,
+    Image,
+    TextInput,
+    TouchableOpacity,
+    Platform
 } from 'react-native';
 
+import ModalDropdown from 'react-native-modal-dropdown';
 import { connect } from 'react-redux';
-import actions from '../../actions/actions';
+import actions  from '../../actions/actions'
 
-const background = require('./bandbackground.png');
+const background = require('./signup_bg.png');
 const backIcon = require('./back.png');
 const bandIcon = require('./signup_band.png');
 const lockIcon = require('./signup_lock.png');
@@ -25,11 +25,23 @@ var modalDropdownOptionsIntruments = [];
 
 class SignupBand extends Component {
 
-  componentWillMount () {
-    modalDropdownOptionsGenres = this.props.genres.map(function (genre) {
+  constructor(props) {
+    super(props);
+    this.state = {
+      type: 'Band',
+      user_name: 'some-text',
+      email: 'some@email.bla',
+      password: 'some_sekret_pwd',
+      instrument: 'Violin',
+      genre: 'Pop'
+    };
+  }
+
+  componentWillMount(){
+    modalDropdownOptionsGenres = this.props.genres.map(function(genre){
       return genre.name;
     });
-     modalDropdownOptionsIntruments = this.props.instruments.map(function (instrument) {
+    modalDropdownOptionsIntruments = this.props.instruments.map(function(instrument){
       return instrument.name;
     });
   }
@@ -41,163 +53,185 @@ class SignupBand extends Component {
 
   onMatchPress () {
     // signup click handler
-    // verify new profile info post it to API , set it to state, set it to local storage
-    // OR
-    // reject info as incorrect / incomplete
+
+    // create profile object with text / select inputs
+    var profileObj = {
+      type: this.state.type,
+      user_name: this.state.userName,
+      email: this.state.email,
+      user: this.state.password,
+      // need to save the instrument ID , not the instrument name **********
+      instrument: this.state.instrument,
+      // same goes for genres. *********************************************
+      genre: this.state.genre
+    };
+
+    this.props.createProfile(profileObj.type, profileObj);
+    var matchProfile = {
+      type: profileObj.type,
+      genre: profileObj.genre,
+      instrument: profileObj.instrument
+    };
+
+
+    this.props.fetchMatches(this.props.userProfile);
 
     this.props.navigator.push({
       id: 'Matches'
-    });
+    })
   }
 
   render () {
     return (
-      <View style={styles.container}>
-        <Image
-          source={background}
-          style={[styles.container, styles.bg]}
-          resizeMode='cover'
-        >
-          <View style={styles.headerContainer}>
+        <View style={styles.container}>
+          <Image
+              source={background}
+              style={[styles.container, styles.bg]}
+              resizeMode='cover'
+          >
+            <View style={styles.headerContainer}>
 
-            <View style={styles.headerIconView}>
-              <TouchableOpacity
-                onPress={this.onBackPress.bind(this)}
-                style={styles.headerBackButtonView}>
-                <Image
-                  source={backIcon}
-                  style={styles.backButtonIcon}
-                  resizeMode='contain'
+              <View style={styles.headerIconView}>
+                <TouchableOpacity
+                    onPress={this.onBackPress.bind(this)}
+                    style={styles.headerBackButtonView}>
+                  <Image
+                      source={backIcon}
+                      style={styles.backButtonIcon}
+                      resizeMode='contain'
+                  />
+                </TouchableOpacity>
+              </View>
+
+              <View style={styles.headerTitleView}>
+                <Text style={styles.titleViewText}>Band Sign Up</Text>
+              </View>
+
+            </View>
+
+            <View style={styles.inputsContainer}>
+
+              <View style={styles.inputContainer}>
+                <View style={styles.iconContainer}>
+                  <Image
+                      source={bandIcon}
+                      style={styles.inputIcon}
+                      resizeMode='contain'
+                  />
+                </View>
+                <TextInput
+                    style={[styles.input, styles.whiteFont]}
+                    placeholder='Band Name'
+                    placeholderTextColor='#FFF'
+                    underlineColorAndroid='transparent'
+                    onChangeText={(user_name) => this.setState({user_name:user_name})}
+                    value={this.state.user_name}
                 />
+              </View>
+
+              <View style={styles.inputContainer}>
+                <View style={styles.iconContainer}>
+                  <Image
+                      source={emailIcon}
+                      style={styles.inputIcon}
+                      resizeMode='contain'
+                  />
+                </View>
+                <TextInput
+                    keyboardType='email-address'
+                    autoCapitalize='none'
+                    style={[styles.input, styles.whiteFont]}
+                    placeholder='Email'
+                    placeholderTextColor='#FFF'
+                    onChangeText={(email) => this.setState({email})}
+                    value={this.state.email}
+
+                />
+              </View>
+
+              <View style={styles.inputContainer}>
+                <View style={styles.iconContainer}>
+                  <Image
+                      source={lockIcon}
+                      style={styles.inputIcon}
+                      resizeMode='contain'
+                  />
+                </View>
+                <TextInput
+                    secureTextEntry
+                    style={[styles.input, styles.whiteFont]}
+                    placeholder='Password'
+                    placeholderTextColor='#FFF'
+                />
+              </View>
+
+              <View style={styles.inputContainer}>
+                <View style={styles.iconContainer}>
+                  <Image
+                      source={musicalNoteIcon}
+                      style={styles.inputIcon}
+                      resizeMode='contain'
+                  />
+                </View>
+                <View style={styles.selection}>
+                  <ModalDropdown
+                      defaultValue='Looking for...'
+                      textStyle={[styles.dropdownFont]}
+                      dropdownStyle={styles.dropdownBox}
+                      options={modalDropdownOptionsIntruments} />
+                </View>
+                <TextInput
+                    style={[styles.input, styles.whiteFont]}
+                    placeholder=''
+                    placeholderTextColor='#FFF'
+                    underlineColorAndroid='transparent'
+                />
+              </View>
+
+              <View style={styles.inputContainer}>
+                <View style={styles.iconContainer}>
+                  <Image
+                      source={musicalNoteIcon}
+                      style={styles.inputIcon}
+                      resizeMode='contain'
+                  />
+                </View>
+                <View style={styles.selection}>
+                  <ModalDropdown
+                      defaultValue='Select Genre'
+                      textStyle={[styles.dropdownFont]}
+                      dropdownStyle={styles.dropdownBox}
+                      options={modalDropdownOptionsGenres}
+                  />
+                </View>
+                <TextInput
+                    style={[styles.input, styles.whiteFont]}
+                    placeholder=''
+                    placeholderTextColor='#FFF'
+                    underlineColorAndroid='transparent'
+                />
+              </View>
+
+            </View>
+
+            <View style={styles.footerContainer}>
+
+              <TouchableOpacity
+                  onPress={this.onMatchPress.bind(this)}
+              >
+                <View style={styles.signup}>
+                  <Text style={styles.whiteFont}>Create a Pineapple</Text>
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity>
+                <View style={styles.signin}>
+                  <Text style={styles.greyFont}>Already have an account?<Text style={styles.whiteFont}> Sign In</Text></Text>
+                </View>
               </TouchableOpacity>
             </View>
-
-            <View style={styles.headerTitleView}>
-              <Text style={styles.titleViewText}>Band Sign Up</Text>
-            </View>
-
-          </View>
-
-          <View style={styles.inputsContainer}>
-
-            <View style={styles.inputContainer}>
-              <View style={styles.iconContainer}>
-                <Image
-                  source={bandIcon}
-                  style={styles.inputIcon}
-                  resizeMode='contain'
-                />
-              </View>
-              <TextInput
-                style={[styles.input, styles.whiteFont]}
-                placeholder='Band Name'
-                placeholderTextColor='#FFF'
-                underlineColorAndroid='transparent'
-              />
-            </View>
-
-            <View style={styles.inputContainer}>
-              <View style={styles.iconContainer}>
-                <Image
-                  source={emailIcon}
-                  style={styles.inputIcon}
-                  resizeMode='contain'
-                />
-              </View>
-              <TextInput
-                keyboardType='email-address'
-                autoCapitalize='none'
-                style={[styles.input, styles.whiteFont]}
-                placeholder='Email'
-                placeholderTextColor='#FFF'
-              />
-            </View>
-
-            <View style={styles.inputContainer}>
-              <View style={styles.iconContainer}>
-                <Image
-                  source={lockIcon}
-                  style={styles.inputIcon}
-                  resizeMode='contain'
-                />
-              </View>
-              <TextInput
-                secureTextEntry
-                style={[styles.input, styles.whiteFont]}
-                placeholder='Password'
-                placeholderTextColor='#FFF'
-              />
-            </View>
-
-            <View style={styles.inputContainer}>
-              <View style={styles.iconContainer}>
-                <Image
-                  source={musicalNoteIcon}
-                  style={styles.inputIcon}
-                  resizeMode='contain'
-                />
-              </View>
-              <View style={styles.selection}>
-                <Picker
-                  style={styles.picker}
-                  onValueChange={() => this.setState({})}
-                  >
-                  <Picker.Item label='guitar' value='guitar' />
-                  <Picker.Item label='piano' value='piano' />
-                  <Picker.Item label='violin' value='violin' />
-                </Picker>
-              </View>
-              <TextInput
-                style={[styles.input, styles.whiteFont]}
-                placeholder=''
-                placeholderTextColor='#FFF'
-                underlineColorAndroid='transparent'
-              />
-            </View>
-
-            <View style={styles.inputContainer}>
-              <View style={styles.iconContainer}>
-                <Image
-                  source={musicalNoteIcon}
-                  style={styles.inputIcon}
-                  resizeMode='contain'
-                />
-              </View>
-              <View style={styles.selection}>
-                <View style={styles.selection}>
-                <Picker
-                  style={styles.picker}
-                  onValueChange={() => this.setState({})}
-                  >
-                  <Picker.Item label='rock' value='rock' />
-                  <Picker.Item label='pop' value='pop' />
-                  <Picker.Item label='metal' value='metal' />
-                  <Picker.Item label='rap' value='rap' />
-                </Picker>
-              </View>
-              </View>
-              <TextInput
-                style={[styles.input, styles.whiteFont]}
-                placeholder=''
-                placeholderTextColor='#FFF'
-                underlineColorAndroid='transparent'
-              />
-            </View>
-
-          </View>
-
-          <View style={styles.footerContainer}>
-
-            <TouchableOpacity
-              onPress={this.onMatchPress.bind(this)}
-              >
-              <View style={styles.signup}>
-                <Text style={styles.whiteFont}>Signupple</Text>
-              </View>
-            </TouchableOpacity>
-          </View>
-        </Image>
-      </View>
+          </Image>
+        </View>
     );
   }
 }
@@ -206,17 +240,19 @@ class SignupBand extends Component {
 function mapStateToProps (state) {
   return {
     genres: state.genre.genres,
-    instruments: state.instrument.instruments
+    instruments: state.instrument.instruments,
+    userProfile: state.profile.userProfile,
+    isLoading: state.matches.isLoading
   };
 }
 
 function mapDispatchToProps (dispatch) {
   return {
-    fetchGenres: function () {
-      dispatch (actions.fetchGenres());
+    createProfile: function (profileType, profile) {
+      dispatch (actions.createProfile(profileType, profile));
     },
-    fetchInstruments: function () {
-      dispatch (actions.fetchInstruments());
+    fetchMatches: function (profile) {
+      dispatch (actions.fetchMatches(profile));
     }
   };
 }
@@ -292,7 +328,7 @@ let styles = StyleSheet.create({
     fontSize: 20
   },
   signup: {
-    backgroundColor: '#e9e104',
+    backgroundColor: '#FF3366',
     ...Platform.select({
       ios: { paddingVertical: 23 },
       android: { paddingVertical: 18 }
@@ -309,8 +345,7 @@ let styles = StyleSheet.create({
     color: '#D8D8D8'
   },
   whiteFont: {
-    color: '#FFF',
-    fontSize: 20
+    color: '#FFF'
   },
   dropdownFont: {
     alignItems: 'center',
@@ -325,13 +360,5 @@ let styles = StyleSheet.create({
     alignItems: 'flex-end',
     paddingTop: 20
 
-  },
-  picker: {
-    width: 200,
-    color: '#FFF',
-    ...Platform.select({
-      ios: { bottom: 100 },
-      android: { paddingVertical: 18 }
-})
-}
+  }
 });
