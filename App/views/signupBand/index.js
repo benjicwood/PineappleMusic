@@ -13,7 +13,7 @@ import {
 import { connect } from 'react-redux';
 import actions  from '../../actions/actions'
 
-const background = require('./signup_bg.png');
+const background = require('./bandbackground.png');
 const backIcon = require('./back.png');
 const bandIcon = require('./signup_band.png');
 const lockIcon = require('./signup_lock.png');
@@ -53,7 +53,7 @@ class SignupBand extends Component {
 
   onMatchPress () {
     // signup click handler
-     
+
     // create profile object with text / select inputs
     var profileObj = {
       type: this.state.type,
@@ -222,13 +222,7 @@ class SignupBand extends Component {
                   onPress={this.onMatchPress.bind(this)}
               >
                 <View style={styles.signup}>
-                  <Text style={styles.whiteFont}>Create a Pineapple</Text>
-                </View>
-              </TouchableOpacity>
-
-              <TouchableOpacity>
-                <View style={styles.signin}>
-                  <Text style={styles.greyFont}>Already have an account?<Text style={styles.whiteFont}> Sign In</Text></Text>
+                  <Text style={styles.whiteFont}>Signupple</Text>
                 </View>
               </TouchableOpacity>
             </View>
@@ -330,7 +324,7 @@ let styles = StyleSheet.create({
     fontSize: 20
   },
   signup: {
-    backgroundColor: '#FF3366',
+    backgroundColor: '#e9e104',
     ...Platform.select({
       ios: { paddingVertical: 23 },
       android: { paddingVertical: 18 }
@@ -347,7 +341,8 @@ let styles = StyleSheet.create({
     color: '#D8D8D8'
   },
   whiteFont: {
-    color: '#FFF'
+    color: '#FFF',
+    fontSize: 20
   },
   dropdownFont: {
     alignItems: 'center',
@@ -369,6 +364,6 @@ let styles = StyleSheet.create({
     ...Platform.select({
       ios: { bottom: 100 },
       android: { paddingVertical: 18 }
-    })
-  }
+})
+}
 });
