@@ -214,7 +214,7 @@ actions.fetchInstrumentsError = function (error) {
 actions.fetchMyHeaven = function (id) {
   return function (dispatch) {
     dispatch(actions.fetchMyHeavenReq());
-    axios.get(api+'connection/heaven/'+id)
+    axios.get(api+'ilike/'+id)
         .then(function (response) {
           dispatch(actions.fetchMyHeavenSuccess(response.data))
         })

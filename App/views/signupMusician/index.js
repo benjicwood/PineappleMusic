@@ -7,12 +7,12 @@ import {
     TextInput,
     TouchableOpacity,
     Platform,
-    AsyncStorage
+    AsyncStorage,
+    Picker
 } from 'react-native';
 import { connect } from 'react-redux';
-import actions  from '../../actions/actions'
-import ModalDropdown from 'react-native-modal-dropdown';
 
+import actions  from '../../actions/actions'
 const background = require('./signup_bg.png');
 const backIcon = require('./back.png');
 const musicianIcon = require('./signup_musician.png');
@@ -164,25 +164,14 @@ class SignupMusician extends Component {
                       resizeMode='contain'
                   />
                 </View>
-                <View style={styles.selection}>
-                  <ModalDropdown
-                      defaultValue='Select Instrument'
-                      textStyle={[styles.dropdownFont]}
-                      dropdownStyle={styles.dropdownBox}
-                      options={[
-                        'Electric Guitar',
-                        'Bass Guitar',
-                        'Acoustic Guitar',
-                        'Violin',
-                        'Cello',
-                        'Saxophone',
-                        'Trumpet',
-                        'Piccolo',
-                        'Flute',
-                        'Clarinet',
-                        'Oboe',
-                        'Piano']} />
-                </View>
+                <Picker
+                    style={styles.picker}
+                    onValueChange={() => this.setState({})}
+                >
+                  <Picker.Item label='guitar' value='guitar' />
+                  <Picker.Item label='piano' value='piano' />
+                  <Picker.Item label='violin' value='violin' />
+                </Picker>
                 <TextInput
                     style={[styles.input, styles.whiteFont]}
                     placeholder=''
@@ -199,18 +188,15 @@ class SignupMusician extends Component {
                       resizeMode='contain'
                   />
                 </View>
-                <View style={styles.selection}>
-                  <ModalDropdown
-                      defaultValue='Select Genre'
-                      textStyle={[styles.dropdownFont]}
-                      dropdownStyle={styles.dropdownBox}
-                      options={['Metal',
-                        'Trance',
-                        'Pop',
-                        'Rock',
-                        'SpookyCore']}
-                  />
-                </View>
+                <Picker
+                    style={styles.picker}
+                    onValueChange={() => this.setState({})}
+                >
+                  <Picker.Item label='rock' value='rock' />
+                  <Picker.Item label='pop' value='pop' />
+                  <Picker.Item label='metal' value='metal' />
+                  <Picker.Item label='rap' value='rap' />
+                </Picker>
                 <TextInput
                     style={[styles.input, styles.whiteFont]}
                     placeholder=''
@@ -365,5 +351,13 @@ let styles = StyleSheet.create({
     alignItems: 'flex-end',
     paddingTop: 20
 
+  },
+  picker: {
+    width: 200,
+    color: '#FFF',
+    ...Platform.select({
+      ios: { bottom: 100 },
+      android: { paddingVertical: 18 }
+    })
   }
 });

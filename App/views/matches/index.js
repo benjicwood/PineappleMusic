@@ -31,7 +31,7 @@ class Matches extends Component {
   }
 
   onILikePress () {
-    this.props.fetchMyHeaven(this.props.userProfile._id);
+    this.props.fetchMyHeaven('5877c4863aecdd49742d8338');
     this.props.navigator.push({
       id: 'ILike'
     });
