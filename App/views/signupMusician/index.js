@@ -22,12 +22,12 @@ class SignupMusician extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      type: '',
-      user_name: '',
-      email: '',
-      password: '',
-      instrument: '',
-      genre: ''
+      type: 'musician',
+      user_name: 'some-text',
+      email: 'some@email.bla',
+      password: 'some_sekret_pwd',
+      instrument: 'Violin',
+      genre: 'Pop'
     };
   }
 
@@ -43,9 +43,8 @@ class SignupMusician extends Component {
     // create profile object with text / select inputs
     var profileObj = {
       type: this.state.type,
-      user_name: this.state.userName,
+      user_name: this.state.user_name,
       email: this.state.email,
-      user: this.state.password,
       // need to save the instrument ID , not the instrument name **********
       instrument: this.state.instrument,
       // same goes for genres. *********************************************

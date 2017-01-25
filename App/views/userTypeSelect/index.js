@@ -28,6 +28,7 @@ export default class UserTypeSelect extends Component {
   }
 
   render () {
+    console.warn('hello: ')
     return (
       <View style={styles.container}>
         <Image

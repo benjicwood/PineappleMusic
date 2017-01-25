@@ -26,12 +26,11 @@ class SignupBand extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      type: 'Band',
-      user_name: '',
-      email: '',
-      password: '',
-      instrument: '',
-      genre: ''
+      type: 'band',
+      user_name: 'some-text',
+      email: 'some@email.bla',
+      instrument: 'Violin',
+      genre: 'Pop'
     };
   }
 
@@ -55,9 +54,8 @@ class SignupBand extends Component {
     // create profile object with text / select inputs
     var profileObj = {
       type: this.state.type,
-      user_name: this.state.userName,
+      user_name: this.state.user_name,
       email: this.state.email,
-      user: this.state.password,
       // need to save the instrument ID , not the instrument name **********
       instrument: this.state.instrument,
       // same goes for genres. *********************************************
@@ -65,6 +63,7 @@ class SignupBand extends Component {
     };
 
     this.props.createProfile(profileObj.type, profileObj);
+
     var matchProfile = {
       type: profileObj.type,
       genre: profileObj.genre,

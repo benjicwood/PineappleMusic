@@ -13,7 +13,6 @@ class ILike extends Component {
 
   componentWillMount(){
     data = this.props.list;
-    console.warn('thsi props.list: ',this.props.list);
   }
 
   onMatchPress () {
