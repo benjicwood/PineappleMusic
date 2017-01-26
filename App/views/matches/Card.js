@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 import {
-
   StyleSheet,
   Image,
   Text,
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-import cookie from './band.jpg';
-//import actions  from '../../actions/actions'
+// import actions  from '../../actions/actions'
 
 import SwipeCards from './SwipeCards';
 
@@ -29,22 +27,21 @@ class BandCards extends Component {
     return (
       <View>
         <Text style={styles.name}>{x.user}</Text>
-      <FlipCard>
-        <View style={styles.face}>
-          <View style={styles.imagebox}>
-            <Image source={{uri: x.profile_pic}} style={styles.image}>
-            </Image>
+        <FlipCard>
+          <View style={styles.face}>
+            <View style={styles.imagebox}>
+              <Image source={{uri: x.profile_pic}} style={styles.image} />
+            </View>
           </View>
-        </View>
-        <View style={styles.back}>
-          <Image source={{uri: x.profile_pic}} style={styles.backimage} />
-          <View>
-            <Text style={styles.backtext}>Some Band Info</Text>
-            <Text style={styles.backtext}>Some More Band Info</Text>
-            <Text style={styles.backtext}>etc.</Text>
+          <View style={styles.back}>
+            <Image source={{uri: x.profile_pic}} style={styles.backimage} />
+            <View>
+              <Text style={styles.backtext}>Some Band Info</Text>
+              <Text style={styles.backtext}>Some More Band Info</Text>
+              <Text style={styles.backtext}>etc.</Text>
+            </View>
           </View>
-        </View>
-      </FlipCard>
+        </FlipCard>
       </View>
     );
   }
@@ -140,6 +137,8 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     fontSize: 10,
     fontWeight: '300',
-    color: '#fff'
+    color: 'white',
+    opacity: 1,
+    bottom: 350
   }
 });
