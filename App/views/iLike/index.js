@@ -3,8 +3,13 @@ import {
     View,
     Text,
     StyleSheet,
-    TouchableOpacity
+    TouchableOpacity,
+    Image,
+    Platform
 } from 'react-native';
+import { Container, Content, Spinner } from 'native-base';
+
+import background from '../matches/pineapplecandg.jpg';
 
 import { connect } from 'react-redux';
 import actions from '../../actions/actions';
@@ -22,21 +27,25 @@ class ILike extends Component {
   }
 
   render () {
-    if( this.props.isLoading){
+    if (this.props.isLoading) {
       return (
-          <Text>Loading ...</Text>
-      )
+        <Image source={background} style={[styles.container, styles.background]}>
+          <View style={{left: 160, bottom: 20}}>
+            <Spinner color='yellow' />
+          </View>
+        </Image>
+      );
     }
     return (
-        <View style={styles.container}>
-          <TouchableOpacity
-              onPress={this.onMatchPress.bind(this)}
+      <View style={styles.container}>
+        <TouchableOpacity
+          onPress={this.onMatchPress.bind(this)}
           >
-            <Text style={styles.toMatches}>Back to Matches</Text>
-          </TouchableOpacity>
-          <Text>MY HEAVEN</Text>
-          <Text>{data}</Text>
-        </View>
+          <Text style={styles.toMatches}>Back to Matches</Text>
+        </TouchableOpacity>
+        <Text>MY HEAVEN</Text>
+        <Text>{data}</Text>
+      </View>
     );
   }
 }
@@ -51,8 +60,8 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     fetchMatches: function (profile) {
-      dispatch (actions.fetchMatches(profile));
-    },
+      dispatch(actions.fetchMatches(profile));
+    }
   };
 }
 
@@ -60,10 +69,19 @@ export default connect(mapStateToProps, mapDispatchToProps)(ILike);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    flexDirection: 'row'
   },
   toMatches: {
     paddingTop: 20,
     fontSize: 20
+  },
+  background: {
+    ...Platform.select({
+      ios: { paddingTop: 500 },
+      android: { paddingTop: 490 }
+    }),
+    width: null,
+    height: null
   }
 });
