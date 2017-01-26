@@ -38,15 +38,12 @@ class Matches extends Component {
   }
 
   render () {
+    console.warn('isloading: ',this.props.isLoading);
     if(this.props.isLoading){
       return (
           <Text>Loading ...</Text>
       )
     }
-    console.warn('user type: ',this.props.userProfile.type);
-    console.warn('user name: ',this.props.userProfile.user_name);
-
-
     return (
       <View style={styles.container}>
         <View style={styles.banner}>
