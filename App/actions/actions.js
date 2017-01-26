@@ -2,10 +2,7 @@ import axios from 'axios';
 import * as types from './types';
 
 const actions = {};
-//http://cfbe53a1.ngrok.io/api/genre
-const api = 'http://cfbe53a1.ngrok.io/api/';
-//const api = 'http://pineapple-api.herokuapp.com/api/';
-//const api = 'http://192.168.56.1:3000/api';
+const api = 'http://57ec0123.ngrok.io/api/';
 
 actions.createProfileLocalStorage = function (profile) {
   return function (dispatch) {
@@ -148,7 +145,7 @@ actions.fetchProfileError = function (error) {
 actions.fetchGenres = function () {
   return function (dispatch) {
     dispatch(actions.fetchGenresReq());
-    axios.get(api+'genre')
+    axios.get(api+'genre/')
 
         .then(function (response) {
           dispatch(actions.fetchGenresSuccess(response.data));
@@ -183,7 +180,7 @@ actions.fetchGenresError = function (error) {
 actions.fetchInstruments = function () {
   return function (dispatch) {
     dispatch(actions.fetchInstrumentsReq());
-    axios.get(api+'/instrument/')
+    axios.get(api+'instrument/')
         .then(function (response) {
           dispatch(actions.fetchInstrumentsSuccess(response.data));
         })
