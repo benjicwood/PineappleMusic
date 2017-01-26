@@ -139,6 +139,8 @@ class SignupMusician extends Component {
     };
 
     this.props.createProfile(profileObj.type, profileObj);
+    this.props.createProfileLocalStorage(profileObj);
+
     var matchProfile = {
       type: profileObj.type,
       genre: profileObj.genre,

@@ -84,11 +84,11 @@ class BandCards extends Component {
     );
   }
   handleYup (card) {
-    // console.warn(`Hell ${card.text}`);
+     console.warn(`handle Hell ${card.text}`);
   }
 
   handleNope (card) {
-    // console.warn(`Heaven ${card.text}`);
+     console.warn(`handle Heaven ${card.text}`);
   }
   loop () {
     console.warn('restart');

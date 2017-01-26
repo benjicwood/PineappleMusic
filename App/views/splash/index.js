@@ -37,11 +37,10 @@ class Splash extends Component {
 
   OnMusicianPress () {
     // fetchGenres API call MUSICIAN
-    console.warn('fetching genres ');
+    // console.warn('fetching genres ');
     this.props.fetchGenres();
 
     // fetchInstruments API call
-    console.warn('fetching instruments ');
     this.props.fetchInstruments();
 
 

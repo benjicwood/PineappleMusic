@@ -7,19 +7,7 @@ const api = 'http://57ec0123.ngrok.io/api/';
 actions.createProfileLocalStorage = function (profile) {
   return function (dispatch) {
     dispatch(actions.createProfileLocalStorageReq());
-    var foo = JSON.stringify(profile);
-    AsyncStorage.setItem("foo", foo)
-        .then(function () {
-          dispatch(actions.createProfileLocalStorageSuccess(profile))
-        })
-        .done(function () {
-      console.warn('LOCAL STORAGE UPDATED')
-          .catch(function () {
-            dispatch(actions.createProfileLocalStorageError());
-        console.warn('ERROR STORING PROFILE ON DEVICE');
-      })
-    });
-    this.setState({"foo": profile});
+    dispatch(actions.createProfileLocalStorageSuccess(profile));
   }
 };
 
