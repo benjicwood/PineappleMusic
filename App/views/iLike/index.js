@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import actions  from '../../actions/actions'
+import actions from '../../actions/actions';
 var data='';
 class ILike extends Component {
 

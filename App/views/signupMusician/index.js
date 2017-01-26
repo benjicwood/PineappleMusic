@@ -9,11 +9,12 @@ import {
     Platform,
     Picker
 } from 'react-native';
-import { connect } from 'react-redux';
 
 import { Container, Content, Icon } from 'native-base';
 
+import { connect } from 'react-redux';
 import actions  from '../../actions/actions';
+
 const background = require('./musicianbackground.png');
 const backIcon = require('./back.png');
 
@@ -22,10 +23,9 @@ class SignupMusician extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      type: 'musician',
+      type: 'band',
       user_name: 'some-text',
       email: 'some@email.bla',
-      password: 'some_sekret_pwd',
       instrument: 'Violin',
       genre: 'Pop'
     };

@@ -3,8 +3,8 @@ import * as types from './types';
 
 const actions = {};
 //http://cfbe53a1.ngrok.io/api/genre
-const api = 'http://cfbe53a1.ngrok.io/api/';
-//const api = 'http://pineapple-api.herokuapp.com/api/';
+// const api = 'http://cfbe53a1.ngrok.io/api/';
+const api = 'http://pineapple-api.herokuapp.com/api/';
 //const api = 'http://192.168.56.1:3000/api';
 
 actions.createProfileLocalStorage = function (profile) {

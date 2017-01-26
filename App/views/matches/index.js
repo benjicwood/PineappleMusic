@@ -4,19 +4,25 @@ import {
   TouchableOpacity,
   StyleSheet,
   Text,
-  Platform
+  Platform,
+  Image
 } from 'react-native';
 
+import { Container, Content, Icon } from 'native-base';
+
+import background from './pineapplecandg.jpg';
+import pineappleicon from './pineicon.png';
+
 import { connect } from 'react-redux';
-import actions  from '../../actions/actions'
+import actions from '../../actions/actions';
 
 import Card from './Card';
 
 class Matches extends Component {
 
-  componentWillMount(){
-    
-   }
+  componentWillMount () {
+
+  }
   onProfilePress () {
     this.props.navigator.push({
       id: 'Profile'
@@ -38,45 +44,43 @@ class Matches extends Component {
   }
 
   render () {
-    if(this.props.isLoading){
+    if (this.props.isLoading) {
       return (
-          <Text>Loading ...</Text>
-      )
+        <Text>Loading ...</Text>
+      );
     }
 
     return (
       <View style={styles.container}>
-        <View style={styles.banner}>
+        <Image
+          source={background}
+          style={[styles.container, styles.background]}
+        >
           <TouchableOpacity
             onPress={this.onProfilePress.bind(this)}
+            style={styles.pineapple}
             >
-            <View style={styles.profilelink}>
-              <Text style={styles.profile}>Profile</Text>
-            </View>
+            <Image source={pineappleicon} style={styles.profilepineapple} />
           </TouchableOpacity>
-        </View>
-        <Card
-          style={{flex: 1}} />
-        <View style={styles.banner}>
-          <TouchableOpacity
-            onPress={this.onLikesMePress.bind(this)}
-              >
-            <View style={styles.likesMeLink}>
-              <Text style={styles.likesMe}>Likes Me </Text>
-            </View>
-          </TouchableOpacity>
+          <Card style={styles.card} />
           <TouchableOpacity
             onPress={this.onILikePress.bind(this)}
-              >
-            <View style={styles.iLikeLink}>
-              <Text style={styles.iLike}> I Like</Text>
-            </View>
+            style={styles.button}>
+            <Icon name='md-heart-outline' style={{fontSize: 45, color: '#e9e104', top: 1}} />
+            <Text style={{fontSize: 16, color: 'whitesmoke', bottom: 2}}>MY HEAVEN</Text>
           </TouchableOpacity>
-        </View>
+          <TouchableOpacity
+            onPress={this.onLikesMePress.bind(this)}
+            style={styles.button}>
+            <Icon name='md-heart-outline' style={{fontSize: 45, color: '#e9e104', top: 1}} />
+            <Text style={{fontSize: 16, color: 'whitesmoke', bottom: 2}}>THEIR HEAVEN</Text>
+          </TouchableOpacity>
+        </Image>
       </View>
     );
   }
 }
+
 
 
 function mapStateToProps (state) {
@@ -90,13 +94,13 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     fetchMatches: function (profile) {
-      dispatch (actions.fetchMatches(profile));
+      dispatch(actions.fetchMatches(profile));
     },
     fetchMyHeaven: function (id) {
-      dispatch (actions.fetchMyHeaven(id));
+      dispatch(actions.fetchMyHeaven(id));
     },
     fetchTheirHeaven: function (id) {
-      dispatch (actions.fetchTheirHeaven(id));
+      dispatch(actions.fetchTheirHeaven(id));
     }
   };
 }
@@ -105,39 +109,34 @@ export default connect(mapStateToProps, mapDispatchToProps)(Matches);
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    flexDirection: 'row'
   },
-  banner: {
-    justifyContent: 'center',
-    flexDirection: 'row',
+  background: {
     ...Platform.select({
-      ios: { flex: 0.1 },
-      android: { flex: 0.1 }
+      ios: { paddingTop: 500 },
+      android: { paddingTop: 490 }
     }),
+    width: null,
+    height: null
+  },
+  profilepineapple: {
+    width: 100,
+    height: 100
+  },
+  pineapple: {
+    bottom: 485,
+    left: 330
+  },
+  button: {
     borderWidth: 1,
-    borderColor: 'black',
+    borderColor: 'white',
+    borderRadius: 12,
+    justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'whitesmoke'
-  },
-  profilelink: {
-    paddingLeft: 325
-  },
-  profile: {
-    fontSize: 18,
-    color: 'grey'
-  },
-  likesMeLink: {
-  },
-  likesMe: {
-    alignSelf: 'flex-end',
-    fontSize: 18,
-    color: 'grey'
-  },
-  iLikeLink: {
-    paddingLeft: 250
-  },
-  iLike: {
-    fontSize: 18,
-    color: 'grey'
+    height: 80,
+    width: 205,
+    right: 460,
+    top: 85
   }
 });

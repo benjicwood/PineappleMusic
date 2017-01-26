@@ -18,9 +18,6 @@ import actions from '../../actions/actions';
 const background = require('./bandbackground.png');
 const backIcon = require('./back.png');
 
-var modalDropdownOptionsGenres = [];
-var modalDropdownOptionsIntruments = [];
-
 class SignupBand extends Component {
 
   constructor (props) {
@@ -34,14 +31,6 @@ class SignupBand extends Component {
     };
   }
 
-  componentWillMount () {
-    modalDropdownOptionsGenres = this.props.genres.map(function (genre) {
-      return genre.name;
-    });
-    modalDropdownOptionsIntruments = this.props.instruments.map(function (instrument) {
-      return instrument.name;
-    });
-  }
   onBackPress () {
     this.props.navigator.push({
       id: 'InitialScreen'
@@ -63,7 +52,6 @@ class SignupBand extends Component {
     };
 
     this.props.createProfile(profileObj.type, profileObj);
-
     var matchProfile = {
       type: profileObj.type,
       genre: profileObj.genre,
