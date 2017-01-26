@@ -6,15 +6,15 @@ import {
   View
 } from 'react-native';
 import { connect } from 'react-redux';
-// import actions  from '../../actions/actions'
+
+import actions  from '../../actions/actions'
+
 
 import SwipeCards from './SwipeCards';
 
 import FlipCard from 'react-native-flip-card';
 
-// if matches isLoading=true , use soem default loadin card
-// if isLOading: false && matches userMAtches.length >0
-// map userMAtches to Cards
+var currentCard = {};
 
 class BandCards extends Component {
   constructor (props) {
@@ -24,6 +24,7 @@ class BandCards extends Component {
     };
   }
   Card (x) {
+    currentCard = x;
     return (
       <View>
         <Text style={styles.name}>{x.user}</Text>
@@ -36,21 +37,39 @@ class BandCards extends Component {
           <View style={styles.back}>
             <Image source={{uri: x.profile_pic}} style={styles.backimage} />
             <View>
-              <Text style={styles.backtext}>Some Band Info</Text>
-              <Text style={styles.backtext}>Some More Band Info</Text>
-              <Text style={styles.backtext}>etc.</Text>
+              <Text style={styles.name}>{x.user_name} </Text>
+              <Text style={styles.backtext}>genre {x.genre}</Text>
+              <Text style={styles.backtext}>instrument {x.instrument}</Text>
+              <Text style={styles.backtext}>email {x.email}</Text>
+              <Text style={styles.backtext}>user id {x._id}</Text>
             </View>
           </View>
         </FlipCard>
       </View>
     );
   }
-  handleYup (card) {
-    // console.warn(`Hell ${card.text}`);
+
+  // yup and nope are NAMED wrong way round but work !!
+  handleYup () {
+
+/*    // send to hell
+    var connection = {
+      type : 'hell',
+      source_id: 'id',
+      target_id: 'id'
+    };
+    this.props.createConnection(connection);*/
   }
 
-  handleNope (card) {
-    // console.warn(`Heaven ${card.text}`);
+  handleNope () {
+
+/*    // send to heaven
+    var connection = {
+      type : 'heaven',
+      source_id: 'id',
+      target_id: 'id'
+    };
+    this.props.createConnection(connection);*/
   }
   loop () {
     console.warn('restart');
@@ -72,8 +91,8 @@ class BandCards extends Component {
           cards={this.state.cards}
           containerStyle={styles.cardcontainer}
           renderCard={(cardData) => this.Card(cardData)}
-          handleYup={this.handleYup}
-          handleNope={this.handleNope} />
+          handleYup={this.handleYup()}
+          handleNope={this.handleNope()} />
       </View>
     );
   }
@@ -81,11 +100,20 @@ class BandCards extends Component {
 
 function mapStateToProps (state) {
   return {
-    matches: state.matches.userMatches
+    matches: state.matches.userMatches,
+    userProfile: state.profile.userProfile
   };
 }
 
-export default connect(mapStateToProps)(BandCards);
+function mapDispatchToProps (dispatch) {
+  return {
+    createConnection: function (connection) {
+      dispatch (actions.createConnection(connection));
+    }
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(BandCards);
 
 const styles = StyleSheet.create({
   cardcontainer: {

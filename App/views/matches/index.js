@@ -49,7 +49,6 @@ class Matches extends Component {
         <Text>Loading ...</Text>
       );
     }
-
     return (
       <View style={styles.container}>
         <Image
