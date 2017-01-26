@@ -9,13 +9,13 @@ import {
     Platform,
     Picker
 } from 'react-native';
-import { connect } from 'react-redux';
 
 import { Container, Content, Icon } from 'native-base';
 
+import { connect } from 'react-redux';
 import actions  from '../../actions/actions';
-//const background = require('./musicianbackground.png');
-const background = require('./back.png');
+
+const background = require('./musicianbackground.png');
 
 const backIcon = require('./back.png');
 
@@ -117,6 +117,7 @@ class SignupMusician extends Component {
       password: '',
       instrument: '',
       genre: ''
+
     };
   }
 

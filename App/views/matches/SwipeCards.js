@@ -195,12 +195,6 @@ export default class SwipeCards extends Component {
 
 // ////////// STYLESHEET //////////////////////////////////
 let styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF'
-  },
   yup: {
     borderColor: 'green',
     borderWidth: 2,

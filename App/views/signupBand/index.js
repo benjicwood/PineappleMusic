@@ -102,7 +102,6 @@ var genreName = [
   "indie"
 ];
 
-
 class SignupBand extends Component {
 
   constructor (props) {
@@ -135,7 +134,9 @@ class SignupBand extends Component {
     };
 
     this.props.createProfile(profileObj.type, profileObj);
+
     this.props.createProfileLocalStorage(profileObj);
+
     var matchProfile = {
       type: profileObj.type,
       genre: profileObj.genre,

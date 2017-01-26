@@ -34,7 +34,7 @@ class LikesMe extends Component {
           >
           <Text style={styles.toMatches}>Back to Matches</Text>
         </TouchableOpacity>
-        <Text>I LIKE PAGE</Text>
+        <Text>THEIR HEAVEN</Text>
         <Text>{date}</Text>
       </View>
     );

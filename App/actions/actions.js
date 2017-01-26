@@ -2,7 +2,11 @@ import axios from 'axios';
 import * as types from './types';
 
 const actions = {};
-const api = 'http://57ec0123.ngrok.io/api/';
+
+//http://cfbe53a1.ngrok.io/api/genre
+const api = 'http://pineapple-api.herokuapp.com/api/';
+// const api = 'http://57ec0123.ngrok.io/api/';
+
 
 actions.createProfileLocalStorage = function (profile) {
   return function (dispatch) {
