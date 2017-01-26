@@ -18,52 +18,51 @@ import actions from '../../actions/actions';
 const background = require('./bandbackground.png');
 const backIcon = require('./back.png');
 
-var modalDropdownOptionsGenres = [];
-var modalDropdownOptionsIntruments = [];
-
 var instrumentName = [
   "Electric Guitar",
   "Bass Guitar",
   "Acoustic Guitar",
   "Violin",
   "Cello",
-"Saxophone",
-"Trumpet",
-"Piccolo",
-"Flute",
-"Clarinet",
-"Oboe",
-"Bassoon",
-"Trombone",
-"French horn",
-"Tuba",
-"Drums",
-"Kettledrum",
-"Bongos",
-"Conga (drum)",
-"Cymbals"];
+  "Saxophone",
+  "Trumpet",
+  "Piccolo",
+  "Flute",
+  "Clarinet",
+  "Oboe",
+  "Bassoon",
+  "Trombone",
+  "French horn",
+  "Tuba",
+  "Drums",
+  "Kettledrum",
+  "Bongos",
+  "Conga (drum)",
+  "Cymbals"
+];
 
 var instrumentId = [
-    "588898cb65e40796fa13d472",
-    "588898cb65e40796fa13d473",
-    "588898cb65e40796fa13d474",
-    "588898cb65e40796fa13d475",
-    "588898cb65e40796fa13d476",
-    "588898cb65e40796fa13d477",
-    "588898cb65e40796fa13d478",
-    "588898cb65e40796fa13d479",
-    "588898cb65e40796fa13d47a",
-    "588898cb65e40796fa13d47b",
-    "588898cb65e40796fa13d47c",
-    "588898cb65e40796fa13d47d",
-    "588898cb65e40796fa13d47e",
-    "588898cb65e40796fa13d47f",
-    "588898cb65e40796fa13d480",
-    "588898cb65e40796fa13d481",
-    "588898cb65e40796fa13d482",
-    "588898cb65e40796fa13d483",
-    "588898cb65e40796fa13d484",
-    "588898cb65e40796fa13d485"];
+  "588898cb65e40796fa13d472",
+  "588898cb65e40796fa13d473",
+  "588898cb65e40796fa13d474",
+  "588898cb65e40796fa13d475",
+  "588898cb65e40796fa13d476",
+  "588898cb65e40796fa13d477",
+  "588898cb65e40796fa13d478",
+  "588898cb65e40796fa13d479",
+  "588898cb65e40796fa13d47a",
+  "588898cb65e40796fa13d47b",
+  "588898cb65e40796fa13d47c",
+  "588898cb65e40796fa13d47d",
+  "588898cb65e40796fa13d47e",
+  "588898cb65e40796fa13d47f",
+  "588898cb65e40796fa13d480",
+  "588898cb65e40796fa13d481",
+  "588898cb65e40796fa13d482",
+  "588898cb65e40796fa13d483",
+  "588898cb65e40796fa13d484",
+  "588898cb65e40796fa13d485"
+];
 
 var genreId = [
   '588898cb65e40796fa13d462',
@@ -110,21 +109,13 @@ class SignupBand extends Component {
     super(props);
     this.state = {
       type: 'band',
-      user_name: 'some-text',
-      email: 'some@email.bla',
-      instrument: 'Violin',
-      genre: 'Pop'
+      user_name: '',
+      email: '',
+      instrument: '',
+      genre: ''
     };
   }
 
-  componentWillMount () {
-    modalDropdownOptionsGenres = this.props.genres.map(function (genre) {
-      return genre.name;
-    });
-    modalDropdownOptionsIntruments = this.props.instruments.map(function (instrument) {
-      return instrument.name;
-    });
-  }
   onBackPress () {
     this.props.navigator.push({
       id: 'InitialScreen'
@@ -139,9 +130,7 @@ class SignupBand extends Component {
       type: this.state.type,
       user_name: this.state.user_name,
       email: this.state.email,
-      // need to save the instrument ID , not the instrument name **********
       instrument: this.state.instrument,
-      // same goes for genres. *********************************************
       genre: this.state.genre
     };
 
