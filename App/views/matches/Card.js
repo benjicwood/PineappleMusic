@@ -78,6 +78,7 @@ class BandCards extends Component {
     };
     this.props.createConnection(connection);*/
   }
+
   loop () {
     console.warn('restart');
   }
