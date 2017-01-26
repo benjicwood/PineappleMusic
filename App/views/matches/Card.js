@@ -34,7 +34,7 @@ class BandCards extends Component {
           </View>
         </View>
         <View style={styles.back}>
-          <Image source={cookie} style={styles.backimage} />
+          <Image source={{uri: x.profile_pic}} style={styles.backimage} />
           <View>
             <Text style={styles.name}>{x.user_name} </Text>
             <Text style={styles.backtext}>Some Band Info</Text>
@@ -125,8 +125,7 @@ const styles = StyleSheet.create({
     height: 401,
     borderWidth: 1,
     borderColor: 'black',
-    backgroundColor:'transparent',
-    tintColor: 'rgba(52,52,52,1)'
+    opacity: 0.2
   },
   name: {
     fontSize: 20,
