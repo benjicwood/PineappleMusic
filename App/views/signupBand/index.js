@@ -117,7 +117,7 @@ class SignupBand extends Component {
 
   onBackPress () {
     this.props.navigator.push({
-      id: 'InitialScreen'
+      id: 'UserTypeSelect'
     });
   }
 
@@ -221,7 +221,7 @@ class SignupBand extends Component {
                   style={styles.picker}
                   selectedValue={this.state.instrument}
                   onValueChange={(value) => this.setState({instrument: value})}>
-                <Picker.Item label={instrumentName[0]} value={instrumentId[0]} />
+                <Picker.Item label={instrumentName[0]} value={instrumentId[0]} fontSize={30} />
                 <Picker.Item label={instrumentName[1]} value={instrumentId[1]} />
                 <Picker.Item label={instrumentName[2]} value={instrumentId[2]} />
                 <Picker.Item label={instrumentName[3]} value={instrumentId[3]} />
@@ -424,9 +424,10 @@ let styles = StyleSheet.create({
   },
   picker: {
     width: 200,
+    height: 72,
     ...Platform.select({
       ios: { bottom: 100 },
-      android: { color: '#FFF', paddingVertical: 30 }
-})
-}
+      android: { color: '#FFF', paddingVertical: 30, right: 6 }
+    })
+  }
 });

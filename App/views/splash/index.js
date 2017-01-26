@@ -1,27 +1,26 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   View,
   Image,
-  TouchableOpacity
+  Platform
 } from 'react-native';
 
+import background from './pineapplesplashload.png';
+
 import { connect } from 'react-redux';
-import actions  from '../../actions/actions'
+import actions from '../../actions/actions';
 import {AsyncStorage} from 'react-native';
 
-var profile = {"type":"musician","instrument":"5877c4893aecdd49742d833b", "genre":"5877c48b3aecdd49742d8359"};
+var profile = {'type': 'musician', 'instrument': '5877c4893aecdd49742d833b', 'genre': '5877c48b3aecdd49742d8359'};
 
 class Splash extends Component {
 
-  componentWillMount() {
-
-
-      this.props.navigator.push({
-        id: 'UserTypeSelect'
-      })
-  };
+  componentWillMount () {
+    this.props.navigator.push({
+      id: 'UserTypeSelect'
+    });
+  }
   onBandPress () {
     // fetchGenres API call BAND
     // console.warn('fetching genres ');
@@ -43,7 +42,6 @@ class Splash extends Component {
     // fetchInstruments API call
     this.props.fetchInstruments();
 
-
     this.props.navigator.push({
       id: 'SignupMusician'
     });
@@ -52,12 +50,15 @@ class Splash extends Component {
   render () {
     return (
       <View style={styles.container}>
-    <Text> Loading </Text>
+        <Image
+          source={background}
+          style={[styles.container, styles.background]}
+          resizeMode='cover'
+        />
       </View>
     );
   }
 }
-
 
 function mapStateToProps (state) {
   return {
@@ -71,13 +72,13 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     fetchGenres: function () {
-      dispatch (actions.fetchGenres());
+      dispatch(actions.fetchGenres());
     },
     fetchInstruments: function () {
-      dispatch (actions.fetchInstruments());
+      dispatch(actions.fetchInstruments());
     },
     fetchMatches: function (profile) {
-      dispatch (actions.fetchMatches(profile));
+      dispatch(actions.fetchMatches(profile));
     }
   };
 }
@@ -87,6 +88,14 @@ export default connect(mapStateToProps, mapDispatchToProps)(Splash);
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  background: {
+    ...Platform.select({
+      ios: { paddingTop: 500 },
+      android: { paddingTop: 490 }
+    }),
+    width: null,
+    height: null
   },
   bg: {
     paddingTop: 30,
