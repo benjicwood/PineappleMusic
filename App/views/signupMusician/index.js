@@ -123,7 +123,7 @@ class SignupMusician extends Component {
 
   onBackPress () {
     this.props.navigator.push({
-      id: 'InitialScreen'
+      id: 'UserTypeSelect'
     });
   }
 

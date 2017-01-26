@@ -8,7 +8,7 @@ import {
   Image
 } from 'react-native';
 
-import { Container, Content, Icon } from 'native-base';
+import { Container, Content, Icon, Spinner } from 'native-base';
 
 import background from './pineapplecandg.jpg';
 import pineappleicon from './pineicon.png';
@@ -46,7 +46,11 @@ class Matches extends Component {
   render () {
     if (this.props.isLoading) {
       return (
-        <Text>Loading ...</Text>
+        <Image source={background} style={[styles.container, styles.background]}>
+          <View style={{left: 160, bottom: 20}}>
+            <Spinner color='yellow' />
+          </View>
+        </Image>
       );
     }
     return (
