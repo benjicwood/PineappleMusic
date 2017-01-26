@@ -26,9 +26,10 @@ class LikesMe extends Component {
     });
   }
 
-  onLikesMePress () {
+  onILikePress () {
+    this.props.fetchMyHeaven('5877c4863aecdd49742d8338');
     this.props.navigator.push({
-      id: 'LikesMe'
+      id: 'ILike'
     });
   }
 
@@ -49,7 +50,7 @@ class LikesMe extends Component {
           style={[styles.container, styles.background]}
         >
           <TouchableOpacity
-            onPress={this.onLikesMePress.bind(this)}
+            onPress={this.onILikePress.bind(this)}
             style={styles.button}>
             <Icon name='md-heart-outline' style={{fontSize: 45, color: '#e9e104', top: 1}} />
             <Text style={{fontSize: 16, color: 'whitesmoke', bottom: 2}}>MY HEAVEN</Text>
@@ -57,7 +58,7 @@ class LikesMe extends Component {
           <TouchableOpacity
             onPress={this.onMatchPress.bind(this)}
             style={styles.button}>
-            <Icon name='md-heart-outline' style={{fontSize: 45, color: '#e9e104', top: 1}} />
+            <Icon name='ios-arrow-forward' style={{fontSize: 45, color: '#FF3232', top: 1}} />
             <Text style={{fontSize: 16, color: 'whitesmoke', bottom: 2}}>BACK TO MATCHES</Text>
           </TouchableOpacity>
         </Image>

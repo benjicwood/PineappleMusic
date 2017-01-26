@@ -52,7 +52,7 @@ class ILike extends Component {
           <TouchableOpacity
             onPress={this.onMatchPress.bind(this)}
             style={styles.button}>
-            <Icon name='md-heart-outline' style={{fontSize: 45, color: '#e9e104', top: 1}} />
+            <Icon name='ios-arrow-back' style={{fontSize: 45, color: '#FF3232', top: 1}} />
             <Text style={{fontSize: 16, color: 'whitesmoke', bottom: 2}}>BACK TO MATCHES</Text>
           </TouchableOpacity>
           <TouchableOpacity
