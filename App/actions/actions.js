@@ -74,10 +74,10 @@ actions.updateProfile = function (profileType, id, updatedProfile) {
     dispatch(actions.updateProfileReq());
     axios.post(api + 'profile/' + profileType + '/' + id, updatedProfile)
         .then(function (response) {
-          dispatch(actions.createProfileSuccess(response.data));
+          dispatch(actions.updateProfileSuccess(response.data));
         })
         .catch(function (error) {
-          dispatch(actions.createProfileError(error));
+          dispatch(actions.updateProfileError(error));
         });
   };
 };

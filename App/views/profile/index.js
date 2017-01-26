@@ -111,11 +111,11 @@ class  MyComponent extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      phone_number: '',
-      email: 'foo',
-      instrument: '',
-      genre: '',
-      profile_pic: '',
+      phone_number: this.props.userProfile.phone_number,
+      email: this.props.userProfile.email,
+      instrument: this.props.userProfile.instrument,
+      genre: this.props.userProfile.genre,
+      profile_pic: this.props.userProfile.profile_pic,
       scrollY: new Animated.Value(0),
 
 
@@ -222,11 +222,11 @@ class  MyComponent extends Component {
                 <Text style={styles.name}>Update your profile</Text>
 
                 <View style={styles.inputContainer}>
-                  <TextInput
+                  <Text
                     keyboardType='email-address'
                     autoCapitalize='none'
                     style={[styles.input, styles.blackFont]}
-                    placeholder={this.state.email}
+                    placeholder={this.props.userProfile.email}
                     placeholderTextColor='black'
                     onChangeText={(email) => this.setState({email:email})}
                     value={this.state.email}
@@ -238,9 +238,9 @@ class  MyComponent extends Component {
                     keyboardType='numeric'
                     autoCapitalize='none'
                     style={[styles.input, styles.blackFont]}
-                    placeholder='add phone'
+                    placeholder={this.props.userProfile.phone_number}
                     placeholderTextColor='black'
-                    onChangeText={(phone_number) => this.setState({phone_number})}
+                    onChangeText={(phone_number) => this.setState({phone_number:phone_number})}
                     value={this.state.phone_number}
 
                     />
@@ -251,7 +251,7 @@ class  MyComponent extends Component {
                       style={[styles.input, styles.blackFont]}
                       placeholder='Profile Image URL'
                       placeholderTextColor='black'
-                      onChangeText={(profile_pic) => this.setState({profile_pic})}
+                      onChangeText={(profile_pic) => this.setState({profile_pic:profile_pic})}
                       value={this.state.profile_pic}
                   />
                 </View>
