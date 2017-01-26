@@ -4,8 +4,8 @@ import * as types from './types';
 const actions = {};
 
 //http://cfbe53a1.ngrok.io/api/genre
-const api = 'http://pineapple-api.herokuapp.com/api/';
-// const api = 'http://57ec0123.ngrok.io/api/';
+//const api = 'http://pineapple-api.herokuapp.com/api/';
+const api = 'http://57ec0123.ngrok.io/api/';
 
 
 actions.createProfileLocalStorage = function (profile) {
@@ -203,10 +203,10 @@ actions.fetchInstrumentsError = function (error) {
 };
 
 
-actions.fetchMyHeaven = function (id) {
+actions.fetchMyHeaven = function (type, userId) {
   return function (dispatch) {
     dispatch(actions.fetchMyHeavenReq());
-    axios.get(api+'ilike/'+id)
+    axios.get(api+'connection/heaven/'+type+'/'+'588a2e4fb89161b75bed814d')
         .then(function (response) {
           dispatch(actions.fetchMyHeavenSuccess(response.data))
         })
@@ -236,10 +236,10 @@ actions.fetchMyHeavenError = function (error) {
   };
 };
 
-actions.fetchTheirHeaven = function (id) {
+actions.fetchTheirHeaven = function (type, userId) {
   return function (dispatch) {
     dispatch(actions.fetchTheirHeavenReq());
-    axios.get(api+'likesme/'+id)
+    axios.get(api+'connection/theirheaven/'+type+'/'+'588a2e4fb89161b75bed814d')
         .then(function (response) {
           dispatch(actions.fetchTheirHeavenSuccess(response.data))
         })

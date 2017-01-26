@@ -30,14 +30,14 @@ class Matches extends Component {
   }
 
   onLikesMePress () {
-    this.props.fetchTheirHeaven('5877c4863aecdd49742d8338');
+    this.props.fetchTheirHeaven(this.props.userProfile.type, '588a2e4fb89161b75bed814d');
     this.props.navigator.push({
       id: 'LikesMe'
     });
   }
 
   onILikePress () {
-    this.props.fetchMyHeaven('5877c4863aecdd49742d8338');
+    this.props.fetchMyHeaven(this.props.userProfile.type, '588a2e4fb89161b75bed814d');
     this.props.navigator.push({
       id: 'ILike'
     });
@@ -49,6 +49,7 @@ class Matches extends Component {
         <Text>Loading ...</Text>
       );
     }
+    console.warn('user id : ',this.props.userProfile);
     return (
       <View style={styles.container}>
         <Image

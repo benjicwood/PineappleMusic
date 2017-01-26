@@ -27,7 +27,7 @@ var instrumentName = [
   "Cello",
   "Saxophone",
   "Trumpet",
-  "Piccolo",
+  "Piano",
   "Flute",
   "Clarinet",
   "Oboe",
@@ -39,7 +39,7 @@ var instrumentName = [
   "Kettledrum",
   "Bongos",
   "Conga (drum)",
-  "Cymbals"
+  "Bagpipes"
 ];
 
 var instrumentId = [
@@ -84,8 +84,10 @@ var genreId = [
   '588898cb65e40796fa13d471',
 ];
 
+
+
 var genreName = [
-  "avant garde",
+  "spooky core",
   "blues",
   "carribean",
   "comedy",

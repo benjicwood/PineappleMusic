@@ -38,7 +38,7 @@ var instrumentName = [
   "Kettledrum",
   "Bongos",
   "Conga (drum)",
-  "Cymbals"
+  "Bagpipes"
 ];
 
 var instrumentId = [
