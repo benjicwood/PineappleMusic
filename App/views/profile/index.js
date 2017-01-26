@@ -112,9 +112,10 @@ class  MyComponent extends Component {
     super(props);
     this.state = {
       phone_number: '',
-      email: '',
+      email: 'foo',
       instrument: '',
       genre: '',
+      profile_pic: '',
       scrollY: new Animated.Value(0),
 
 
@@ -127,7 +128,26 @@ class  MyComponent extends Component {
     },
   };
 
+
+  doSummat () {
+
+  var profileObj = {
+    user_name: this.state.user_name,
+    email: this.state.email,
+    profile_pic: this.state.profile_pic,
+    // need to save the instrument ID , not the instrument name **********
+    instrument: this.state.instrument,
+    // same goes for genres. *********************************************
+    genre: this.state.genre
+  };
+
+  this.props.updateProfile(this.props.userProfile.type, this.props.userProfile._id, profileObj);
+  // this.props.createProfileLocalStorage(profileObj);
+    this.props.navigator.pop()
+};
+
   onMatchPress () {
+
     this.props.navigator.push({
       id: 'Matches'
     });
@@ -206,9 +226,9 @@ class  MyComponent extends Component {
                     keyboardType='email-address'
                     autoCapitalize='none'
                     style={[styles.input, styles.blackFont]}
-                    placeholder='change email'
+                    placeholder={this.state.email}
                     placeholderTextColor='black'
-                    onChangeText={(email) => this.setState({email})}
+                    onChangeText={(email) => this.setState({email:email})}
                     value={this.state.email}
 
                     />
@@ -224,6 +244,16 @@ class  MyComponent extends Component {
                     value={this.state.phone_number}
 
                     />
+                </View>
+                <View style={styles.inputContainer}>
+                  <TextInput
+                      autoCapitalize='none'
+                      style={[styles.input, styles.blackFont]}
+                      placeholder='Profile Image URL'
+                      placeholderTextColor='black'
+                      onChangeText={(profile_pic) => this.setState({profile_pic})}
+                      value={this.state.profile_pic}
+                  />
                 </View>
                 <View style={styles.inputContainer}>
                       <Picker
@@ -296,7 +326,7 @@ class  MyComponent extends Component {
                 <Animated.View style={[styles.navbarBackground, { opacity: navBarBackgroundOpacity }]} />
 
                 <View style={[StyleSheet.absoluteFill, {flexDirection: 'row', alignItems: 'center'}]}>
-                  <TouchableOpacity onPress={() => { this.props.navigator.pop() }} hitSlop={{top: 15, left: 15, bottom: 15, right: 15}}>
+                  <TouchableOpacity onPress={this.doSummat.bind(this)} hitSlop={{top: 15, left: 15, bottom: 15, right: 15}}>
                     <Image
                       style={styles.backButton}
                       source={{ uri: 'https://www.android.com/static/img/map/back-arrow.png' }}
@@ -331,8 +361,8 @@ class  MyComponent extends Component {
 
     function mapDispatchToProps (dispatch) {
       return {
-        createProfile: function (profileType, profile) {
-          dispatch (actions.createProfile(profileType, profile));
+        updateProfile: function (profileType, id, profile) {
+          dispatch (actions.updateProfile(profileType, id, profile));
         },
         fetchMatches: function (profile) {
           dispatch (actions.fetchMatches(profile));
@@ -341,6 +371,8 @@ class  MyComponent extends Component {
     }
 
     export default connect(mapStateToProps, mapDispatchToProps)(MyComponent);
+
+
 
 
     const styles = StyleSheet.create({
