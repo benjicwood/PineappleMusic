@@ -74,9 +74,9 @@ class BandCards extends Component {
             </View>
             <View>
               <Text style={styles.name}>{x.user_name} </Text>
-              <Text style={styles.backtext}>Some Band Info</Text>
-              <Text style={styles.backtext}>Some More Band Info</Text>
-              <Text style={styles.backtext}>etc.</Text>
+              <Text style={styles.backtext}>{x.genre}</Text>
+              <Text style={styles.backtext}>{x.instrument}</Text>
+              <Text style={styles.backtext}>{x.email}</Text>
             </View>
           </View>
         </View>
