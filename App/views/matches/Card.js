@@ -27,22 +27,25 @@ class BandCards extends Component {
   }
   Card (x) {
     return (
+      <View>
+        <Text style={styles.name}>{x.user}</Text>
       <FlipCard>
         <View style={styles.face}>
           <View style={styles.imagebox}>
-            <Image source={{uri: x.profile_pic}} style={styles.image} />
+            <Image source={{uri: x.profile_pic}} style={styles.image}>
+            </Image>
           </View>
         </View>
         <View style={styles.back}>
           <Image source={{uri: x.profile_pic}} style={styles.backimage} />
           <View>
-            <Text style={styles.name}>{x.user_name} </Text>
             <Text style={styles.backtext}>Some Band Info</Text>
             <Text style={styles.backtext}>Some More Band Info</Text>
             <Text style={styles.backtext}>etc.</Text>
           </View>
         </View>
       </FlipCard>
+      </View>
     );
   }
   handleYup (card) {
@@ -92,8 +95,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 5,
     width: 350,
-    height: 406.5,
-    bottom: 365,
+    height: 436,
+    bottom: 395,
     right: 75
   },
   face: {
@@ -128,10 +131,10 @@ const styles = StyleSheet.create({
     opacity: 0.2
   },
   name: {
-    fontSize: 20,
+    fontSize: 22,
     alignSelf: 'center',
     fontWeight: '300',
-    color: '#fff'
+    color: 'white'
   },
   backtext: {
     alignSelf: 'center',

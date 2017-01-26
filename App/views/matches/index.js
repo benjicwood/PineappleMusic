@@ -81,8 +81,6 @@ class Matches extends Component {
   }
 }
 
-
-
 function mapStateToProps (state) {
   return {
     userProfile: state.profile.userProfile,
@@ -125,7 +123,7 @@ const styles = StyleSheet.create({
     height: 100
   },
   pineapple: {
-    bottom: 485,
+    bottom: 480,
     left: 330
   },
   button: {
