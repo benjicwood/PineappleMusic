@@ -7,16 +7,16 @@ import {
   Image,
   Platform
 } from 'react-native';
+import { Icon, Spinner, Container, Content, List, ListItem, Thumbnail } from 'native-base';
 
-import { Container, Content, Spinner } from 'native-base';
 import background from '../matches/pineapplecandg.jpg';
 
 import { connect } from 'react-redux';
-import actions  from '../../actions/actions'
-var date='';
+import actions from '../../actions/actions';
+var date = '';
 class LikesMe extends Component {
 
-  componentWillMount(){
+  componentWillMount () {
     date = this.props.list[0].liked_by;
   }
 
@@ -26,30 +26,45 @@ class LikesMe extends Component {
     });
   }
 
+  onLikesMePress () {
+    this.props.navigator.push({
+      id: 'LikesMe'
+    });
+  }
+
   render () {
-    if( this.props.isLoading) {
+    if (this.props.isLoading) {
       return (
         <Image source={background} style={[styles.container, styles.background]}>
           <View style={{left: 160, bottom: 20}}>
             <Spinner color='yellow' />
           </View>
         </Image>
-      )
+      );
     }
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          onPress={this.onMatchPress.bind(this)}
-          >
-          <Text style={styles.toMatches}>Back to Matches</Text>
-        </TouchableOpacity>
-        <Text>THEIR HEAVEN</Text>
-        <Text>{date}</Text>
+        <Image
+          source={background}
+          style={[styles.container, styles.background]}
+        >
+          <TouchableOpacity
+            onPress={this.onLikesMePress.bind(this)}
+            style={styles.button}>
+            <Icon name='md-heart-outline' style={{fontSize: 45, color: '#e9e104', top: 1}} />
+            <Text style={{fontSize: 16, color: 'whitesmoke', bottom: 2}}>MY HEAVEN</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.onMatchPress.bind(this)}
+            style={styles.button}>
+            <Icon name='md-heart-outline' style={{fontSize: 45, color: '#e9e104', top: 1}} />
+            <Text style={{fontSize: 16, color: 'whitesmoke', bottom: 2}}>BACK TO MATCHES</Text>
+          </TouchableOpacity>
+        </Image>
       </View>
     );
   }
 }
-
 
 function mapStateToProps (state) {
   return {
@@ -61,13 +76,13 @@ function mapStateToProps (state) {
 function mapDispatchToProps (dispatch) {
   return {
     fetchMatches: function (profile) {
-      dispatch (actions.fetchMatches(profile));
+      dispatch(actions.fetchMatches(profile));
     },
     fetchMyHeaven: function (id) {
-      dispatch (actions.fetchMyHeaven(id));
+      dispatch(actions.fetchMyHeaven(id));
     },
     fetchTheirHeaven: function (id) {
-      dispatch (actions.fetchTheirHeaven(id));
+      dispatch(actions.fetchTheirHeaven(id));
     }
   };
 }
@@ -79,10 +94,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row'
   },
-  toMatches: {
-    paddingTop: 20,
-    fontSize: 20
-  },
   background: {
     ...Platform.select({
       ios: { paddingTop: 500 },
@@ -90,5 +101,23 @@ const styles = StyleSheet.create({
     }),
     width: null,
     height: null
+  },
+  profilepineapple: {
+    width: 100,
+    height: 100
+  },
+  pineapple: {
+    bottom: 480,
+    left: 330
+  },
+  button: {
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 80,
+    width: 205,
+    top: 85
   }
 });
