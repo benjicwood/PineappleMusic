@@ -4,7 +4,8 @@ import * as types from './types';
 const actions = {};
 
 //http://cfbe53a1.ngrok.io/api/genre
-const api = 'http://pineapple-api.herokuapp.com/api/';
+//const api = 'http://pineapple-api.herokuapp.com/api/';
+const api = 'http://051101dc.ngrok.io/api/';
 // const api = 'http://57ec0123.ngrok.io/api/';
 
 
@@ -73,10 +74,10 @@ actions.updateProfile = function (profileType, id, updatedProfile) {
     dispatch(actions.updateProfileReq());
     axios.post(api + 'profile/' + profileType + '/' + id, updatedProfile)
         .then(function (response) {
-          dispatch(actions.createProfileSuccess(response.data));
+          dispatch(actions.updateProfileSuccess(response.data));
         })
         .catch(function (error) {
-          dispatch(actions.createProfileError(error));
+          dispatch(actions.updateProfileError(error));
         });
   };
 };

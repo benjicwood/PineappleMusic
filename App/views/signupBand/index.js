@@ -197,7 +197,7 @@ class SignupBand extends Component {
                 style={[styles.input, styles.whiteFont]}
                 placeholder='Email'
                 placeholderTextColor='#FFF'
-                onChangeText={(email) => this.setState({email})}
+                onChangeText={(email) => this.setState({email: email})}
                 value={this.state.email}
 
                 />
