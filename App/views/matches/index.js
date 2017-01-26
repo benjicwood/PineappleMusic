@@ -38,12 +38,12 @@ class Matches extends Component {
   }
 
   render () {
+    console.warn('isloading: ',this.props.isLoading);
     if(this.props.isLoading){
       return (
           <Text>Loading ...</Text>
       )
     }
-
     return (
       <View style={styles.container}>
         <View style={styles.banner}>

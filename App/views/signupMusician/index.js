@@ -14,7 +14,9 @@ import { connect } from 'react-redux';
 import { Container, Content, Icon } from 'native-base';
 
 import actions  from '../../actions/actions';
-const background = require('./musicianbackground.png');
+//const background = require('./musicianbackground.png');
+const background = require('./back.png');
+
 const backIcon = require('./back.png');
 
 var instrumentName = [
@@ -139,6 +141,8 @@ class SignupMusician extends Component {
     };
 
     this.props.createProfile(profileObj.type, profileObj);
+    this.props.createProfileLocalStorage(profileObj);
+
     var matchProfile = {
       type: profileObj.type,
       genre: profileObj.genre,
@@ -146,7 +150,7 @@ class SignupMusician extends Component {
     };
 
 
-    this.props.fetchMatches(this.props.userProfile);
+    this.props.fetchMatches(matchProfile);
 
     this.props.navigator.push({
       id: 'Matches'
@@ -313,6 +317,9 @@ function mapDispatchToProps (dispatch) {
     },
     fetchMatches: function (profile) {
       dispatch (actions.fetchMatches(profile));
+    },
+    createProfileLocalStorage: function (profile) {
+      dispatch (actions.createProfileLocalStorage(profile));
     }
   };
 }

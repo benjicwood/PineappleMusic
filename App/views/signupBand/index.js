@@ -135,14 +135,13 @@ class SignupBand extends Component {
     };
 
     this.props.createProfile(profileObj.type, profileObj);
-
+    this.props.createProfileLocalStorage(profileObj);
     var matchProfile = {
       type: profileObj.type,
       genre: profileObj.genre,
       instrument: profileObj.instrument
     };
-
-    this.props.fetchMatches(this.props.userProfile);
+    this.props.fetchMatches(matchProfile);
 
     this.props.navigator.push({
       id: 'Matches'
@@ -312,6 +311,9 @@ function mapDispatchToProps (dispatch) {
     },
     fetchMatches: function (profile) {
       dispatch (actions.fetchMatches(profile));
+    },
+    createProfileLocalStorage: function (profile) {
+      dispatch (actions.createProfileLocalStorage(profile));
     }
   };
 }
