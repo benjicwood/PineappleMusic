@@ -150,12 +150,11 @@ class SignupMusician extends Component {
       instrument: profileObj.instrument
     };
 
-
     this.props.fetchMatches(matchProfile);
 
     this.props.navigator.push({
       id: 'Matches'
-    })
+    });
   }
 
   render () {
@@ -185,7 +184,7 @@ class SignupMusician extends Component {
           <View style={styles.inputsContainer}>
             <View style={styles.inputContainer}>
               <View style={styles.iconContainer}>
-                <Icon name='ios-people-outline' style={{fontSize: 32, color: '#e9e104'}} />
+                <Icon name='ios-person-outline' style={{fontSize: 32, color: '#e9e104'}} />
               </View>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
@@ -430,9 +429,10 @@ let styles = StyleSheet.create({
   },
   picker: {
     width: 200,
+    height: 72,
     ...Platform.select({
       ios: { bottom: 100 },
-      android: { color: '#FFF', paddingVertical: 30 }
+      android: { color: '#FFF', paddingVertical: 30, right: 6 }
     })
   }
 });
