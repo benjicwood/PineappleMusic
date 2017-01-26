@@ -43,7 +43,9 @@ class Matches extends Component {
           <Text>Loading ...</Text>
       )
     }
-console.warn('user type: ',this.props.userProfile.type);
+    console.warn('user type: ',this.props.userProfile.type);
+    console.warn('user name: ',this.props.userProfile.user_name);
+
 
     return (
       <View style={styles.container}>

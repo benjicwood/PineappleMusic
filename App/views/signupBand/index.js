@@ -141,7 +141,7 @@ class SignupBand extends Component {
       genre: profileObj.genre,
       instrument: profileObj.instrument
     };
-    this.props.fetchMatches(this.props.userProfile);
+    this.props.fetchMatches(matchProfile);
 
     this.props.navigator.push({
       id: 'Matches'
