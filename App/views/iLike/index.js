@@ -7,22 +7,29 @@ import {
     Image,
     Platform
 } from 'react-native';
-import { Container, Content, Spinner } from 'native-base';
+import { Icon, Spinner, Container, Content, List, ListItem, Thumbnail } from 'native-base';
 
 import background from '../matches/pineapplecandg.jpg';
+import MyHeavenMatches from './myHeavenMatches';
 
 import { connect } from 'react-redux';
 import actions from '../../actions/actions';
-var data='';
+var data = '';
 class ILike extends Component {
 
-  componentWillMount(){
+  componentWillMount () {
     data = this.props.list;
   }
 
   onMatchPress () {
     this.props.navigator.push({
       id: 'Matches'
+    });
+  }
+
+  onLikesMePress () {
+    this.props.navigator.push({
+      id: 'LikesMe'
     });
   }
 
@@ -38,13 +45,23 @@ class ILike extends Component {
     }
     return (
       <View style={styles.container}>
-        <TouchableOpacity
-          onPress={this.onMatchPress.bind(this)}
-          >
-          <Text style={styles.toMatches}>Back to Matches</Text>
-        </TouchableOpacity>
-        <Text>MY HEAVEN</Text>
-        <Text>{data}</Text>
+        <Image
+          source={background}
+          style={[styles.container, styles.background]}
+        >
+          <TouchableOpacity
+            onPress={this.onMatchPress.bind(this)}
+            style={styles.button}>
+            <Icon name='md-heart-outline' style={{fontSize: 45, color: '#e9e104', top: 1}} />
+            <Text style={{fontSize: 16, color: 'whitesmoke', bottom: 2}}>BACK TO MATCHES</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={this.onLikesMePress.bind(this)}
+            style={styles.button}>
+            <Icon name='md-heart-outline' style={{fontSize: 45, color: '#e9e104', top: 1}} />
+            <Text style={{fontSize: 16, color: 'whitesmoke', bottom: 2}}>THEIR HEAVEN</Text>
+          </TouchableOpacity>
+        </Image>
       </View>
     );
   }
@@ -72,10 +89,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row'
   },
-  toMatches: {
-    paddingTop: 20,
-    fontSize: 20
-  },
   background: {
     ...Platform.select({
       ios: { paddingTop: 500 },
@@ -83,5 +96,23 @@ const styles = StyleSheet.create({
     }),
     width: null,
     height: null
+  },
+  profilepineapple: {
+    width: 100,
+    height: 100
+  },
+  pineapple: {
+    bottom: 480,
+    left: 330
+  },
+  button: {
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 80,
+    width: 205,
+    top: 85
   }
 });
