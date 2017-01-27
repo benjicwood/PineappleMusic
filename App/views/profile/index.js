@@ -21,89 +21,13 @@ import background from '../matches/pineapplecandg.jpg';
 import { connect } from 'react-redux';
 import actions from '../../actions/actions';
 
-const instrumentName = [
-  'Electric Guitar',
-  'Bass Guitar',
-  'Acoustic Guitar',
-  'Violin',
-  'Cello',
-  'Saxophone',
-  'Trumpet',
-  'Piccolo',
-  'Flute',
-  'Clarinet',
-  'Oboe',
-  'Bassoon',
-  'Trombone',
-  'French horn',
-  'Tuba',
-  'Drums',
-  'Kettledrum',
-  'Bongos',
-  'Conga (drum)',
-  'Cymbals'
-];
+import genre from '../../data/genre';
+import instrument from '../../data/instrument';
 
-const instrumentId = [
-  '588898cb65e40796fa13d472',
-  '588898cb65e40796fa13d473',
-  '588898cb65e40796fa13d474',
-  '588898cb65e40796fa13d475',
-  '588898cb65e40796fa13d476',
-  '588898cb65e40796fa13d477',
-  '588898cb65e40796fa13d478',
-  '588898cb65e40796fa13d479',
-  '588898cb65e40796fa13d47a',
-  '588898cb65e40796fa13d47b',
-  '588898cb65e40796fa13d47c',
-  '588898cb65e40796fa13d47d',
-  '588898cb65e40796fa13d47e',
-  '588898cb65e40796fa13d47f',
-  '588898cb65e40796fa13d480',
-  '588898cb65e40796fa13d481',
-  '588898cb65e40796fa13d482',
-  '588898cb65e40796fa13d483',
-  '588898cb65e40796fa13d484',
-  '588898cb65e40796fa13d485'
-];
-
-const genreId = [
-  '588898cb65e40796fa13d462',
-  '588898cb65e40796fa13d463',
-  '588898cb65e40796fa13d464',
-  '588898cb65e40796fa13d465',
-  '588898cb65e40796fa13d466',
-  '588898cb65e40796fa13d467',
-  '588898cb65e40796fa13d468',
-  '588898cb65e40796fa13d469',
-  '588898cb65e40796fa13d46a',
-  '588898cb65e40796fa13d46b',
-  '588898cb65e40796fa13d46c',
-  '588898cb65e40796fa13d46d',
-  '588898cb65e40796fa13d46e',
-  '588898cb65e40796fa13d46f',
-  '588898cb65e40796fa13d470',
-  '588898cb65e40796fa13d471'
-];
-
-var genreName = [
-  'Avant Garde',
-  'Blues',
-  'Carribean',
-  'Comedy',
-  'Country',
-  'Easy Listening',
-  'Electronic',
-  'Folk',
-  'Hip Hop',
-  'Jazz',
-  'Latin',
-  'Pop',
-  'R&B & Soul',
-  'Rock',
-  'Metal',
-  'Indie'
-];
+const instrumentId = instrument.instrumentId;
+const instrumentName = instrument.instrumentName;
+const genreId = genre.genreId;
+const genreName = genre.genreName;
 
 class Profile extends Component {
   constructor (props) {
@@ -172,7 +96,7 @@ class Profile extends Component {
         >
           <View style={styles.headerTitleView}>
             <Text style={styles.titleViewText}>My Profile</Text>
-            <Text style={styles.subtitles}>thisdotusername</Text>
+            <Text style={styles.subtitles}>{this.props.userProfile.user_name}</Text>
           </View>
           <Image source={cookiemonster} style={styles.profilepicture}>
             <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
@@ -248,6 +172,10 @@ class Profile extends Component {
                 <Picker.Item label={instrumentName[13]} value={instrumentId[13]} />
                 <Picker.Item label={instrumentName[14]} value={instrumentId[14]} />
                 <Picker.Item label={instrumentName[15]} value={instrumentId[15]} />
+                <Picker.Item label={instrumentName[16]} value={instrumentId[16]} />
+                <Picker.Item label={instrumentName[17]} value={instrumentId[17]} />
+                <Picker.Item label={instrumentName[18]} value={instrumentId[18]} />
+                <Picker.Item label={instrumentName[19]} value={instrumentId[19]} />
               </Picker>
               <TextInput
                 style={[styles.input, styles.whiteFont]}

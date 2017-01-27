@@ -12,10 +12,13 @@ import {
 
 import ImagePicker from 'react-native-image-picker';
 
-export default class MyComponent extends React.Component {
+import { connect } from 'react-redux';
+
+
+ class MyComponent extends React.Component {
 
   state = {
-    avatarSource: null,
+    avatarSource: {uri:'https://fl.eat24cdn.com/blog/images/2015/08/05001150/trumpTaco.jpg'},
     videoSource: null
   };
 
@@ -94,8 +97,9 @@ export default class MyComponent extends React.Component {
       <View style={styles.container}>
         <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
           <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
-          { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
-            <Image style={styles.avatar} source={this.state.avatarSource} />
+          { this.state.avatarSource === null ? <Image source={{uri:this.props.userProfile.profile_pic}} style={styles.profilepicture}></Image> :
+              <Image style={styles.avatar} source={this.state.avatarSource} />
+
           }
           </View>
         </TouchableOpacity>
@@ -111,21 +115,34 @@ export default class MyComponent extends React.Component {
 
 }
 
+function mapStateToProps (state) {
+  return {
+    userProfile: state.profile.userProfile,
+  };
+}
+
+export default connect(mapStateToProps)(MyComponent);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF'
+    opacity: 0
   },
   avatarContainer: {
     borderColor: '#9B9B9B',
     borderWidth: 1 / PixelRatio.get(),
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    opacity: 1
+
   },
   avatar: {
     width: 180,
     height: 180,
+    opacity: 1
+  },
+  profilepicture: {
   }
 });
