@@ -51,7 +51,7 @@ class BandCards extends Component {
 
   // yup and nope are NAMED wrong way round but work !!
   handleYup () {
-
+console.warn('HELL');
 /*    // send to hell
     var connection = {
       type : 'hell',
@@ -62,7 +62,7 @@ class BandCards extends Component {
   }
 
   handleNope () {
-
+console.warn('HEAVEN');
 /*    // send to heaven
     var connection = {
       type : 'heaven',
