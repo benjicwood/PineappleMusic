@@ -5,7 +5,7 @@ const actions = {};
 
 //http://cfbe53a1.ngrok.io/api/genre
 //const api = 'http://pineapple-api.herokuapp.com/api/';
-const api = 'http://051101dc.ngrok.io/api/';
+const api = 'http:////834546a9.ngrok.io/api/';
 // const api = 'http://57ec0123.ngrok.io/api/';
 
 

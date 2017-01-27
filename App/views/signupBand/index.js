@@ -121,6 +121,40 @@ class SignupBand extends Component {
     });
   }
 
+  // user clicks sign -in
+  signInOnMatchPress () {
+
+    // create a band mock profile object
+    var bandMockProfile = {
+      type: 'band',
+      user_name: 'Test Band',
+      email: 'test@band.co.uk',
+      instrument: '588898cb65e40796fa13d478',
+      genre: '588898cb65e40796fa13d465'
+    };
+
+    // set it to the store
+
+    this.props.createProfileLocalStorage(bandMockProfile);
+
+    // create a tmp match query obj
+    var matchProfile = {
+      type: bandMockProfile.type,
+      genre: bandMockProfile.genre,
+      instrument: bandMockProfile.instrument
+    };
+
+    // get matches
+    this.props.fetchMatches(matchProfile);
+
+    // load matches view
+    this.props.navigator.push({
+      id: 'Matches'
+    });
+
+  };
+
+  // user clicks sign-up
   onMatchPress () {
     // signup click handler
 
@@ -292,7 +326,7 @@ class SignupBand extends Component {
           </View>
           <View style={styles.signinclick}>
             <TouchableOpacity
-              onPress={this.onMatchPress.bind(this)}
+              onPress={this.signInOnMatchPress.bind(this)}
               >
               <View style={styles.signup}>
                 <Text style={styles.whiteFont}>Sign In</Text>
