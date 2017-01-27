@@ -15,6 +15,8 @@ import SwipeCards from './SwipeCards';
 import FlipCard from 'react-native-flip-card';
 
 var currentCard = {};
+var createConnectionGlobal;
+var currentUserIdGlobal;
 
 class BandCards extends Component {
   constructor (props) {
@@ -25,6 +27,8 @@ class BandCards extends Component {
   }
   Card (x) {
     currentCard = x;
+    createConnectionGlobal = this.props.createConnection;
+    currentUserIdGlobal = this.props.userProfile._id;
     return (
       <View>
         <Text style={styles.name}>{x.user}</Text>
@@ -38,10 +42,10 @@ class BandCards extends Component {
             <Image source={{uri: x.profile_pic}} style={styles.backimage} />
             <View>
               <Text style={styles.name}>{x.user_name} </Text>
-              <Text style={styles.backtext}>genre {x.genre}</Text>
-              <Text style={styles.backtext}>instrument {x.instrument}</Text>
-              <Text style={styles.backtext}>email {x.email}</Text>
-              <Text style={styles.backtext}>user id {x._id}</Text>
+              <Text style={styles.backtext}>{x.genre}</Text>
+              <Text style={styles.backtext}>{x.instrument}</Text>
+              <Text style={styles.backtext}>{x.email}</Text>
+              <Text style={styles.backtext}>{x._id}</Text>
             </View>
           </View>
         </FlipCard>
@@ -50,34 +54,36 @@ class BandCards extends Component {
   }
 
   // yup and nope are NAMED wrong way round but work !!
+
   handleYup () {
-console.warn('HELL');
-/*    // send to hell
+
     var connection = {
       type : 'hell',
-      source_id: 'id',
-      target_id: 'id'
+      source_id: currentUserIdGlobal,
+      target_id: currentCard._id
     };
-    this.props.createConnection(connection);*/
+    createConnectionGlobal(connection);
   }
-
   handleNope () {
-console.warn('HEAVEN');
-/*    // send to heaven
+
     var connection = {
       type : 'heaven',
-      source_id: 'id',
-      target_id: 'id'
+      source_id: currentUserIdGlobal,
+      target_id: currentCard._id
+
     };
-    this.props.createConnection(connection);*/
+    createConnectionGlobal(connection);
   }
+
   loop () {
     console.warn('restart');
   }
+
   yup () {
     console.log(this.refs['swiper']);
     this.refs['swiper']._goToNextCard();
   }
+
   nope () {
     console.log(this.refs['swiper']);
     this.refs['swiper']._goToNextCard();
@@ -91,8 +97,8 @@ console.warn('HEAVEN');
           cards={this.state.cards}
           containerStyle={styles.cardcontainer}
           renderCard={(cardData) => this.Card(cardData)}
-          handleYup={this.handleYup()}
-          handleNope={this.handleNope()} />
+          handleYup={this.handleYup}
+          handleNope={this.handleNope} />
       </View>
     );
   }

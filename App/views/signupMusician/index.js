@@ -104,8 +104,6 @@ var genreName = [
 ];
 
 
-
-
 class SignupMusician extends Component {
 
   constructor (props) {
