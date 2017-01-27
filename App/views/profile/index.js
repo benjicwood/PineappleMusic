@@ -10,6 +10,8 @@ import {
   Picker
 } from 'react-native';
 
+import ImagePicker from './camera';
+
 import { Icon, Spinner } from 'native-base';
 
 import cookiemonster from '../matches/band.jpg';
@@ -138,6 +140,18 @@ class Profile extends Component {
     });
   }
 
+    selectPhotoTapped() {
+      const options = {
+        quality: 1.0,
+        maxWidth: 500,
+        maxHeight: 500,
+        storageOptions: {
+          skipBackup: true
+        }
+      };
+    }
+
+
   render () {
     if (this.props.isLoading) {
       return (
@@ -158,7 +172,17 @@ class Profile extends Component {
             <Text style={styles.titleViewText}>My Profile</Text>
             <Text style={styles.subtitles}>thisdotusername</Text>
           </View>
-          <Image source={cookiemonster} style={styles.profilepicture} />
+          <Image source={cookiemonster} style={styles.profilepicture}>
+            <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
+              <View style={styles.camerathing}>
+                <ImagePicker />
+              { this.state.avatarSource === null ? <Text>Select a Photo</Text> :
+                <Image style={styles.avatar} source={this.state.avatarSource} />
+
+              }
+              </View>
+            </TouchableOpacity>
+            </Image>
           <View style={styles.inputsContainer}>
             <View style={styles.inputContainer}>
               <View style={styles.iconContainer}>
@@ -385,5 +409,9 @@ const styles = StyleSheet.create({
     left: 3,
     borderWidth: 1,
     borderColor: '#e9e104'
+  },
+  camerathing: {
+    width: 180,
+    height: 180
   }
 });
