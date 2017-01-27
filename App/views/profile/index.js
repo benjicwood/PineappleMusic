@@ -98,7 +98,7 @@ class Profile extends Component {
             <Text style={styles.titleViewText}>My Profile</Text>
             <Text style={styles.subtitles}>{this.props.userProfile.user_name}</Text>
           </View>
-          <Image source={cookiemonster} style={styles.profilepicture}>
+          <Image source={{uri:this.props.userProfile.profile_pic}} style={styles.profilepicture}>
             <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
               <View style={styles.camerathing}>
                 <ImagePicker />

@@ -91,6 +91,7 @@ class SignupBand extends Component {
       type: this.state.type,
       user_name: this.state.user_name,
       email: this.state.email,
+      profile_pic: '../matches/band.jpg',
       instrument: this.state.instrument,
       genre: this.state.genre
     };

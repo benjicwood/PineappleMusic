@@ -90,6 +90,7 @@ class SignupMusician extends Component {
       type: this.state.type,
       user_name: this.state.user_name,
       email: this.state.email,
+      profile_pic: '../matches/band.jpg',
       // need to save the instrument ID , not the instrument name **********
       instrument: this.state.instrument,
       // same goes for genres. *********************************************
