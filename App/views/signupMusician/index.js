@@ -104,8 +104,6 @@ var genreName = [
 ];
 
 
-
-
 class SignupMusician extends Component {
 
   constructor (props) {
@@ -132,8 +130,9 @@ class SignupMusician extends Component {
 
     // create a band mock profile object
     var musicianMockProfile = {
+      _id: '588a46af5d421cb90766d719',
       type: 'musician',
-      user_name: 'Test Musician',
+      user_name: 'Freddie the Fluffer',
       email: 'test@musician.co.uk',
       instrument: '588898cb65e40796fa13d478',
       genre: '588898cb65e40796fa13d465'

@@ -3,11 +3,7 @@ import * as types from './types';
 
 const actions = {};
 
-//http://cfbe53a1.ngrok.io/api/genre
-//const api = 'http://pineapple-api.herokuapp.com/api/';
 const api = 'http://pineapple-music.herokuapp.com/api/';
-// const api = 'http://57ec0123.ngrok.io/api/';
-
 
 actions.createProfileLocalStorage = function (profile) {
   return function (dispatch) {
