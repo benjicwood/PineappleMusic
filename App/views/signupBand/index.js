@@ -126,8 +126,9 @@ class SignupBand extends Component {
 
     // create a band mock profile object
     var bandMockProfile = {
+      _id: '5889d98d6b1236a837319174',
       type: 'band',
-      user_name: 'Test Band',
+      user_name: 'jimmys sausage butties',
       email: 'test@band.co.uk',
       instrument: '588898cb65e40796fa13d478',
       genre: '588898cb65e40796fa13d465'
