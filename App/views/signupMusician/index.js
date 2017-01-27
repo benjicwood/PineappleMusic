@@ -295,6 +295,15 @@ class SignupMusician extends Component {
               </View>
             </TouchableOpacity>
           </View>
+          <View style={styles.signinclick}>
+            <TouchableOpacity
+              onPress={this.onMatchPress.bind(this)}
+              >
+              <View style={styles.signup}>
+                <Text style={styles.whiteFont}>Sign In</Text>
+              </View>
+            </TouchableOpacity>
+          </View>
         </Image>
       </View>
     );
@@ -377,7 +386,8 @@ let styles = StyleSheet.create({
     borderBottomColor: '#CCC',
     borderColor: 'transparent',
     flexDirection: 'row',
-    height: 75
+    height: 75,
+    bottom: 37
   },
   iconContainer: {
     paddingHorizontal: 15,
@@ -396,7 +406,7 @@ let styles = StyleSheet.create({
     backgroundColor: '#e9e104',
     ...Platform.select({
       ios: { paddingVertical: 23 },
-      android: { paddingVertical: 18 }
+      android: { paddingVertical: 15 }
     }),
     alignItems: 'center',
     justifyContent: 'center'
@@ -434,5 +444,8 @@ let styles = StyleSheet.create({
       ios: { bottom: 100 },
       android: { color: '#FFF', paddingVertical: 30, right: 6 }
     })
+  },
+  signinclick: {
+    bottom: 6
   }
 });
