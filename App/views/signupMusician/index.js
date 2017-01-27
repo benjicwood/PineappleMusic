@@ -57,10 +57,10 @@ class SignupMusician extends Component {
       user_name: 'Tague Z',
       email: 'lbrown3@paypal.com',
       profile_pic: 'https://scontent-lhr3-1.xx.fbcdn.net/v/t1.0-9/298857_10150355482410751_764378_n.jpg?oh=7e527f2ef3d4f04b93cd5a688060b3ac&oe=590FE85C',
-      instrument: '588b1c3ae920cd5486eafd18',
-      genre: '588b1ba1e920cd5486eafcfa'
+      instrument: '588b1c3ae920cd5486eafd0d',
+      genre: '588b1ba1e920cd5486eafcff'
     };
-
+    
     // set it to the store
 
     this.props.createProfileLocalStorage(musicianMockProfile);

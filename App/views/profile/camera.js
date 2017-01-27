@@ -93,7 +93,6 @@ import { connect } from 'react-redux';
   }
 
   render() {
-    console.warn('ava src: ', this.state.avatarSource);
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
