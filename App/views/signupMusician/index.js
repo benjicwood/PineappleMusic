@@ -85,22 +85,22 @@ var genreId = [
 ];
 
 var genreName = [
-  "avant garde",
-  "blues",
-  "carribean",
-  "comedy",
-  "country",
-  "easy listening",
-  "electronic",
-  "folk",
-  "hip hop",
-  "jazz",
-  "latin",
-  "pop",
+  "Avant Garde",
+  "Blues",
+  "Carribean",
+  "Comedy",
+  "Country",
+  "Easy Listening",
+  "Electronic",
+  "Folk",
+  "Hip Hop",
+  "Jazz",
+  "Latin",
+  "Pop",
   "R&B & Soul",
-  "rock",
-  "metal",
-  "indie"
+  "Rock",
+  "Metal",
+  "Indie"
 ];
 
 
