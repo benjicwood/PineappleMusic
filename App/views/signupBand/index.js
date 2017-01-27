@@ -52,11 +52,12 @@ class SignupBand extends Component {
 
     // create a band mock profile object
     var bandMockProfile = {
-      _id: '588b1f4be920cd5486eafd46',
+      _id: '588b682a3436010011677517',
       type: 'band',
       user_name: 'Spice Girls',
-      email: 'test@band.co.uk',
-      instrument: '588b1c3ae920cd5486eafd06',
+      email: 'amazeballs',
+      profile_pic: 'http://www.tributesabroad.co.uk/tributes/beatles_fab4/fab4sale.jpg',
+      instrument: '588b1c3ae920cd5486eafd19',
       genre: '588b1ba1e920cd5486eafcfc'
     };
 
