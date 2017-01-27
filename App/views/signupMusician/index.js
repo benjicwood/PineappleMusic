@@ -16,93 +16,15 @@ import { connect } from 'react-redux';
 import actions  from '../../actions/actions';
 
 const background = require('./musicianbackground.png');
-
 const backIcon = require('./back.png');
 
-var instrumentName = [
-  "Electric Guitar",
-  "Bass Guitar",
-  "Acoustic Guitar",
-  "Violin",
-  "Cello",
-  "Saxophone",
-  "Trumpet",
-  "Piccolo",
-  "Flute",
-  "Clarinet",
-  "Oboe",
-  "Bassoon",
-  "Trombone",
-  "French horn",
-  "Tuba",
-  "Drums",
-  "Kettledrum",
-  "Bongos",
-  "Conga (drum)",
-  "Cymbals"
-];
+import genre from '../../data/genre';
+import instrument from '../../data/instrument';
 
-var instrumentId = [
-  "588898cb65e40796fa13d472",
-  "588898cb65e40796fa13d473",
-  "588898cb65e40796fa13d474",
-  "588898cb65e40796fa13d475",
-  "588898cb65e40796fa13d476",
-  "588898cb65e40796fa13d477",
-  "588898cb65e40796fa13d478",
-  "588898cb65e40796fa13d479",
-  "588898cb65e40796fa13d47a",
-  "588898cb65e40796fa13d47b",
-  "588898cb65e40796fa13d47c",
-  "588898cb65e40796fa13d47d",
-  "588898cb65e40796fa13d47e",
-  "588898cb65e40796fa13d47f",
-  "588898cb65e40796fa13d480",
-  "588898cb65e40796fa13d481",
-  "588898cb65e40796fa13d482",
-  "588898cb65e40796fa13d483",
-  "588898cb65e40796fa13d484",
-  "588898cb65e40796fa13d485"
-];
-
-var genreId = [
-  '588898cb65e40796fa13d462',
-  '588898cb65e40796fa13d463',
-  '588898cb65e40796fa13d464',
-  '588898cb65e40796fa13d465',
-  '588898cb65e40796fa13d466',
-  '588898cb65e40796fa13d467',
-  '588898cb65e40796fa13d468',
-  '588898cb65e40796fa13d469',
-  '588898cb65e40796fa13d46a',
-  '588898cb65e40796fa13d46b',
-  '588898cb65e40796fa13d46c',
-  '588898cb65e40796fa13d46d',
-  '588898cb65e40796fa13d46e',
-  '588898cb65e40796fa13d46f',
-  '588898cb65e40796fa13d470',
-  '588898cb65e40796fa13d471',
-];
-
-var genreName = [
-  "Avant Garde",
-  "Blues",
-  "Carribean",
-  "Comedy",
-  "Country",
-  "Easy Listening",
-  "Electronic",
-  "Folk",
-  "Hip Hop",
-  "Jazz",
-  "Latin",
-  "Pop",
-  "R&B & Soul",
-  "Rock",
-  "Metal",
-  "Indie"
-];
-
+const instrumentId = instrument.instrumentId;
+const instrumentName = instrument.instrumentName;
+const genreId = genre.genreId;
+const genreName = genre.genreName;
 
 class SignupMusician extends Component {
 
@@ -130,12 +52,13 @@ class SignupMusician extends Component {
 
     // create a band mock profile object
     var musicianMockProfile = {
-      _id: '588a46af5d421cb90766d719',
+      _id: '588b27e8e920cd5486eafd95',
       type: 'musician',
-      user_name: 'Freddie the Fluffer',
-      email: 'test@musician.co.uk',
-      instrument: '588898cb65e40796fa13d478',
-      genre: '588898cb65e40796fa13d465'
+      user_name: 'Tague Z',
+      email: 'lbrown3@paypal.com',
+      profile_pic: 'https://scontent-lhr3-1.xx.fbcdn.net/v/t1.0-9/298857_10150355482410751_764378_n.jpg?oh=7e527f2ef3d4f04b93cd5a688060b3ac&oe=590FE85C',
+      instrument: '588b1c3ae920cd5486eafd18',
+      genre: '588b1ba1e920cd5486eafcfa'
     };
 
     // set it to the store
@@ -277,6 +200,10 @@ class SignupMusician extends Component {
                 <Picker.Item label={instrumentName[13]} value={instrumentId[13]} />
                 <Picker.Item label={instrumentName[14]} value={instrumentId[14]} />
                 <Picker.Item label={instrumentName[15]} value={instrumentId[15]} />
+                <Picker.Item label={instrumentName[16]} value={instrumentId[16]} />
+                <Picker.Item label={instrumentName[17]} value={instrumentId[17]} />
+                <Picker.Item label={instrumentName[18]} value={instrumentId[18]} />
+                <Picker.Item label={instrumentName[19]} value={instrumentId[19]} />
               </Picker>
               <TextInput
                 style={[styles.input, styles.whiteFont]}
