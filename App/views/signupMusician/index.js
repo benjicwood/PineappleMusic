@@ -60,7 +60,7 @@ class SignupMusician extends Component {
       instrument: '588b1c3ae920cd5486eafd0d',
       genre: '588b1ba1e920cd5486eafcff'
     };
-    
+
     // set it to the store
 
     this.props.createProfileLocalStorage(musicianMockProfile);
