@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
  class MyComponent extends React.Component {
 
   state = {
-    avatarSource: null,
+    avatarSource: {uri:'https://fl.eat24cdn.com/blog/images/2015/08/05001150/trumpTaco.jpg'},
     videoSource: null
   };
 
@@ -93,12 +93,14 @@ import { connect } from 'react-redux';
   }
 
   render() {
+    console.warn('ava src: ', this.state.avatarSource);
     return (
       <View style={styles.container}>
         <TouchableOpacity onPress={this.selectPhotoTapped.bind(this)}>
           <View style={[styles.avatar, styles.avatarContainer, {marginBottom: 20}]}>
           { this.state.avatarSource === null ? <Image source={{uri:this.props.userProfile.profile_pic}} style={styles.profilepicture}></Image> :
-            <Image style={styles.avatar} source={this.state.avatarSource} />
+              <Image style={styles.avatar} source={this.state.avatarSource} />
+
           }
           </View>
         </TouchableOpacity>

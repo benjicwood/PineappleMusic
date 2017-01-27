@@ -31,7 +31,7 @@ class BandCards extends Component {
     currentUserIdGlobal = this.props.userProfile._id;
     return (
       <View>
-        <Text style={styles.name}>{x.user}</Text>
+        <Text style={styles.name}>{x.user_name}</Text>
         <FlipCard>
           <View style={styles.face}>
             <View style={styles.imagebox}>
