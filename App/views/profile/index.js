@@ -141,6 +141,8 @@ class  MyComponent extends Component {
     genre: this.state.genre
   };
 
+  this.props.fetchMatches(profileObj);
+    
   this.props.updateProfile(this.props.userProfile.type, this.props.userProfile._id, profileObj);
   // this.props.createProfileLocalStorage(profileObj);
     this.props.navigator.pop()
