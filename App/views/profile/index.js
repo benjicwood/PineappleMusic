@@ -111,6 +111,7 @@ class  MyComponent extends Component {
   constructor (props) {
     super(props);
     this.state = {
+      type: this.props.userProfile.type,
       phone_number: this.props.userProfile.phone_number,
       email: this.props.userProfile.email,
       instrument: this.props.userProfile.instrument,
@@ -141,9 +142,17 @@ class  MyComponent extends Component {
     genre: this.state.genre
   };
 
-  this.props.fetchMatches(profileObj);
-    
-  this.props.updateProfile(this.props.userProfile.type, this.props.userProfile._id, profileObj);
+    this.props.updateProfile(this.props.userProfile.type, this.props.userProfile._id, profileObj);
+
+    // create a tmp match query obj
+    var matchProfile = {
+      type: this.state.type,
+      genre: this.state.genre,
+      instrument: this.state.instrument
+    };
+
+    // get matches
+    this.props.fetchMatches(matchProfile);
   // this.props.createProfileLocalStorage(profileObj);
     this.props.navigator.pop()
 };
