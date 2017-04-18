@@ -10,10 +10,10 @@ import {
     Picker
 } from 'react-native';
 
-import { Container, Content, Icon } from 'native-base';
+import { Icon } from 'native-base';
 
 import { connect } from 'react-redux';
-import actions  from '../../actions/actions';
+import actions from '../../actions/actions';
 
 const background = require('./musicianbackground.png');
 const backIcon = require('./back.png');
@@ -49,7 +49,6 @@ class SignupMusician extends Component {
 
   // user clicks sign -in
   signInOnMatchPress () {
-
     // create a band mock profile object
     var musicianMockProfile = {
       _id: '588b27e8e920cd5486eafd95',
@@ -79,8 +78,7 @@ class SignupMusician extends Component {
     this.props.navigator.push({
       id: 'Matches'
     });
-
-  };
+  }
 
   onMatchPress () {
     // signup click handler

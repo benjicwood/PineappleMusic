@@ -10,7 +10,7 @@ import {
     Picker
 } from 'react-native';
 
-import { Container, Content, Icon } from 'native-base';
+import { Icon } from 'native-base';
 
 import { connect } from 'react-redux';
 import actions from '../../actions/actions';
@@ -25,8 +25,6 @@ const instrumentId = instrument.instrumentId;
 const instrumentName = instrument.instrumentName;
 const genreId = genre.genreId;
 const genreName = genre.genreName;
-
-
 
 class SignupBand extends Component {
 
@@ -49,7 +47,6 @@ class SignupBand extends Component {
 
   // user clicks sign -in
   signInOnMatchPress () {
-
     // create a band mock profile object
     var bandMockProfile = {
       _id: '588b682a3436010011677517',
@@ -79,8 +76,7 @@ class SignupBand extends Component {
     this.props.navigator.push({
       id: 'Matches'
     });
-
-  };
+  }
 
   // user clicks sign-up
   onMatchPress () {
